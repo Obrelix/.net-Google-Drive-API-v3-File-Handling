@@ -91,3 +91,34 @@ C:\Users\Obrelix\Desktop\Google Drive C#\GDUploaderForm\GDUploaderForm\obj\Debug
 C:\Users\Obrelix\Desktop\Google Drive C#\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.Properties.Resources.resources
 C:\Users\Obrelix\Desktop\Google Drive C#\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.csproj.GenerateResource.Cache
 C:\Users\Obrelix\Desktop\Google Drive C#\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.frmMain.resources
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\GDUploaderForm.exe.config
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.exe
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\GDUploaderForm.exe
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\GDUploaderForm.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Auth.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Core.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Zlib.Portable.dll
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Auth.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Core.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Core.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.PlatformServices.pdb
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Google.Apis.PlatformServices.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\bin\Debug\Zlib.Portable.xml
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.csprojResolveAssemblyReference.cache
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.frmMain.resources
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.Properties.Resources.resources
+C:\Users\Obrelix\Source\Repos\File-Upload-Google-Drive-APIV3-\GDUploaderForm\GDUploaderForm\obj\Debug\GDUploaderForm.csproj.GenerateResource.Cache

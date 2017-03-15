@@ -49,6 +49,19 @@ namespace GDUploaderForm
                 System.Diagnostics.Debug.WriteLine("File: {0}", file);
             } 
         }
+        private void pnlConnection_DragDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+        private void pnlConnection_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in files)
+            {
+                txtJsonPath.Text = file;
+                System.Diagnostics.Debug.WriteLine("File: {0}", file);
+            }
+        }
 
         private void btnConnect_Click(object sender, EventArgs e)
         {

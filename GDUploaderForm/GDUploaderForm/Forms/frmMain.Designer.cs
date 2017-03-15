@@ -37,20 +37,20 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.txtConnect = new System.Windows.Forms.TextBox();
             this.pnlDragAndDrop = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlConnection = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtJsonPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnJsonBroswe = new System.Windows.Forms.Button();
             this.txtAppName = new System.Windows.Forms.TextBox();
             this.ofgJsonFile = new System.Windows.Forms.OpenFileDialog();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.pnlDragAndDrop.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlConnection.SuspendLayout();
             this.SuspendLayout();
             // 
             // ofgFileToUpload
@@ -139,6 +139,15 @@
             this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 186);
             this.pnlDragAndDrop.TabIndex = 17;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "File path";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -148,21 +157,42 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Select a File : ";
             // 
-            // panel1
+            // pnlConnection
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.txtJsonPath);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.btnJsonBroswe);
-            this.panel1.Controls.Add(this.btnConnect);
-            this.panel1.Controls.Add(this.txtAppName);
-            this.panel1.Controls.Add(this.txtConnect);
-            this.panel1.Location = new System.Drawing.Point(7, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 179);
-            this.panel1.TabIndex = 18;
+            this.pnlConnection.AllowDrop = true;
+            this.pnlConnection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlConnection.Controls.Add(this.label8);
+            this.pnlConnection.Controls.Add(this.label7);
+            this.pnlConnection.Controls.Add(this.txtJsonPath);
+            this.pnlConnection.Controls.Add(this.label2);
+            this.pnlConnection.Controls.Add(this.btnJsonBroswe);
+            this.pnlConnection.Controls.Add(this.btnConnect);
+            this.pnlConnection.Controls.Add(this.txtAppName);
+            this.pnlConnection.Controls.Add(this.txtConnect);
+            this.pnlConnection.Location = new System.Drawing.Point(7, 32);
+            this.pnlConnection.Name = "pnlConnection";
+            this.pnlConnection.Size = new System.Drawing.Size(271, 179);
+            this.pnlConnection.TabIndex = 18;
+            this.pnlConnection.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlConnection_DragDrop);
+            this.pnlConnection.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlConnection_DragDragEnter);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 38);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Json File path";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(5, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Select client_secret.Json : ";
             // 
             // txtJsonPath
             // 
@@ -202,15 +232,6 @@
             // 
             this.ofgJsonFile.FileName = "openFileDialog1";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 36);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "File path";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -229,24 +250,6 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Upload Files to Google Drive";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Select client_secret.Json : ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 38);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Json File path";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,15 +257,15 @@
             this.ClientSize = new System.Drawing.Size(290, 434);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlConnection);
             this.Controls.Add(this.pnlDragAndDrop);
             this.Name = "frmMain";
             this.Text = "Google Drive Uploader";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlDragAndDrop.ResumeLayout(false);
             this.pnlDragAndDrop.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlConnection.ResumeLayout(false);
+            this.pnlConnection.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,7 +283,7 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Panel pnlDragAndDrop;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlConnection;
         private System.Windows.Forms.TextBox txtJsonPath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnJsonBroswe;
