@@ -49,10 +49,12 @@ namespace GDUploaderForm
                 System.Diagnostics.Debug.WriteLine("File: {0}", file);
             } 
         }
+
         private void pnlConnection_DragDragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
+
         private void pnlConnection_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -128,97 +130,23 @@ namespace GDUploaderForm
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
             string filePath = txtFilePath.Text;
             string fileName = txtFileName.Text;
-            string fileType = GetFileType(filePath);
             if(txtConnect.Text == "Disconnected")
             {
                 MessageBox.Show("You have to Connect First in order to upload Files");
             }
             else
             {
-                GoogleDriveAPIV3.uploadToDrive(fileName, filePath, fileType);
+                GoogleDriveAPIV3.uploadToDrive(filePath, fileName, null);
             }
             
             
         }
 
-        private String GetFileType(string file)
-        {
-            string extension = Path.GetExtension(file);
-            System.Diagnostics.Debug.WriteLine("extension: " + extension);
-            string mime;
-            switch (extension.ToLower())
-            {
-                //image files
-                case ".svg":
-                    mime = "image/svg+xml";
-                    break;
-                case ".jpg":
-                    mime = "image/jpeg";
-                    break;
-                case ".jpeg":
-                    mime = "image/jpeg";
-                    break;
-                case ".png":
-                    mime = "image/png";
-                    break;
+       
 
-                //Documents
-                //Excel Formats
-                case ".xlt":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xlsx":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xlsm":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xlsb":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xltx":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xltm":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xls":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
 
-                //PowerPoint Formats
-                case ".pptx":
-                    mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-                    break;
-                case ".ppt":
-                    mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-                    break;
-               
-                case ".bat":
-                    mime = "application/vnd.google-apps.script+json";
-                    break;
 
-                case ".csv":
-                    mime = "text/csv";
-                    break;
-                case ".doc":
-                    mime = "application/msword";
-                    break;
-                case ".pdf":
-                    mime = "application/pdf";
-                    break;
 
-                case ".html":
-                    mime = "text/html";
-                    break;
 
-                default:
-                    mime = "text/plain";
-                    break;
-            }
-            return mime;
-        }
-
-        
     }
 }
