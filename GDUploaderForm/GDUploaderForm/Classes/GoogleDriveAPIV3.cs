@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace GDUploaderForm
 {
-    public  class GoogleDriveAPIV3
+    public static class GoogleDriveAPIV3
     {
         private static string[] Scopes = { DriveService.Scope.Drive };
         private static UserCredential credential;
@@ -74,31 +74,6 @@ namespace GDUploaderForm
 
         }
 
-        //public static void uploadFileToDrive(string fileName, string filePath, string fileType)
-        //{
-        //    try
-        //    {
-        //        var fileMetadata = new Google.Apis.Drive.v3.Data.File()
-        //        {
-        //            Name = fileName
-        //        };
-        //        FilesResource.CreateMediaUpload request;
-        //        using (var stream = new System.IO.FileStream(filePath,
-        //                                System.IO.FileMode.Open))
-        //        {
-        //            request = service.Files.Create(fileMetadata, stream, fileType);
-        //            request.Fields = "id";
-        //            request.Upload();
-        //        }
-        //        var file = request.ResponseBody;
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine(exc.Message);
-        //    }
-
-        //}
-
 
         private static void uploadFileToDrive(string folderId, string fileName, string filePath, string fileType)
         {
@@ -134,7 +109,7 @@ namespace GDUploaderForm
             }
         }
 
-        private static string createFolderToDrive(string folderName)
+        private static string createFolderToDrive(string folderName, string parentId)
         {
             try
             {
@@ -145,7 +120,13 @@ namespace GDUploaderForm
                     MimeType = "application/vnd.google-apps.folder",
                     
                 };
-                
+                if(parentId != null)
+                {
+                    fileMetadata.Parents = new List<string>
+                    {
+                        parentId
+                    };
+                }
                 
                 var request = service.Files.Create(fileMetadata);
                 request.Fields = "id";
@@ -158,35 +139,7 @@ namespace GDUploaderForm
                 return "";
             }
         }
-
-        private static string createFolderToDrive(string folderName, string parentId)
-        {
-            try
-            {
-
-                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
-                {
-                    Name = folderName,
-                    MimeType = "application/vnd.google-apps.folder",
-                    Parents = new List<string>
-                    {
-                        parentId
-                    }
-
-                };
-
-
-                var request = service.Files.Create(fileMetadata);
-                request.Fields = "id";
-                var file = request.Execute();
-                return file.Id;
-            }
-            catch (Exception exc)
-            {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
-                return "";
-            }
-        }
+        
 
 
         public static void uploadToDrive(string path, string name, string parentId)
@@ -206,7 +159,7 @@ namespace GDUploaderForm
                 string folderId;
                 if (parentId == null)
                 {
-                    folderId = createFolderToDrive(Path.GetFileName(path));
+                    folderId = createFolderToDrive(Path.GetFileName(path), null);
                     System.Diagnostics.Debug.WriteLine(folderId);
                 }
                 else
@@ -216,8 +169,7 @@ namespace GDUploaderForm
                         parentId);
                     System.Diagnostics.Debug.WriteLine(folderId);
                 }
-
-
+                
                 if (!dir.Exists)
                 {
                     throw new DirectoryNotFoundException(
@@ -226,9 +178,6 @@ namespace GDUploaderForm
                 }
 
                 DirectoryInfo[] dirs = dir.GetDirectories();
-
-
-                // Get the files in the directory and copy them to the new location.
                 FileInfo[] files = dir.GetFiles();
                 foreach (FileInfo file in files)
                 {
@@ -237,9 +186,7 @@ namespace GDUploaderForm
                         Path.Combine(path, file.Name),
                         getMimeType(file.Name));
                 }
-
-                // If copying subdirectories, copy them and their contents to new location.
-
+                
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     uploadToDrive(subdir.FullName, null, folderId);

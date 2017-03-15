@@ -63,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 111);
+            this.label1.Location = new System.Drawing.Point(4, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 12;
@@ -71,7 +71,7 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(4, 127);
+            this.txtFileName.Location = new System.Drawing.Point(4, 119);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(260, 20);
             this.txtFileName.TabIndex = 11;
@@ -79,7 +79,7 @@
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnUpload.Location = new System.Drawing.Point(83, 153);
+            this.btnUpload.Location = new System.Drawing.Point(83, 145);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(113, 55);
             this.btnUpload.TabIndex = 10;
@@ -99,7 +99,7 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(3, 88);
+            this.txtFilePath.Location = new System.Drawing.Point(3, 80);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
             this.txtFilePath.Size = new System.Drawing.Size(261, 20);
@@ -141,13 +141,13 @@
             this.pnlDragAndDrop.Controls.Add(this.txtFileName);
             this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 232);
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
-            this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 224);
+            this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 209);
             this.pnlDragAndDrop.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 72);
+            this.label4.Location = new System.Drawing.Point(4, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 14;
@@ -278,7 +278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 468);
+            this.ClientSize = new System.Drawing.Size(290, 452);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pnlConnection);
