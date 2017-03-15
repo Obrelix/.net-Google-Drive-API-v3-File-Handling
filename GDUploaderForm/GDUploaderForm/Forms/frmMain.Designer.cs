@@ -49,6 +49,9 @@
             this.ofgJsonFile = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnDirToUpload = new System.Windows.Forms.Button();
+            this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 75);
+            this.label1.Location = new System.Drawing.Point(4, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 12;
@@ -68,7 +71,7 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(4, 91);
+            this.txtFileName.Location = new System.Drawing.Point(4, 127);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(260, 20);
             this.txtFileName.TabIndex = 11;
@@ -76,7 +79,7 @@
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnUpload.Location = new System.Drawing.Point(83, 117);
+            this.btnUpload.Location = new System.Drawing.Point(83, 153);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(113, 55);
             this.btnUpload.TabIndex = 10;
@@ -96,7 +99,7 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(3, 52);
+            this.txtFilePath.Location = new System.Drawing.Point(3, 88);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
             this.txtFilePath.Size = new System.Drawing.Size(261, 20);
@@ -127,6 +130,8 @@
             // 
             this.pnlDragAndDrop.AllowDrop = true;
             this.pnlDragAndDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDragAndDrop.Controls.Add(this.label9);
+            this.pnlDragAndDrop.Controls.Add(this.btnDirToUpload);
             this.pnlDragAndDrop.Controls.Add(this.label4);
             this.pnlDragAndDrop.Controls.Add(this.label3);
             this.pnlDragAndDrop.Controls.Add(this.txtFilePath);
@@ -136,13 +141,13 @@
             this.pnlDragAndDrop.Controls.Add(this.txtFileName);
             this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 232);
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
-            this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 186);
+            this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 224);
             this.pnlDragAndDrop.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 36);
+            this.label4.Location = new System.Drawing.Point(4, 72);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 14;
@@ -250,11 +255,30 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Upload Files to Google Drive";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 41);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Select a Folder:";
+            // 
+            // btnDirToUpload
+            // 
+            this.btnDirToUpload.Location = new System.Drawing.Point(93, 36);
+            this.btnDirToUpload.Name = "btnDirToUpload";
+            this.btnDirToUpload.Size = new System.Drawing.Size(88, 23);
+            this.btnDirToUpload.TabIndex = 15;
+            this.btnDirToUpload.Text = "Browse";
+            this.btnDirToUpload.UseVisualStyleBackColor = true;
+            this.btnDirToUpload.Click += new System.EventHandler(this.btnDirToUpload_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 436);
+            this.ClientSize = new System.Drawing.Size(290, 468);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pnlConnection);
@@ -294,6 +318,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnDirToUpload;
+        private System.Windows.Forms.FolderBrowserDialog fbdDirToUpload;
     }
 }
 

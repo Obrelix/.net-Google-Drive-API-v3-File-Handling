@@ -96,15 +96,26 @@ namespace GDUploaderForm
             txtFileName.Text = Path.GetFileName(txtFilePath.Text);
         }
 
+        private void btnDirToUpload_Click(object sender, EventArgs e)
+        {
+            DialogResult result = fbdDirToUpload.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    txtFilePath.Text = fbdDirToUpload.SelectedPath;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void button_browse_Click(object sender, EventArgs e)
         {
             DialogResult result = ofgFileToUpload.ShowDialog();
             switch (result)
             {
-                case System.Windows.Forms.DialogResult.OK:
+                case DialogResult.OK:
                     txtFilePath.Text = ofgFileToUpload.FileName;
-                    //textBox_fileName.Text = ofgFileToUpload.SafeFileName;
                     break;
                 default:
                     break;
@@ -117,7 +128,7 @@ namespace GDUploaderForm
             DialogResult result = ofgJsonFile.ShowDialog();
             switch (result)
             {
-                case System.Windows.Forms.DialogResult.OK:
+                case DialogResult.OK:
                     txtJsonPath.Text = ofgJsonFile.FileName;
                     break;
                 default:
@@ -142,11 +153,6 @@ namespace GDUploaderForm
             
         }
 
-       
-
-
-
-
-
+        
     }
 }
