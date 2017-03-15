@@ -148,6 +148,10 @@ namespace GDUploaderForm
             string mime;
             switch (extension.ToLower())
             {
+                //image files
+                case ".svg":
+                    mime = "image/svg+xml";
+                    break;
                 case ".jpg":
                     mime = "image/jpeg";
                     break;
@@ -157,12 +161,57 @@ namespace GDUploaderForm
                 case ".png":
                     mime = "image/png";
                     break;
+
+                //Documents
+                //Excel Formats
+                case ".xlt":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case ".xlsx":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case ".xlsm":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case ".xlsb":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case ".xltx":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case ".xltm":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case ".xls":
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+
+                //PowerPoint Formats
+                case ".pptx":
+                    mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                    break;
+                case ".ppt":
+                    mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                    break;
+               
+                case ".bat":
+                    mime = "application/vnd.google-apps.script+json";
+                    break;
+
+                case ".csv":
+                    mime = "text/csv";
+                    break;
                 case ".doc":
                     mime = "application/msword";
                     break;
                 case ".pdf":
                     mime = "application/pdf";
                     break;
+
+                case ".html":
+                    mime = "text/html";
+                    break;
+
                 default:
                     mime = "text/plain";
                     break;
