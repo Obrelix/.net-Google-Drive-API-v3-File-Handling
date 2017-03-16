@@ -37,6 +37,8 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.txtConnect = new System.Windows.Forms.TextBox();
             this.pnlDragAndDrop = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnDirToUpload = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pnlConnection = new System.Windows.Forms.Panel();
@@ -49,16 +51,14 @@
             this.ofgJsonFile = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnDirToUpload = new System.Windows.Forms.Button();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
+            this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
+            this.btnDownload = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ofgFileToUpload
-            // 
-            this.ofgFileToUpload.FileName = "ofgFileToUpload";
             // 
             // label1
             // 
@@ -121,7 +121,7 @@
             this.txtConnect.Location = new System.Drawing.Point(117, 131);
             this.txtConnect.Name = "txtConnect";
             this.txtConnect.ReadOnly = true;
-            this.txtConnect.Size = new System.Drawing.Size(148, 20);
+            this.txtConnect.Size = new System.Drawing.Size(147, 20);
             this.txtConnect.TabIndex = 16;
             this.txtConnect.Text = "Disconnected";
             this.txtConnect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -143,6 +143,25 @@
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
             this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 209);
             this.pnlDragAndDrop.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 41);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Select a Folder:";
+            // 
+            // btnDirToUpload
+            // 
+            this.btnDirToUpload.Location = new System.Drawing.Point(93, 36);
+            this.btnDirToUpload.Name = "btnDirToUpload";
+            this.btnDirToUpload.Size = new System.Drawing.Size(88, 23);
+            this.btnDirToUpload.TabIndex = 15;
+            this.btnDirToUpload.Text = "Browse";
+            this.btnDirToUpload.UseVisualStyleBackColor = true;
+            this.btnDirToUpload.Click += new System.EventHandler(this.btnDirToUpload_Click);
             // 
             // label4
             // 
@@ -220,7 +239,7 @@
             // 
             this.btnJsonBroswe.Location = new System.Drawing.Point(171, 15);
             this.btnJsonBroswe.Name = "btnJsonBroswe";
-            this.btnJsonBroswe.Size = new System.Drawing.Size(91, 23);
+            this.btnJsonBroswe.Size = new System.Drawing.Size(93, 23);
             this.btnJsonBroswe.TabIndex = 15;
             this.btnJsonBroswe.Text = "Browse";
             this.btnJsonBroswe.UseVisualStyleBackColor = true;
@@ -235,7 +254,7 @@
             // 
             // ofgJsonFile
             // 
-            this.ofgJsonFile.FileName = "openFileDialog1";
+            this.ofgJsonFile.Tag = ".Json";
             // 
             // label5
             // 
@@ -255,30 +274,49 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Upload Files to Google Drive";
             // 
-            // label9
+            // dgvFilesFromDrive
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 41);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Select a Folder:";
+            this.dgvFilesFromDrive.AllowUserToAddRows = false;
+            this.dgvFilesFromDrive.AllowUserToDeleteRows = false;
+            this.dgvFilesFromDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvFilesFromDrive.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgvFilesFromDrive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 32);
+            this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
+            this.dgvFilesFromDrive.ReadOnly = true;
+            this.dgvFilesFromDrive.Size = new System.Drawing.Size(517, 368);
+            this.dgvFilesFromDrive.TabIndex = 20;
             // 
-            // btnDirToUpload
+            // btnDownload
             // 
-            this.btnDirToUpload.Location = new System.Drawing.Point(93, 36);
-            this.btnDirToUpload.Name = "btnDirToUpload";
-            this.btnDirToUpload.Size = new System.Drawing.Size(88, 23);
-            this.btnDirToUpload.TabIndex = 15;
-            this.btnDirToUpload.Text = "Browse";
-            this.btnDirToUpload.UseVisualStyleBackColor = true;
-            this.btnDirToUpload.Click += new System.EventHandler(this.btnDirToUpload_Click);
+            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownload.Location = new System.Drawing.Point(737, 406);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(75, 23);
+            this.btnDownload.TabIndex = 21;
+            this.btnDownload.Text = "Download";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(295, 406);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Remove";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 452);
+            this.ClientSize = new System.Drawing.Size(824, 448);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDownload);
+            this.Controls.Add(this.dgvFilesFromDrive);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pnlConnection);
@@ -290,6 +328,7 @@
             this.pnlDragAndDrop.PerformLayout();
             this.pnlConnection.ResumeLayout(false);
             this.pnlConnection.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -321,6 +360,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnDirToUpload;
         private System.Windows.Forms.FolderBrowserDialog fbdDirToUpload;
+        private System.Windows.Forms.DataGridView dgvFilesFromDrive;
+        private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Button button1;
     }
 }
 

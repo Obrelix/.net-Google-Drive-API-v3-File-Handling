@@ -22,12 +22,40 @@ namespace GDUploaderForm
         public static bool GoogleDriveConnection(string jsonSecretPath, string appName)
         {
 
-            return (getCredential(jsonSecretPath) && createDriveService(appName));
+            return (getCredential(jsonSecretPath, appName) && createDriveService(appName));
 
         }
 
+        public static List<string[]> updateDriveFiles()
+        {
+            List<string[]> filesList = new List<string[]>();
+            FilesResource.ListRequest listRequest = service.Files.List();
+            listRequest.PageSize = 10;
+            listRequest.Fields = "nextPageToken, files(id, name)";
 
-        private static bool getCredential(string clientSecretPath)
+            // List files.
+            IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
+                .Files;
+            
+            filesList.Clear();
+            if (files != null && files.Count > 0)
+            {
+                foreach (var file in files)
+                {
+                    filesList.Add(new string[2] { file.Name, file.Id });
+                    System.Diagnostics.Debug.WriteLine("{0} ({1})", file.Name, file.Id);
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("No files found.");
+            }
+
+            return filesList;
+        }
+
+
+        private static bool getCredential(string clientSecretPath, string applicationName)
         {
             try
             {
@@ -35,7 +63,7 @@ namespace GDUploaderForm
                 {
                     string credPath = System.Environment.GetFolderPath(
                         System.Environment.SpecialFolder.Personal);
-                    credPath = Path.Combine(credPath, ".credentials/User");
+                    credPath = Path.Combine(credPath, ".credentials/"+ applicationName);
 
                     credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                         GoogleClientSecrets.Load(stream).Secrets,
@@ -73,6 +101,8 @@ namespace GDUploaderForm
             }
 
         }
+
+        
 
 
         private static void uploadFileToDrive(string folderId, string fileName, string filePath, string fileType)

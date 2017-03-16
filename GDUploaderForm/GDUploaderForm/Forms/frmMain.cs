@@ -19,6 +19,7 @@ namespace GDUploaderForm
 {
     public partial class frmMain : Form
     {
+        public static string CredentialFolderName;
 
         public frmMain()
         {
@@ -29,18 +30,33 @@ namespace GDUploaderForm
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            dgvFilesFromDrive.ColumnCount = 2;
+            dgvFilesFromDrive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFilesFromDrive.Columns[0].Name = "Name";
+            dgvFilesFromDrive.Columns[1].Name = "ID";
+            dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
+
+
             txtConnect.BackColor = Color.Red;
             txtConnect.Text = "Disconnected";
             txtAppName.Text = "Google Drive Uploader";
         }
 
-        void pnlDragAndDrop_DragEnter(object sender, DragEventArgs e)
+        private void updateDataGridView()
+        {
+            dgvFilesFromDrive.Rows.Clear();
+            foreach(string[] array in GoogleDriveAPIV3.updateDriveFiles())
+            {
+                dgvFilesFromDrive.Rows.Add(array);
+            }
+        }
+
+        private void pnlDragAndDrop_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
-        void pnlDragAndDrop_DragDrop(object sender, DragEventArgs e)
+        private void pnlDragAndDrop_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
@@ -80,6 +96,7 @@ namespace GDUploaderForm
                 {
                     txtConnect.BackColor = Color.Green;
                     txtConnect.Text = "Connected";
+                    updateDataGridView();
                 }
                 else
                 {
@@ -148,6 +165,7 @@ namespace GDUploaderForm
             else
             {
                 GoogleDriveAPIV3.uploadToDrive(filePath, fileName, null);
+                updateDataGridView();
             }
             
             
