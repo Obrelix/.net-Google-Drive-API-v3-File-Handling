@@ -171,6 +171,23 @@ namespace GDUploaderForm
             
         }
 
-        
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            //if(dgvFilesFromDrive.SelectedRows.Count <= 0)
+            //{
+            //    MessageBox.Show("You have to select a row  in order to download");
+
+            //}
+            //else
+            //{
+            //    foreach(DataGridViewRow array in dgvFilesFromDrive.SelectedRows)
+            //    {
+            //        //GoogleDriveAPIV3.downloadFromDrive(dgvFilesFromDrive.SelectedCells[1].ToString());
+            //        GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eNUd2T3NtSnI0dDQ");
+            //    }
+            //}
+            GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eSFFtUW5tRVZJRms");
+        }
+
     }
 }

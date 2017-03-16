@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Download;
 using Google.Apis.Drive.v3;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
@@ -161,6 +162,7 @@ namespace GDUploaderForm
                 var request = service.Files.Create(fileMetadata);
                 request.Fields = "id";
                 var file = request.Execute();
+                System.Diagnostics.Debug.WriteLine(file.Name);
                 return file.Id;
             }
             catch(Exception exc)
@@ -184,6 +186,7 @@ namespace GDUploaderForm
             }
             else
             {
+
                 // Get the subdirectories for the specified directory.
                 DirectoryInfo dir = new DirectoryInfo(path);
                 string folderId;
@@ -199,13 +202,13 @@ namespace GDUploaderForm
                         parentId);
                     System.Diagnostics.Debug.WriteLine(folderId);
                 }
-                
                 if (!dir.Exists)
                 {
                     throw new DirectoryNotFoundException(
                         "Source directory does not exist or could not be found: "
                         + path);
                 }
+
 
                 DirectoryInfo[] dirs = dir.GetDirectories();
                 FileInfo[] files = dir.GetFiles();
@@ -224,6 +227,42 @@ namespace GDUploaderForm
             }
             
             
+        }
+
+        public static void downloadFromDrive(string fileId)
+        {
+            //var fileId = "0BwwA4oUTeiV1UVNwOHItT0xfa2M";
+            var request = service.Files.Get(fileId);
+            var stream = new System.IO.MemoryStream();
+                
+            // Add a handler which will be notified on progress changes.
+            // It will notify on each chunk download and when the
+            // download is completed or failed.
+            request.MediaDownloader.ProgressChanged +=
+                (IDownloadProgress progress) =>
+                {
+                    switch (progress.Status)
+                    {
+                        case DownloadStatus.Downloading:
+                            {
+                                System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
+                                break;
+                            }
+                        case DownloadStatus.Completed:
+                            {
+                                System.Diagnostics.Debug.WriteLine("Download complete.");
+                                break;
+                            }
+                        case DownloadStatus.Failed:
+                            {
+                                System.Diagnostics.Debug.WriteLine("Download failed.");
+                                break;
+                            }
+                    }
+                };
+            request.Download(stream);
+           // System.IO.File.Create(saveFile)
+
         }
 
         private static string getMimeType(string fileName)
