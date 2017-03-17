@@ -1,3 +1,5 @@
+![alt tag](https://raw.githubusercontent.com/Obrelix/File-Upload-Google-Drive-APIV3-/master/images/GoogleDriveAppSS.PNG)
+
 # .Net Google Drive API v3 file handling application
 
 A Windows Forms Application writen in c# making use of Google Drive API V3.
