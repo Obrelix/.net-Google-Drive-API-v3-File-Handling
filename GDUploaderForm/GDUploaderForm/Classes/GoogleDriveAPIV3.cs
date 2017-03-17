@@ -3,6 +3,7 @@ using Google.Apis.Download;
 using Google.Apis.Drive.v3;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
+using Google.Apis.Upload;
 using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace GDUploaderForm
                 {
                     
                     filesList.Add(new string[2] { file.Name, file.Id });
-                    System.Diagnostics.Debug.WriteLine("{0} ({1} {2})", file.Name, file.Id, file.ModifiedByMeTime);
+                    System.Diagnostics.Debug.WriteLine("{0} ({1} {2})", file.Name, file.Id, file.ModifiedTime.ToString());
                 }
             }
             else
@@ -128,6 +129,28 @@ namespace GDUploaderForm
                 {
                     request = service.Files.Create(
                         fileMetadata, stream, fileType);
+                    request.ChunkSize = FilesResource.CreateMediaUpload.MinimumChunkSize;
+                    request.ProgressChanged += (IUploadProgress progress) =>
+                    {
+                        switch (progress.Status)
+                        {
+                            case UploadStatus.Uploading:
+                                {
+                                    System.Diagnostics.Debug.WriteLine(progress.BytesSent);
+                                    break;
+                                }
+                            case UploadStatus.Completed:
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Upload complete.");
+                                    break;
+                                }
+                            case UploadStatus.Failed:
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Upload failed.");
+                                    break;
+                                }
+                        }
+                    };
                     request.Fields = "id";
                     request.Upload();
                 }
@@ -168,7 +191,7 @@ namespace GDUploaderForm
             catch(Exception exc)
             { 
                 System.Diagnostics.Debug.WriteLine(exc.Message);
-                return "";
+                return null;
             }
         }
         
@@ -229,50 +252,67 @@ namespace GDUploaderForm
             
         }
 
-        public static void downloadFromDrive(string fileId, string filename)
+        private static void convertMemoryStreamToFileStream(MemoryStream stream, string savePath)
         {
-            string savePath = @"C:\Users\Developer\Desktop" + @"\"+ @filename;
-            //var fileId = "0BwwA4oUTeiV1UVNwOHItT0xfa2M";
-            var request = service.Files.Get(fileId);
-            var stream = new System.IO.MemoryStream();
-            FileStream fs;
-            // Add a handler which will be notified on progress changes.
-            // It will notify on each chunk download and when the
-            // download is completed or failed.
-            request.MediaDownloader.ProgressChanged +=
-                (IDownloadProgress progress) =>
-                {
-                    switch (progress.Status)
-                    {
-                        case DownloadStatus.Downloading:
-                            {
-                                System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
-                                break;
-                            }
-                        case DownloadStatus.Completed:
-                            {
-                                System.Diagnostics.Debug.WriteLine("Download complete.");
-                                break;
-                            }
-                        case DownloadStatus.Failed:
-                            {
-                                System.Diagnostics.Debug.WriteLine("Download failed.");
-                                break;
-                            }
-                    }
-                };
-            request.Download(stream);
-
-            using ( fs  = new System.IO.FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write))
+            FileStream fileStream;
+            using (fileStream = new System.IO.FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write))
             {
                 try
                 {
                     // System.IO.File.Create(saveFile)
-                    stream.WriteTo(fs);                    
-                    fs.Close();
+                    stream.WriteTo(fileStream);
+                    fileStream.Close();
                 }
-                catch { }
+                catch (Exception exc)
+                {
+                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                }
             }
+        }
+
+        public static void downloadFromDrive(string filename, string fileId, string savePath)
+        {
+            try
+            {
+                var request = service.Files.Get(fileId);
+                var stream = new System.IO.MemoryStream();
+                
+                // Add a handler which will be notified on progress changes.
+                // It will notify on each chunk download and when the
+                // download is completed or failed.
+                request.MediaDownloader.ProgressChanged +=
+                    (IDownloadProgress progress) =>
+                    {
+                        switch (progress.Status)
+                        {
+                            case DownloadStatus.Downloading:
+                                {
+                                    System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
+                                    break;
+                                }
+                            case DownloadStatus.Completed:
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Download complete.");
+                                    break;
+                                }
+                            case DownloadStatus.Failed:
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Download failed.");
+                                    break;
+                                }
+                        }
+                    };
+                request.Download(stream);
+                convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename);
+                stream.Dispose();
+
+
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
+            }
+            
             
            
 

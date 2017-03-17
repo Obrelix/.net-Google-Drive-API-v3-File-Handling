@@ -152,6 +152,21 @@ namespace GDUploaderForm
                     break;
             }
         }
+        private void downloadFile(string fileName, string fileID)
+        {
+
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    txtJsonPath.Text = ofgJsonFile.FileName;
+                    GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, fbd.SelectedPath);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
@@ -173,28 +188,31 @@ namespace GDUploaderForm
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            //if(dgvFilesFromDrive.SelectedRows.Count <= 0)
-            //{
-            //    MessageBox.Show("You have to select a row  in order to download");
+            string fileName, fileId;
+            if (dgvFilesFromDrive.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("You have to select a row  in order to download");
 
-            //}
-            //else
-            //{
-            //    foreach(DataGridViewRow array in dgvFilesFromDrive.SelectedRows)
-            //    {
-            //        //GoogleDriveAPIV3.downloadFromDrive(dgvFilesFromDrive.SelectedCells[1].ToString());
-            //        GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eNUd2T3NtSnI0dDQ");
-            //    }
-            //}
-            GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eSFFtUW5tRVZJRms", "frmAdapter.pdf");
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
+                {
+                    fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
+                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[1].Value.ToString();
+                    downloadFile(fileName, fileId);
+                }
+            }
         }
 
         private void dgvFilesFromDrive_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
 
-            GoogleDriveAPIV3.downloadFromDrive(dgvFilesFromDrive.Rows[e.RowIndex].Cells[1].Value.ToString()
-                , dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString());
+            string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[1].Value.ToString();
+            string fileName = dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString();
+            downloadFile(fileName, fileID);
         }
+
+
     }
 }
