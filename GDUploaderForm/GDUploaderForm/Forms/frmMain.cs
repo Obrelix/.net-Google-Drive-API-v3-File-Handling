@@ -213,6 +213,34 @@ namespace GDUploaderForm
             downloadFile(fileName, fileID);
         }
 
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            string  fileId, fileName;
+            if (dgvFilesFromDrive.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("You have to select a row  in order to download");
 
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
+                {
+                    fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
+                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[1].Value.ToString();
+                    DialogResult result = MessageBox.Show("Do you want to delete file: " + fileName, "Confirm",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            GoogleDriveAPIV3.removeFile(fileId);
+                            updateDataGridView();
+                            break;
+                        default:
+                            updateDataGridView();
+                            break;
+                    }
+                }
+            }
+        }
     }
 }

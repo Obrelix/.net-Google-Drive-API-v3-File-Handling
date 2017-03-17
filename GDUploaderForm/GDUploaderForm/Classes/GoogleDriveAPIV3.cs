@@ -111,8 +111,6 @@ namespace GDUploaderForm
         {
             try
             {
-                
-                
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                 {
                     Name = fileName
@@ -209,44 +207,51 @@ namespace GDUploaderForm
             }
             else
             {
+                try
+                {
+                    // Get the subdirectories for the specified directory.
+                    DirectoryInfo dir = new DirectoryInfo(path);
+                    string folderId;
+                    if (parentId == null)
+                    {
+                        folderId = createFolderToDrive(Path.GetFileName(path), null);
+                        System.Diagnostics.Debug.WriteLine(folderId);
+                    }
+                    else
+                    {
+                        folderId = createFolderToDrive(
+                            Path.GetFileName(path),
+                            parentId);
+                        System.Diagnostics.Debug.WriteLine(folderId);
+                    }
+                    if (!dir.Exists)
+                    {
+                        throw new DirectoryNotFoundException(
+                            "Source directory does not exist or could not be found: "
+                            + path);
+                    }
 
-                // Get the subdirectories for the specified directory.
-                DirectoryInfo dir = new DirectoryInfo(path);
-                string folderId;
-                if (parentId == null)
-                {
-                    folderId = createFolderToDrive(Path.GetFileName(path), null);
-                    System.Diagnostics.Debug.WriteLine(folderId);
+
+                    DirectoryInfo[] dirs = dir.GetDirectories();
+                    FileInfo[] files = dir.GetFiles();
+                    foreach (FileInfo file in files)
+                    {
+                        uploadFileToDrive(
+                            folderId, file.Name,
+                            Path.Combine(path, file.Name),
+                            getMimeType(file.Name));
+                    }
+
+                    foreach (DirectoryInfo subdir in dirs)
+                    {
+                        uploadToDrive(subdir.FullName, null, folderId);
+                    }
                 }
-                else
+                catch (Exception exc)
                 {
-                    folderId = createFolderToDrive(
-                        Path.GetFileName(path),
-                        parentId);
-                    System.Diagnostics.Debug.WriteLine(folderId);
-                }
-                if (!dir.Exists)
-                {
-                    throw new DirectoryNotFoundException(
-                        "Source directory does not exist or could not be found: "
-                        + path);
+                    System.Diagnostics.Debug.WriteLine(exc.Message);
                 }
 
-
-                DirectoryInfo[] dirs = dir.GetDirectories();
-                FileInfo[] files = dir.GetFiles();
-                foreach (FileInfo file in files)
-                {
-                    uploadFileToDrive(
-                        folderId, file.Name,
-                        Path.Combine(path, file.Name),
-                        getMimeType(file.Name));
-                }
-                
-                foreach (DirectoryInfo subdir in dirs)
-                {
-                    uploadToDrive(subdir.FullName, null, folderId);
-                }
             }
             
             
@@ -269,11 +274,17 @@ namespace GDUploaderForm
                 }
             }
         }
+        public static void removeFile(string fileID)
+        {
+            var request = service.Files.Delete(fileID);
+            request.Execute();
 
+        }
         public static void downloadFromDrive(string filename, string fileId, string savePath)
         {
             try
             {
+               
                 var request = service.Files.Get(fileId);
                 var stream = new System.IO.MemoryStream();
                 
