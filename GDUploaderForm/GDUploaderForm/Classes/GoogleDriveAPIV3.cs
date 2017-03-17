@@ -21,10 +21,10 @@ namespace GDUploaderForm
         private static UserCredential credential;
         private static DriveService service;
 
-        public static bool GoogleDriveConnection(string jsonSecretPath, string appName)
+        public static bool GoogleDriveConnection(string jsonSecretPath, string appName, string userName)
         {
 
-            return (getCredential(jsonSecretPath, appName) && createDriveService(appName));
+            return (getCredential(jsonSecretPath, appName, userName) && createDriveService(appName));
 
         }
 
@@ -66,7 +66,7 @@ namespace GDUploaderForm
         }
 
 
-        private static bool getCredential(string clientSecretPath, string applicationName)
+        private static bool getCredential(string clientSecretPath, string applicationName, string userName)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace GDUploaderForm
                 {
                     string credPath = System.Environment.GetFolderPath(
                         System.Environment.SpecialFolder.Personal);
-                    credPath = Path.Combine(credPath, ".credentials/"+ applicationName);
+                    credPath = Path.Combine(credPath, ".credentials/"+ userName);
 
                     credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                         GoogleClientSecrets.Load(stream).Secrets,

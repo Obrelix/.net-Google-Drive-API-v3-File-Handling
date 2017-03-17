@@ -8,5 +8,15 @@ namespace GDUploaderForm
 {
     public class User
     {
+        public string userName { get; set; }
+        public string clientSecretPath { get; set; }
+        public string appName { get; set; }
+
+        public User(string name, string path, string appName)
+        {
+            userName = name;
+            clientSecretPath = path;
+            this.appName = appName;
+        }
     }
 }

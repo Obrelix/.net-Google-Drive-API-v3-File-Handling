@@ -42,21 +42,30 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pnlConnection = new System.Windows.Forms.Panel();
+            this.chbAddUser = new System.Windows.Forms.CheckBox();
+            this.pnlUser = new System.Windows.Forms.Panel();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.txtAppName = new System.Windows.Forms.TextBox();
+            this.btnJsonBroswe = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtJsonPath = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtJsonPath = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnJsonBroswe = new System.Windows.Forms.Button();
-            this.txtAppName = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbUser = new System.Windows.Forms.ComboBox();
             this.ofgJsonFile = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblPanel = new System.Windows.Forms.Label();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.btnRemUser = new System.Windows.Forms.Button();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
+            this.pnlUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,9 +117,11 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(5, 131);
+            this.btnConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnConnect.Location = new System.Drawing.Point(4, 222);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(106, 23);
+            this.btnConnect.Size = new System.Drawing.Size(106, 51);
             this.btnConnect.TabIndex = 15;
             this.btnConnect.Text = "Connect to drive";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -118,10 +129,13 @@
             // 
             // txtConnect
             // 
-            this.txtConnect.Location = new System.Drawing.Point(117, 131);
+            this.txtConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtConnect.Location = new System.Drawing.Point(116, 222);
+            this.txtConnect.MinimumSize = new System.Drawing.Size(147, 51);
             this.txtConnect.Name = "txtConnect";
             this.txtConnect.ReadOnly = true;
-            this.txtConnect.Size = new System.Drawing.Size(147, 20);
+            this.txtConnect.Size = new System.Drawing.Size(147, 51);
             this.txtConnect.TabIndex = 16;
             this.txtConnect.Text = "Disconnected";
             this.txtConnect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -139,7 +153,7 @@
             this.pnlDragAndDrop.Controls.Add(this.label1);
             this.pnlDragAndDrop.Controls.Add(this.btnUpload);
             this.pnlDragAndDrop.Controls.Add(this.txtFileName);
-            this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 232);
+            this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 335);
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
             this.pnlDragAndDrop.Size = new System.Drawing.Size(271, 209);
             this.pnlDragAndDrop.TabIndex = 17;
@@ -185,25 +199,112 @@
             // 
             this.pnlConnection.AllowDrop = true;
             this.pnlConnection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlConnection.Controls.Add(this.label8);
-            this.pnlConnection.Controls.Add(this.label7);
-            this.pnlConnection.Controls.Add(this.txtJsonPath);
-            this.pnlConnection.Controls.Add(this.label2);
-            this.pnlConnection.Controls.Add(this.btnJsonBroswe);
+            this.pnlConnection.Controls.Add(this.chbAddUser);
+            this.pnlConnection.Controls.Add(this.pnlUser);
+            this.pnlConnection.Controls.Add(this.label11);
+            this.pnlConnection.Controls.Add(this.cbUser);
             this.pnlConnection.Controls.Add(this.btnConnect);
-            this.pnlConnection.Controls.Add(this.txtAppName);
             this.pnlConnection.Controls.Add(this.txtConnect);
             this.pnlConnection.Location = new System.Drawing.Point(7, 32);
             this.pnlConnection.Name = "pnlConnection";
-            this.pnlConnection.Size = new System.Drawing.Size(271, 179);
+            this.pnlConnection.Size = new System.Drawing.Size(271, 279);
             this.pnlConnection.TabIndex = 18;
             this.pnlConnection.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlConnection_DragDrop);
             this.pnlConnection.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlConnection_DragDragEnter);
             // 
+            // chbAddUser
+            // 
+            this.chbAddUser.AutoSize = true;
+            this.chbAddUser.Location = new System.Drawing.Point(193, 14);
+            this.chbAddUser.Name = "chbAddUser";
+            this.chbAddUser.Size = new System.Drawing.Size(70, 17);
+            this.chbAddUser.TabIndex = 23;
+            this.chbAddUser.Text = "Add User";
+            this.chbAddUser.UseVisualStyleBackColor = true;
+            this.chbAddUser.CheckedChanged += new System.EventHandler(this.chbAddUser_CheckedChanged);
+            // 
+            // pnlUser
+            // 
+            this.pnlUser.Controls.Add(this.btnRemUser);
+            this.pnlUser.Controls.Add(this.txtUserName);
+            this.pnlUser.Controls.Add(this.btnAddUser);
+            this.pnlUser.Controls.Add(this.txtAppName);
+            this.pnlUser.Controls.Add(this.btnJsonBroswe);
+            this.pnlUser.Controls.Add(this.label10);
+            this.pnlUser.Controls.Add(this.label2);
+            this.pnlUser.Controls.Add(this.txtJsonPath);
+            this.pnlUser.Controls.Add(this.label8);
+            this.pnlUser.Controls.Add(this.label7);
+            this.pnlUser.Location = new System.Drawing.Point(0, 38);
+            this.pnlUser.Name = "pnlUser";
+            this.pnlUser.Size = new System.Drawing.Size(266, 178);
+            this.pnlUser.TabIndex = 23;
+            this.pnlUser.Visible = false;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(3, 21);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(260, 20);
+            this.txtUserName.TabIndex = 18;
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Location = new System.Drawing.Point(186, 151);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(77, 23);
+            this.btnAddUser.TabIndex = 22;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // txtAppName
+            // 
+            this.txtAppName.Location = new System.Drawing.Point(4, 125);
+            this.txtAppName.Name = "txtAppName";
+            this.txtAppName.Size = new System.Drawing.Size(260, 20);
+            this.txtAppName.TabIndex = 13;
+            // 
+            // btnJsonBroswe
+            // 
+            this.btnJsonBroswe.Location = new System.Drawing.Point(186, 47);
+            this.btnJsonBroswe.Name = "btnJsonBroswe";
+            this.btnJsonBroswe.Size = new System.Drawing.Size(77, 23);
+            this.btnJsonBroswe.TabIndex = 15;
+            this.btnJsonBroswe.Text = "Browse";
+            this.btnJsonBroswe.UseVisualStyleBackColor = true;
+            this.btnJsonBroswe.Click += new System.EventHandler(this.btnJsonBroswe_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "User Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 109);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Application Name";
+            // 
+            // txtJsonPath
+            // 
+            this.txtJsonPath.Location = new System.Drawing.Point(4, 86);
+            this.txtJsonPath.Name = "txtJsonPath";
+            this.txtJsonPath.ReadOnly = true;
+            this.txtJsonPath.Size = new System.Drawing.Size(259, 20);
+            this.txtJsonPath.TabIndex = 14;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 38);
+            this.label8.Location = new System.Drawing.Point(4, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 13);
             this.label8.TabIndex = 17;
@@ -212,45 +313,29 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 20);
+            this.label7.Location = new System.Drawing.Point(4, 52);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Select client_secret.Json : ";
             // 
-            // txtJsonPath
+            // label11
             // 
-            this.txtJsonPath.Location = new System.Drawing.Point(5, 54);
-            this.txtJsonPath.Name = "txtJsonPath";
-            this.txtJsonPath.ReadOnly = true;
-            this.txtJsonPath.Size = new System.Drawing.Size(259, 20);
-            this.txtJsonPath.TabIndex = 14;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(62, 13);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Select User";
             // 
-            // label2
+            // cbUser
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Application Name";
-            // 
-            // btnJsonBroswe
-            // 
-            this.btnJsonBroswe.Location = new System.Drawing.Point(171, 15);
-            this.btnJsonBroswe.Name = "btnJsonBroswe";
-            this.btnJsonBroswe.Size = new System.Drawing.Size(93, 23);
-            this.btnJsonBroswe.TabIndex = 15;
-            this.btnJsonBroswe.Text = "Browse";
-            this.btnJsonBroswe.UseVisualStyleBackColor = true;
-            this.btnJsonBroswe.Click += new System.EventHandler(this.btnJsonBroswe_Click);
-            // 
-            // txtAppName
-            // 
-            this.txtAppName.Location = new System.Drawing.Point(5, 93);
-            this.txtAppName.Name = "txtAppName";
-            this.txtAppName.Size = new System.Drawing.Size(260, 20);
-            this.txtAppName.TabIndex = 13;
+            this.cbUser.FormattingEnabled = true;
+            this.cbUser.Location = new System.Drawing.Point(72, 12);
+            this.cbUser.Name = "cbUser";
+            this.cbUser.Size = new System.Drawing.Size(109, 21);
+            this.cbUser.TabIndex = 20;
+            this.cbUser.SelectedIndexChanged += new System.EventHandler(this.cbUser_SelectedIndexChanged);
             // 
             // ofgJsonFile
             // 
@@ -265,14 +350,14 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Connect to Google Drive API";
             // 
-            // label6
+            // lblPanel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 223);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 13);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Upload Files to Google Drive";
+            this.lblPanel.AutoSize = true;
+            this.lblPanel.Location = new System.Drawing.Point(4, 326);
+            this.lblPanel.Name = "lblPanel";
+            this.lblPanel.Size = new System.Drawing.Size(142, 13);
+            this.lblPanel.TabIndex = 19;
+            this.lblPanel.Text = "Upload Files to Google Drive";
             // 
             // dgvFilesFromDrive
             // 
@@ -286,14 +371,14 @@
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 32);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             this.dgvFilesFromDrive.ReadOnly = true;
-            this.dgvFilesFromDrive.Size = new System.Drawing.Size(517, 368);
+            this.dgvFilesFromDrive.Size = new System.Drawing.Size(632, 517);
             this.dgvFilesFromDrive.TabIndex = 20;
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
             // 
             // btnDownload
             // 
             this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownload.Location = new System.Drawing.Point(737, 406);
+            this.btnDownload.Location = new System.Drawing.Point(852, 555);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(75, 23);
             this.btnDownload.TabIndex = 21;
@@ -304,7 +389,7 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(295, 406);
+            this.btnRemove.Location = new System.Drawing.Point(295, 555);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 22;
@@ -312,15 +397,25 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // btnRemUser
+            // 
+            this.btnRemUser.Location = new System.Drawing.Point(4, 151);
+            this.btnRemUser.Name = "btnRemUser";
+            this.btnRemUser.Size = new System.Drawing.Size(77, 23);
+            this.btnRemUser.TabIndex = 23;
+            this.btnRemUser.Text = "Remove";
+            this.btnRemUser.UseVisualStyleBackColor = true;
+            this.btnRemUser.Click += new System.EventHandler(this.btnRemUser_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 448);
+            this.ClientSize = new System.Drawing.Size(939, 597);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.dgvFilesFromDrive);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblPanel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pnlConnection);
             this.Controls.Add(this.pnlDragAndDrop);
@@ -331,6 +426,8 @@
             this.pnlDragAndDrop.PerformLayout();
             this.pnlConnection.ResumeLayout(false);
             this.pnlConnection.PerformLayout();
+            this.pnlUser.ResumeLayout(false);
+            this.pnlUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -359,13 +456,21 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPanel;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnDirToUpload;
         private System.Windows.Forms.FolderBrowserDialog fbdDirToUpload;
         private System.Windows.Forms.DataGridView dgvFilesFromDrive;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbUser;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Panel pnlUser;
+        private System.Windows.Forms.CheckBox chbAddUser;
+        private System.Windows.Forms.Button btnRemUser;
     }
 }
 

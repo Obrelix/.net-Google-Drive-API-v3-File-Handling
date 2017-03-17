@@ -14,12 +14,15 @@ using System.Threading.Tasks;
 using GDUploaderForm;
 
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace GDUploaderForm
 {
     public partial class frmMain : Form
     {
-        public static string CredentialFolderName;
+        public static List<User> UserList = new List<User>();
+        static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
+        static string saveFile = savePath + "\\GDASaves.json";
 
         public frmMain()
         {
@@ -28,18 +31,27 @@ namespace GDUploaderForm
             pnlDragAndDrop.DragEnter += new DragEventHandler(pnlDragAndDrop_DragEnter);
             pnlDragAndDrop.DragDrop += new DragEventHandler(pnlDragAndDrop_DragDrop);
         }
-        private void Form1_Load(object sender, EventArgs e)
+
+        private void dataGridViewInit()
         {
             dgvFilesFromDrive.ColumnCount = 2;
             dgvFilesFromDrive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFilesFromDrive.Columns[0].Name = "Name";
             dgvFilesFromDrive.Columns[1].Name = "ID";
             dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
+        }
 
-
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dataGridViewInit();
+            loadUsers(savePath, saveFile);
+            UIinit();
+            cbUserInit();
+            //txtInit(-1);
             txtConnect.BackColor = Color.Red;
             txtConnect.Text = "Disconnected";
-            txtAppName.Text = "Google Drive Uploader";
+
+
         }
 
         private void updateDataGridView()
@@ -48,6 +60,64 @@ namespace GDUploaderForm
             foreach(string[] array in GoogleDriveAPIV3.updateDriveFiles())
             {
                 dgvFilesFromDrive.Rows.Add(array);
+            }
+        }
+
+        private void UIinit()
+        {
+            pnlConnection.Height = 100;
+            pnlUser.Visible = false;
+            lblPanel.Location = new Point(4, 147);
+            pnlDragAndDrop.Location = new Point(7, 156);
+            this.Size = new Size(955, 457);
+        }
+
+        private void loadUsers(string savePath, string saveFile)
+        {
+            Directory.CreateDirectory(savePath);
+            try
+            {
+                if (System.IO.File.Exists(saveFile))
+                {
+                    UserList.Clear();
+                    UserList = JsonConvert.DeserializeObject<List<User>>(System.IO.File.ReadAllText(saveFile));
+                  
+
+                }
+                else
+                {
+                    using (System.IO.FileStream fs = System.IO.File.Create(saveFile))
+                    {
+                        for (byte i = 0; i < 100; i++)
+                        {
+                            fs.WriteByte(i);
+                        }
+                    }
+
+                    System.IO.File.WriteAllText(saveFile, "[ ]");
+                    loadUsers(savePath, saveFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                
+            }
+        }
+
+        private void saveUsers(string saveFile)
+        {
+            try
+            {
+                string contentsToWriteToFile = JsonConvert.SerializeObject(UserList.ToArray(), Newtonsoft.Json.Formatting.Indented);
+
+                System.IO.File.WriteAllText(saveFile, contentsToWriteToFile);
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
             }
         }
 
@@ -86,13 +156,13 @@ namespace GDUploaderForm
             if(txtJsonPath.Text == string.Empty)
             {
                 MessageBox.Show("You have to:" + Environment.NewLine +
-                    "A) Select the client_secret.Json file "+ Environment.NewLine+
-                    "B) Type your OAuth 2.0 client ID in Application Name TextBox"+Environment.NewLine+
+                    "A) Select the client_secret.Json file "+ Environment.NewLine +
+                    "B) Type your OAuth 2.0 client ID in Application Name TextBox"+ Environment.NewLine +
                     "in order to begining connection with your Google Drive");
             }
             else
             {
-                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtAppName.Text))
+                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtAppName.Text, txtUserName.Text))
                 {
                     txtConnect.BackColor = Color.Green;
                     txtConnect.Text = "Connected";
@@ -237,6 +307,87 @@ namespace GDUploaderForm
                             break;
                     }
                 }
+            }
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            UserList.Add(new User(txtUserName.Text, txtJsonPath.Text, txtAppName.Text));
+            saveUsers(saveFile);
+            cbUserInit();
+        }
+
+        private void cbUserInit()
+        {
+            cbUser.DataSource = null;
+            cbUser.Items.Clear();
+            cbUser.DataSource = UserList;
+            cbUser.DisplayMember = "userName";
+            cbUser.ValueMember = "userName";
+            cbUser.SelectedIndex = -1;
+            cbUser.Text = "Select User...";
+        }
+
+        private void chbAddUser_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbAddUser.Checked)
+            {
+                pnlConnection.Height = 279;
+                pnlUser.Visible = true;
+                lblPanel.Location = new Point(4, 326);
+                pnlDragAndDrop.Location = new Point(7, 335);
+                this.Size = new Size(955, 636);
+
+            }
+            else
+            {
+                pnlConnection.Height = 100;
+                pnlUser.Visible = false;
+                lblPanel.Location = new Point(4, 147);
+                pnlDragAndDrop.Location = new Point(7, 156);
+                this.Size = new Size(955, 457);
+            }
+        }
+
+        private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtInit(cbUser.SelectedIndex);
+        }
+
+        private void txtInit(int i)
+        {
+            if (i >= 0)
+            {
+                txtAppName.Text = UserList[i].appName;
+                txtUserName.Text = UserList[i].userName;
+                txtJsonPath.Text = UserList[i].clientSecretPath;
+            }
+            else
+            {
+                txtAppName.Text = "";
+                txtUserName.Text = "";
+                txtJsonPath.Text = "";
+            }
+        }
+
+        private void btnRemUser_Click(object sender, EventArgs e)
+        {
+            if(cbUser.SelectedIndex != -1)
+            {
+                DialogResult result = MessageBox.Show("Do you want to delete User: " + 
+                        UserList[cbUser.SelectedIndex].userName, "Confirm",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        UserList.Remove(UserList[cbUser.SelectedIndex]);
+                        saveUsers(saveFile);
+                        cbUserInit();
+                        break;
+                    default:
+                        break;
+                }
+                
             }
         }
     }
