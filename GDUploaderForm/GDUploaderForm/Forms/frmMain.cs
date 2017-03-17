@@ -154,7 +154,6 @@ namespace GDUploaderForm
         }
         private void downloadFile(string fileName, string fileID)
         {
-
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
             switch (result)
@@ -182,8 +181,6 @@ namespace GDUploaderForm
                 GoogleDriveAPIV3.uploadToDrive(filePath, fileName, null);
                 updateDataGridView();
             }
-            
-            
         }
 
         private void btnDownload_Click(object sender, EventArgs e)

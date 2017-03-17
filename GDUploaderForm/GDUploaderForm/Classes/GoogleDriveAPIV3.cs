@@ -31,27 +31,36 @@ namespace GDUploaderForm
         public static List<string[]> updateDriveFiles()
         {
             List<string[]> filesList = new List<string[]>();
-            FilesResource.ListRequest listRequest = service.Files.List();
-            listRequest.PageSize = 1000;
-            listRequest.Fields = "nextPageToken, files(id, name)";
 
-            // List files.
-            IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
-            
-            filesList.Clear();
-            if (files != null && files.Count > 0)
+            try
             {
-                foreach (var file in files)
+                FilesResource.ListRequest listRequest = service.Files.List();
+                listRequest.PageSize = 1000;
+                listRequest.Fields = "nextPageToken, files(id, name)";
+
+                // List files.
+                IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
+
+                filesList.Clear();
+                if (files != null && files.Count > 0)
                 {
-                    
-                    filesList.Add(new string[2] { file.Name, file.Id });
-                    System.Diagnostics.Debug.WriteLine("{0} ({1} {2})", file.Name, file.Id, file.ModifiedTime.ToString());
+                    foreach (var file in files)
+                    {
+
+                        filesList.Add(new string[2] { file.Name, file.Id });
+                        System.Diagnostics.Debug.WriteLine("{0} ({1} {2})", file.Name, file.Id, file.ModifiedTime.ToString());
+                    }
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("No files found.");
                 }
             }
-            else
+            catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine("No files found.");
+                System.Diagnostics.Debug.WriteLine(exc.Message);
             }
+
 
             return filesList;
         }
@@ -316,17 +325,11 @@ namespace GDUploaderForm
                 request.Download(stream);
                 convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename);
                 stream.Dispose();
-
-
             }
             catch (Exception exc)
             {
                 System.Diagnostics.Debug.WriteLine(exc.Message);
             }
-            
-            
-           
-
         }
 
         private static string getMimeType(string fileName)
@@ -342,80 +345,89 @@ namespace GDUploaderForm
 
         private static String GetFileType(string file)
         {
-            string extension = Path.GetExtension(file);
-            System.Diagnostics.Debug.WriteLine("extension: " + extension);
-            string mime;
-            switch (extension.ToLower())
+            try
             {
-                //image files
-                case ".svg":
-                    mime = "image/svg+xml";
-                    break;
-                case ".jpg":
-                    mime = "image/jpeg";
-                    break;
-                case ".jpeg":
-                    mime = "image/jpeg";
-                    break;
-                case ".png":
-                    mime = "image/png";
-                    break;
+                string extension = Path.GetExtension(file);
+                System.Diagnostics.Debug.WriteLine("extension: " + extension);
+                string mime;
+                switch (extension.ToLower())
+                {
+                    //image files
+                    case ".svg":
+                        mime = "image/svg+xml";
+                        break;
+                    case ".jpg":
+                        mime = "image/jpeg";
+                        break;
+                    case ".jpeg":
+                        mime = "image/jpeg";
+                        break;
+                    case ".png":
+                        mime = "image/png";
+                        break;
 
-                //Documents
-                //Excel Formats
-                case ".xlt":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xlsx":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xlsm":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xlsb":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xltx":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xltm":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
-                case ".xls":
-                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    break;
+                    //Documents
+                    //Excel Formats
+                    case ".xlt":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
+                    case ".xlsx":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
+                    case ".xlsm":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
+                    case ".xlsb":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
+                    case ".xltx":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
+                    case ".xltm":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
+                    case ".xls":
+                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        break;
 
-                //PowerPoint Formats
-                case ".pptx":
-                    mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-                    break;
-                case ".ppt":
-                    mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-                    break;
+                    //PowerPoint Formats
+                    case ".pptx":
+                        mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                        break;
+                    case ".ppt":
+                        mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                        break;
 
-                case ".bat":
-                    mime = "application/vnd.google-apps.script+json";
-                    break;
+                    case ".bat":
+                        mime = "application/vnd.google-apps.script+json";
+                        break;
 
-                case ".csv":
-                    mime = "text/csv";
-                    break;
-                case ".doc":
-                    mime = "application/msword";
-                    break;
-                case ".pdf":
-                    mime = "application/pdf";
-                    break;
+                    case ".csv":
+                        mime = "text/csv";
+                        break;
+                    case ".doc":
+                        mime = "application/msword";
+                        break;
+                    case ".pdf":
+                        mime = "application/pdf";
+                        break;
 
-                case ".html":
-                    mime = "text/html";
-                    break;
+                    case ".html":
+                        mime = "text/html";
+                        break;
 
-                default:
-                    mime = "text/plain";
-                    break;
+                    default:
+                        mime = "text/plain";
+                        break;
+                }
+                return mime;
             }
-            return mime;
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
+                return null;
+            }
+            
         }
     }
 }
