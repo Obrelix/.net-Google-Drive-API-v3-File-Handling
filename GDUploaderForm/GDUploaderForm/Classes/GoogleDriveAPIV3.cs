@@ -36,7 +36,7 @@ namespace GDUploaderForm
             {
                 FilesResource.ListRequest listRequest = service.Files.List();
                 listRequest.PageSize = 1000;
-                listRequest.Fields = "nextPageToken, files(id, name)";
+                listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents)";
 
                 // List files.
                 IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
@@ -47,8 +47,8 @@ namespace GDUploaderForm
                     foreach (var file in files)
                     {
 
-                        filesList.Add(new string[2] { file.Name, file.Id });
-                        System.Diagnostics.Debug.WriteLine("{0} ({1} {2})", file.Name, file.Id, file.ModifiedTime.ToString());
+                        filesList.Add(new string[3] { file.Name, file.MimeType, file.Id });
+                        System.Diagnostics.Debug.WriteLine("{0} {1} {2}", file.Name, file.Id, file.ModifiedTime.ToString());
                     }
                 }
                 else

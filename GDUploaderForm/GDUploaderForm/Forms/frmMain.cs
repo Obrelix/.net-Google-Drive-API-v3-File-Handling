@@ -34,10 +34,11 @@ namespace GDUploaderForm
 
         private void dataGridViewInit()
         {
-            dgvFilesFromDrive.ColumnCount = 2;
-            dgvFilesFromDrive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFilesFromDrive.Columns[0].Name = "Name";
-            dgvFilesFromDrive.Columns[1].Name = "ID";
+            //dgvFilesFromDrive.ColumnCount = 3;
+            //dgvFilesFromDrive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvFilesFromDrive.Columns[0].Name = "Name";
+            //dgvFilesFromDrive.Columns[1].Name = "Type";
+            //dgvFilesFromDrive.Columns[2].Name = "ID";
             dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
         }
 
@@ -266,7 +267,7 @@ namespace GDUploaderForm
                 foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
                 {
                     fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
-                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[1].Value.ToString();
+                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[2].Value.ToString();
                     downloadFile(fileName, fileId);
                 }
             }
@@ -275,7 +276,7 @@ namespace GDUploaderForm
         private void dgvFilesFromDrive_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[1].Value.ToString();
+            string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[2].Value.ToString();
             string fileName = dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString();
             downloadFile(fileName, fileID);
         }
@@ -293,7 +294,7 @@ namespace GDUploaderForm
                 foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
                 {
                     fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
-                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[1].Value.ToString();
+                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[2].Value.ToString();
                     DialogResult result = MessageBox.Show("Do you want to delete the File: " + fileName, "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     switch (result)
@@ -389,6 +390,11 @@ namespace GDUploaderForm
                 }
                 
             }
+        }
+
+        private void dgvFilesFromDrive_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvFilesFromDrive.Rows[e.RowIndex].Selected = true;
         }
     }
 }

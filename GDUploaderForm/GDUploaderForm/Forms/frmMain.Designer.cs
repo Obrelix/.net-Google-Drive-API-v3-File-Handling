@@ -44,6 +44,7 @@
             this.pnlConnection = new System.Windows.Forms.Panel();
             this.chbAddUser = new System.Windows.Forms.CheckBox();
             this.pnlUser = new System.Windows.Forms.Panel();
+            this.btnRemUser = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.txtAppName = new System.Windows.Forms.TextBox();
@@ -62,7 +63,9 @@
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.btnRemUser = new System.Windows.Forms.Button();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -135,7 +138,7 @@
             this.txtConnect.MinimumSize = new System.Drawing.Size(147, 51);
             this.txtConnect.Name = "txtConnect";
             this.txtConnect.ReadOnly = true;
-            this.txtConnect.Size = new System.Drawing.Size(147, 51);
+            this.txtConnect.Size = new System.Drawing.Size(147, 21);
             this.txtConnect.TabIndex = 16;
             this.txtConnect.Text = "Disconnected";
             this.txtConnect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -240,6 +243,16 @@
             this.pnlUser.Size = new System.Drawing.Size(266, 178);
             this.pnlUser.TabIndex = 23;
             this.pnlUser.Visible = false;
+            // 
+            // btnRemUser
+            // 
+            this.btnRemUser.Location = new System.Drawing.Point(4, 151);
+            this.btnRemUser.Name = "btnRemUser";
+            this.btnRemUser.Size = new System.Drawing.Size(77, 23);
+            this.btnRemUser.TabIndex = 23;
+            this.btnRemUser.Text = "Remove";
+            this.btnRemUser.UseVisualStyleBackColor = true;
+            this.btnRemUser.Click += new System.EventHandler(this.btnRemUser_Click);
             // 
             // txtUserName
             // 
@@ -368,11 +381,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvFilesFromDrive.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvFilesFromDrive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFilesFromDrive.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fileName,
+            this.Type,
+            this.ID});
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 32);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             this.dgvFilesFromDrive.ReadOnly = true;
             this.dgvFilesFromDrive.Size = new System.Drawing.Size(632, 517);
             this.dgvFilesFromDrive.TabIndex = 20;
+            this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
             // 
             // btnDownload
@@ -397,15 +415,28 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // btnRemUser
+            // fileName
             // 
-            this.btnRemUser.Location = new System.Drawing.Point(4, 151);
-            this.btnRemUser.Name = "btnRemUser";
-            this.btnRemUser.Size = new System.Drawing.Size(77, 23);
-            this.btnRemUser.TabIndex = 23;
-            this.btnRemUser.Text = "Remove";
-            this.btnRemUser.UseVisualStyleBackColor = true;
-            this.btnRemUser.Click += new System.EventHandler(this.btnRemUser_Click);
+            this.fileName.Frozen = true;
+            this.fileName.HeaderText = "Name";
+            this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
+            this.fileName.Width = 300;
+            // 
+            // Type
+            // 
+            this.Type.Frozen = true;
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Width = 150;
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
             // frmMain
             // 
@@ -471,6 +502,9 @@
         private System.Windows.Forms.Panel pnlUser;
         private System.Windows.Forms.CheckBox chbAddUser;
         private System.Windows.Forms.Button btnRemUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }
 
