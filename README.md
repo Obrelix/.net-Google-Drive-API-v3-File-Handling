@@ -26,6 +26,7 @@ Downloading/Uploading asynchronous
 
 
 # Notes
+
 In order to use this Application you have to follow the 1st step from this tutorial https://developers.google.com/drive/v3/web/quickstart/dotnet
 
 When you have already created an OAuth 2.0 client and downloaded the client_secret.Json file from https://console.developers.google.com
@@ -39,4 +40,5 @@ Start the application and:
 3)Type your application name. Attention the application name is needed to be the same with OAuth 2.0 client name in order to connect to API.
 
 4)click on add user button to save your user profile
+
 5)Repeat this sequence for any Google account you want to connect.
