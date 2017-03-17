@@ -224,7 +224,7 @@ namespace GDUploaderForm
                 {
                     fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
                     fileId = dgvFilesFromDrive.Rows[row.Index].Cells[1].Value.ToString();
-                    DialogResult result = MessageBox.Show("Do you want to delete file: " + fileName, "Confirm",
+                    DialogResult result = MessageBox.Show("Do you want to delete the File: " + fileName, "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     switch (result)
                     {
