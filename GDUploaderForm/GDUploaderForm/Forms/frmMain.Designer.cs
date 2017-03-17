@@ -288,6 +288,7 @@
             this.dgvFilesFromDrive.ReadOnly = true;
             this.dgvFilesFromDrive.Size = new System.Drawing.Size(517, 368);
             this.dgvFilesFromDrive.TabIndex = 20;
+            this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
             // 
             // btnDownload
             // 

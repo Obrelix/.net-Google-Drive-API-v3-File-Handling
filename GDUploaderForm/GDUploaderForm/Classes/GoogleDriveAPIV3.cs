@@ -31,20 +31,20 @@ namespace GDUploaderForm
         {
             List<string[]> filesList = new List<string[]>();
             FilesResource.ListRequest listRequest = service.Files.List();
-            listRequest.PageSize = 10;
+            listRequest.PageSize = 1000;
             listRequest.Fields = "nextPageToken, files(id, name)";
 
             // List files.
-            IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
-                .Files;
+            IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
             
             filesList.Clear();
             if (files != null && files.Count > 0)
             {
                 foreach (var file in files)
                 {
+                    
                     filesList.Add(new string[2] { file.Name, file.Id });
-                    System.Diagnostics.Debug.WriteLine("{0} ({1})", file.Name, file.Id);
+                    System.Diagnostics.Debug.WriteLine("{0} ({1} {2})", file.Name, file.Id, file.ModifiedByMeTime);
                 }
             }
             else
@@ -229,12 +229,13 @@ namespace GDUploaderForm
             
         }
 
-        public static void downloadFromDrive(string fileId)
+        public static void downloadFromDrive(string fileId, string filename)
         {
+            string savePath = @"C:\Users\Developer\Desktop" + @"\"+ @filename;
             //var fileId = "0BwwA4oUTeiV1UVNwOHItT0xfa2M";
             var request = service.Files.Get(fileId);
             var stream = new System.IO.MemoryStream();
-                
+            FileStream fs;
             // Add a handler which will be notified on progress changes.
             // It will notify on each chunk download and when the
             // download is completed or failed.
@@ -261,7 +262,19 @@ namespace GDUploaderForm
                     }
                 };
             request.Download(stream);
-           // System.IO.File.Create(saveFile)
+
+            using ( fs  = new System.IO.FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                try
+                {
+                    // System.IO.File.Create(saveFile)
+                    stream.WriteTo(fs);                    
+                    fs.Close();
+                }
+                catch { }
+            }
+            
+           
 
         }
 

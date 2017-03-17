@@ -186,8 +186,15 @@ namespace GDUploaderForm
             //        GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eNUd2T3NtSnI0dDQ");
             //    }
             //}
-            GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eSFFtUW5tRVZJRms");
+            GoogleDriveAPIV3.downloadFromDrive("0B1sVxSVqL38eSFFtUW5tRVZJRms", "frmAdapter.pdf");
         }
 
+        private void dgvFilesFromDrive_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
+            GoogleDriveAPIV3.downloadFromDrive(dgvFilesFromDrive.Rows[e.RowIndex].Cells[1].Value.ToString()
+                , dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString());
+        }
     }
 }
