@@ -2,7 +2,7 @@
 
 A Windows Forms Application writen in c# making use of Google Drive API V3.
 
-#Features
+# Features
 
 It can connects to multiple google drive accounts
 
@@ -16,14 +16,14 @@ Downloading files from Google Drive
 
 Deleting files from Goolge Drive
 
-#Upcomming
+# Upcomming
 
 Running as console application with Windows Scheduler
 
 Downloading/Uploading asynchronous
 
 
-#Notes
+# Notes
 In order to use this Application you have to follow the 1st step from this tutorial https://developers.google.com/drive/v3/web/quickstart/dotnet
 
 When you have already created an OAuth 2.0 client and downloaded the client_secret.Json file from https://console.developers.google.com
