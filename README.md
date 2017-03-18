@@ -35,7 +35,7 @@ When you have already created an "OAuth 2.0 client" and downloaded the client_se
 
 Start the application and:
 
-1)check the checkbox add user
+1)Check the checkbox add user
 
 2)Type your name for your profile
 
