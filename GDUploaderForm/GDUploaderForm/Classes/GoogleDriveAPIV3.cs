@@ -76,10 +76,10 @@ namespace GDUploaderForm
         }
 
 
-        private static string sizeFix(string valueToString, int decimalPlaces = 1)
+        private static string sizeFix(string bytesString, int decimalPlaces = 1)
         {
             long value;
-            if (long.TryParse(valueToString, out value))
+            if (long.TryParse(bytesString, out value))
             {
                 if (value < 0) { return "-" + sizeFix((-value).ToString()); }
 
