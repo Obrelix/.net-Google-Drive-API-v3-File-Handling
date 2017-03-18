@@ -39,14 +39,16 @@ Start the application and:
 
 2)Type your name for your profile
 
-3)Type your application's name. 
+3)Add your clien_secret.Json file.
 
-4)Click on "save user" button to save your user profile
+4)Type your application's name. 
 
-5)Click on "Connect to Google Drive" Button to open a connection.
+5)Click on "save user" button to save your user profile
 
-6)The first time a browser window will appear asking you to connect to your Google account.
+6)Click on "Connect to Google Drive" Button to open a connection.
 
-7)Connect and approve the Google notification.
+7)The first time a browser window will appear asking you to connect to your Google account.
 
-8)In order to connect to an other account repeat steps: 2), 4), 5), 6), 7).
+8)Connect and approve the Google notification.
+
+9)In order to connect to an other account repeat steps: 2),  5), 6), 7), 8).
