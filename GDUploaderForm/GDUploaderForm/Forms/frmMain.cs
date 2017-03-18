@@ -39,7 +39,7 @@ namespace GDUploaderForm
             //dgvFilesFromDrive.Columns[0].Name = "Name";
             //dgvFilesFromDrive.Columns[1].Name = "Type";
             //dgvFilesFromDrive.Columns[2].Name = "ID";
-            dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
+           // dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,9 +48,6 @@ namespace GDUploaderForm
             loadUsers(savePath, saveFile);
             UIinit();
             cbUserInit();
-            //txtInit(-1);
-            txtConnect.BackColor = Color.Red;
-            txtConnect.Text = "Disconnected";
 
 
         }
@@ -66,11 +63,19 @@ namespace GDUploaderForm
 
         private void UIinit()
         {
-            pnlConnection.Height = 100;
-            pnlUser.Visible = false;
-            lblPanel.Location = new Point(4, 147);
-            pnlDragAndDrop.Location = new Point(7, 156);
-            this.Size = new Size(955, 457);
+            if (chbAddUser.Checked)
+            {
+                pnlConnection.Height = 290;
+                pnlUser.Visible = true;
+                this.Size = new Size(955, 720);
+
+            }
+            else
+            {
+                pnlConnection.Height = 100;
+                pnlUser.Visible = false;
+                this.Size = new Size(955, 530);
+            }
         }
 
         private void loadUsers(string savePath, string saveFile)
@@ -165,14 +170,13 @@ namespace GDUploaderForm
             {
                 if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtAppName.Text, txtUserName.Text))
                 {
-                    txtConnect.BackColor = Color.Green;
-                    txtConnect.Text = "Connected";
+                    btnConnect.BackColor = Color.Green;
+                    
                     updateDataGridView();
                 }
                 else
                 {
-                    txtConnect.BackColor = Color.Red;
-                    txtConnect.Text = "Disconnected";
+                    btnConnect.BackColor = Color.Red;
                 }
 
             }
@@ -243,7 +247,7 @@ namespace GDUploaderForm
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
             string filePath = txtFilePath.Text;
             string fileName = txtFileName.Text;
-            if(txtConnect.Text == "Disconnected")
+            if(!GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtAppName.Text, txtUserName.Text))
             {
                 MessageBox.Show("You have to Connect First in order to upload Files");
             }
@@ -331,23 +335,7 @@ namespace GDUploaderForm
 
         private void chbAddUser_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbAddUser.Checked)
-            {
-                pnlConnection.Height = 279;
-                pnlUser.Visible = true;
-                lblPanel.Location = new Point(4, 326);
-                pnlDragAndDrop.Location = new Point(7, 335);
-                this.Size = new Size(955, 636);
-
-            }
-            else
-            {
-                pnlConnection.Height = 100;
-                pnlUser.Visible = false;
-                lblPanel.Location = new Point(4, 147);
-                pnlDragAndDrop.Location = new Point(7, 156);
-                this.Size = new Size(955, 457);
-            }
+            UIinit();
         }
 
         private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
