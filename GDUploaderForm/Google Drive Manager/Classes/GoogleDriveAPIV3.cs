@@ -252,20 +252,12 @@ namespace GDUploaderForm
                 try
                 {
                     // Get the subdirectories for the specified directory.
-                    DirectoryInfo dir = new DirectoryInfo(path);
-                    string folderId;
-                    if (parentId == null)
-                    {
-                        folderId = createFolderToDrive(Path.GetFileName(path), null);
-                        System.Diagnostics.Debug.WriteLine(folderId);
-                    }
-                    else
-                    {
-                        folderId = createFolderToDrive(
+                    string folderId = createFolderToDrive(
                             Path.GetFileName(path),
                             parentId);
-                        System.Diagnostics.Debug.WriteLine(folderId);
-                    }
+                    System.Diagnostics.Debug.WriteLine(folderId);
+
+                    DirectoryInfo dir = new DirectoryInfo(path);
                     if (!dir.Exists)
                     {
                         throw new DirectoryNotFoundException(
@@ -295,8 +287,6 @@ namespace GDUploaderForm
                 }
 
             }
-            
-            
         }
 
         private static void convertMemoryStreamToFileStream(MemoryStream stream, string savePath)
