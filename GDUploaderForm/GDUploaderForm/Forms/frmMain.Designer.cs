@@ -72,7 +72,6 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_Load = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_StartWithWindows = new System.Windows.Forms.ToolStripMenuItem();
             this.minimizeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +112,7 @@
             this.btnUpload.Location = new System.Drawing.Point(4, 145);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(272, 40);
-            this.btnUpload.TabIndex = 10;
+            this.btnUpload.TabIndex = 9;
             this.btnUpload.Text = "Upload to Drive";
             this.btnUpload.UseVisualStyleBackColor = false;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
@@ -125,7 +124,7 @@
             this.button_browse.Location = new System.Drawing.Point(187, 8);
             this.button_browse.Name = "button_browse";
             this.button_browse.Size = new System.Drawing.Size(88, 23);
-            this.button_browse.TabIndex = 9;
+            this.button_browse.TabIndex = 7;
             this.button_browse.Text = "Browse";
             this.button_browse.UseVisualStyleBackColor = true;
             this.button_browse.Click += new System.EventHandler(this.button_browse_Click);
@@ -149,7 +148,7 @@
             this.btnConnect.Location = new System.Drawing.Point(3, 241);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(272, 40);
-            this.btnConnect.TabIndex = 15;
+            this.btnConnect.TabIndex = 6;
             this.btnConnect.Text = "Connect to Drive";
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
@@ -192,7 +191,7 @@
             this.btnDirToUpload.Location = new System.Drawing.Point(187, 37);
             this.btnDirToUpload.Name = "btnDirToUpload";
             this.btnDirToUpload.Size = new System.Drawing.Size(88, 23);
-            this.btnDirToUpload.TabIndex = 15;
+            this.btnDirToUpload.TabIndex = 8;
             this.btnDirToUpload.Text = "Browse";
             this.btnDirToUpload.UseVisualStyleBackColor = true;
             this.btnDirToUpload.Click += new System.EventHandler(this.btnDirToUpload_Click);
@@ -242,7 +241,7 @@
             this.chbAddUser.Location = new System.Drawing.Point(193, 14);
             this.chbAddUser.Name = "chbAddUser";
             this.chbAddUser.Size = new System.Drawing.Size(84, 20);
-            this.chbAddUser.TabIndex = 23;
+            this.chbAddUser.TabIndex = 1;
             this.chbAddUser.Text = "Add User";
             this.chbAddUser.UseVisualStyleBackColor = true;
             this.chbAddUser.CheckedChanged += new System.EventHandler(this.chbAddUser_CheckedChanged);
@@ -283,7 +282,7 @@
             this.txtUserName.Location = new System.Drawing.Point(3, 21);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(272, 22);
-            this.txtUserName.TabIndex = 18;
+            this.txtUserName.TabIndex = 2;
             // 
             // btnAddUser
             // 
@@ -292,7 +291,7 @@
             this.btnAddUser.Location = new System.Drawing.Point(187, 168);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(88, 25);
-            this.btnAddUser.TabIndex = 22;
+            this.btnAddUser.TabIndex = 5;
             this.btnAddUser.Text = "Save User";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -303,7 +302,7 @@
             this.txtAppName.Location = new System.Drawing.Point(4, 139);
             this.txtAppName.Name = "txtAppName";
             this.txtAppName.Size = new System.Drawing.Size(271, 22);
-            this.txtAppName.TabIndex = 13;
+            this.txtAppName.TabIndex = 4;
             // 
             // btnJsonBroswe
             // 
@@ -312,7 +311,7 @@
             this.btnJsonBroswe.Location = new System.Drawing.Point(187, 48);
             this.btnJsonBroswe.Name = "btnJsonBroswe";
             this.btnJsonBroswe.Size = new System.Drawing.Size(88, 23);
-            this.btnJsonBroswe.TabIndex = 15;
+            this.btnJsonBroswe.TabIndex = 3;
             this.btnJsonBroswe.Text = "Browse";
             this.btnJsonBroswe.UseVisualStyleBackColor = true;
             this.btnJsonBroswe.Click += new System.EventHandler(this.btnJsonBroswe_Click);
@@ -344,7 +343,7 @@
             this.txtJsonPath.Name = "txtJsonPath";
             this.txtJsonPath.ReadOnly = true;
             this.txtJsonPath.Size = new System.Drawing.Size(271, 22);
-            this.txtJsonPath.TabIndex = 14;
+            this.txtJsonPath.TabIndex = 3;
             // 
             // label8
             // 
@@ -383,7 +382,7 @@
             this.cbUser.Location = new System.Drawing.Point(83, 12);
             this.cbUser.Name = "cbUser";
             this.cbUser.Size = new System.Drawing.Size(104, 24);
-            this.cbUser.TabIndex = 20;
+            this.cbUser.TabIndex = 0;
             this.cbUser.SelectedIndexChanged += new System.EventHandler(this.cbUser_SelectedIndexChanged);
             // 
             // ofgJsonFile
@@ -397,7 +396,7 @@
             this.label5.Location = new System.Drawing.Point(4, 38);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(205, 16);
-            this.label5.TabIndex = 15;
+            this.label5.TabIndex = 100;
             this.label5.Text = "Connect to Google Drive API";
             // 
             // lblPanel
@@ -449,7 +448,7 @@
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             this.dgvFilesFromDrive.ReadOnly = true;
             this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 612);
-            this.dgvFilesFromDrive.TabIndex = 20;
+            this.dgvFilesFromDrive.TabIndex = 10;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
             // 
@@ -502,7 +501,7 @@
             this.btnDownload.Location = new System.Drawing.Point(6, 6);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(272, 40);
-            this.btnDownload.TabIndex = 21;
+            this.btnDownload.TabIndex = 11;
             this.btnDownload.Text = "Download File";
             this.btnDownload.UseVisualStyleBackColor = false;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
@@ -515,7 +514,7 @@
             this.btnRemove.Location = new System.Drawing.Point(7, 52);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(272, 40);
-            this.btnRemove.TabIndex = 22;
+            this.btnRemove.TabIndex = 12;
             this.btnRemove.Text = "Remove File";
             this.btnRemove.UseVisualStyleBackColor = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -536,7 +535,6 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_Load,
             this.mnu_StartWithWindows,
             this.minimizeToTrayToolStripMenuItem});
             this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
@@ -544,24 +542,18 @@
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(53, 21);
             this.menuToolStripMenuItem.Text = "&Menu";
             // 
-            // mnu_Load
-            // 
-            this.mnu_Load.Name = "mnu_Load";
-            this.mnu_Load.Size = new System.Drawing.Size(193, 22);
-            this.mnu_Load.Text = "&Load BackUp Profile";
-            // 
             // mnu_StartWithWindows
             // 
             this.mnu_StartWithWindows.Checked = true;
             this.mnu_StartWithWindows.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnu_StartWithWindows.Name = "mnu_StartWithWindows";
-            this.mnu_StartWithWindows.Size = new System.Drawing.Size(193, 22);
+            this.mnu_StartWithWindows.Size = new System.Drawing.Size(187, 22);
             this.mnu_StartWithWindows.Text = "Start with Windows";
             // 
             // minimizeToTrayToolStripMenuItem
             // 
             this.minimizeToTrayToolStripMenuItem.Name = "minimizeToTrayToolStripMenuItem";
-            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
             // 
             // aboutToolStripMenuItem
@@ -667,7 +659,6 @@
         private System.Windows.Forms.Button btnRemUser;
         private System.Windows.Forms.MenuStrip menuMain;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnu_Load;
         private System.Windows.Forms.ToolStripMenuItem mnu_StartWithWindows;
         private System.Windows.Forms.ToolStripMenuItem minimizeToTrayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
