@@ -51,9 +51,9 @@ namespace GDUploaderForm
                     {
 
                         filesList.Add(new string[5] {
-                            file.Name, file.MimeType,
-                            file.Id, file.Size.ToString(),
-                            file.ModifiedTime.ToString() });
+                            file.Name, file.Size.ToString(),
+                            file.Id,
+                            file.ModifiedTime.ToString(), file.MimeType });
                         System.Diagnostics.Debug.WriteLine("{0} {1} {2} {3}", 
                             file.Name, file.Id, file.MimeType, file.Size.ToString());
                     }
@@ -70,7 +70,7 @@ namespace GDUploaderForm
 
             foreach(string[] array in filesList)
             {
-                array[3] = sizeFix(array[3]);
+                array[1] = sizeFix(array[1]);
             }
             return filesList;
         }

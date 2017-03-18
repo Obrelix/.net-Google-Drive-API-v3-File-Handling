@@ -67,14 +67,14 @@ namespace GDUploaderForm
             {
                 pnlConnection.Height = 290;
                 pnlUser.Visible = true;
-                this.Size = new Size(955, 720);
+                this.Height = 720;
 
             }
             else
             {
                 pnlConnection.Height = 100;
                 pnlUser.Visible = false;
-                this.Size = new Size(955, 530);
+                this.Height =  530;
             }
         }
 
