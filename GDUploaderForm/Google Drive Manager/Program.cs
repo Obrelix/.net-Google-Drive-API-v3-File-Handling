@@ -17,10 +17,25 @@ namespace Google_Drive_Manager
 
         static void Main(string[] args)
         {
+            string uploadFilePath, filename, parentID;
+            int user;
+            loadUsers(savePath, saveFile);
+            uploadFilePath = args[1];
+            filename = args[2];
+            parentID = args[3];
 
+            if(int.TryParse(args[0], out user))
+            {
+                if(GoogleDriveAPIV3.GoogleDriveConnection(UserList[user].clientSecretPath,
+                    UserList[user].appName, UserList[user].userName) &&
+                    filename != null && uploadFilePath != null)
+                {
+                        GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID);
+                }
+            }
         }
 
-        private void loadUsers(string savePath, string saveFile)
+        private static void loadUsers(string savePath, string saveFile)
         {
             Directory.CreateDirectory(savePath);
             try
