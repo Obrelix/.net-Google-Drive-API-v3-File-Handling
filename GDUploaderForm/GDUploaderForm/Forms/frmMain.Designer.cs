@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ofgFileToUpload = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,6 +63,11 @@
             this.lblPanel = new System.Windows.Forms.Label();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
@@ -73,16 +78,13 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).BeginInit();
             this.menuMain.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -119,6 +121,7 @@
             // button_browse
             // 
             this.button_browse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.button_browse.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button_browse.Location = new System.Drawing.Point(187, 8);
             this.button_browse.Name = "button_browse";
             this.button_browse.Size = new System.Drawing.Size(88, 23);
@@ -155,7 +158,7 @@
             // 
             this.pnlDragAndDrop.AllowDrop = true;
             this.pnlDragAndDrop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pnlDragAndDrop.BackColor = System.Drawing.Color.NavajoWhite;
+            this.pnlDragAndDrop.BackColor = System.Drawing.Color.DarkSlateGray;
             this.pnlDragAndDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDragAndDrop.Controls.Add(this.label9);
             this.pnlDragAndDrop.Controls.Add(this.btnDirToUpload);
@@ -166,7 +169,7 @@
             this.pnlDragAndDrop.Controls.Add(this.label1);
             this.pnlDragAndDrop.Controls.Add(this.btnUpload);
             this.pnlDragAndDrop.Controls.Add(this.txtFileName);
-            this.pnlDragAndDrop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnlDragAndDrop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 361);
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
             this.pnlDragAndDrop.Size = new System.Drawing.Size(282, 193);
@@ -185,6 +188,7 @@
             // btnDirToUpload
             // 
             this.btnDirToUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnDirToUpload.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDirToUpload.Location = new System.Drawing.Point(187, 37);
             this.btnDirToUpload.Name = "btnDirToUpload";
             this.btnDirToUpload.Size = new System.Drawing.Size(88, 23);
@@ -216,13 +220,14 @@
             // pnlConnection
             // 
             this.pnlConnection.AllowDrop = true;
-            this.pnlConnection.BackColor = System.Drawing.Color.PowderBlue;
+            this.pnlConnection.BackColor = System.Drawing.Color.DarkSlateGray;
             this.pnlConnection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlConnection.Controls.Add(this.chbAddUser);
             this.pnlConnection.Controls.Add(this.pnlUser);
             this.pnlConnection.Controls.Add(this.label11);
             this.pnlConnection.Controls.Add(this.cbUser);
             this.pnlConnection.Controls.Add(this.btnConnect);
+            this.pnlConnection.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlConnection.Location = new System.Drawing.Point(7, 46);
             this.pnlConnection.Name = "pnlConnection";
             this.pnlConnection.Size = new System.Drawing.Size(282, 290);
@@ -263,6 +268,7 @@
             // btnRemUser
             // 
             this.btnRemUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnRemUser.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRemUser.Location = new System.Drawing.Point(4, 168);
             this.btnRemUser.Name = "btnRemUser";
             this.btnRemUser.Size = new System.Drawing.Size(106, 25);
@@ -282,6 +288,7 @@
             // btnAddUser
             // 
             this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnAddUser.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddUser.Location = new System.Drawing.Point(187, 168);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(88, 25);
@@ -301,6 +308,7 @@
             // btnJsonBroswe
             // 
             this.btnJsonBroswe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnJsonBroswe.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnJsonBroswe.Location = new System.Drawing.Point(187, 48);
             this.btnJsonBroswe.Name = "btnJsonBroswe";
             this.btnJsonBroswe.Size = new System.Drawing.Size(88, 23);
@@ -410,17 +418,17 @@
             this.dgvFilesFromDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvFilesFromDrive.BackgroundColor = System.Drawing.Color.SeaGreen;
+            this.dgvFilesFromDrive.BackgroundColor = System.Drawing.Color.DarkSlateGray;
             this.dgvFilesFromDrive.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvFilesFromDrive.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFilesFromDrive.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFilesFromDrive.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilesFromDrive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFilesFromDrive.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileName,
@@ -428,14 +436,14 @@
             this.ID,
             this.fileModifiedTime,
             this.fileType});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFilesFromDrive.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilesFromDrive.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFilesFromDrive.GridColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 46);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
@@ -444,98 +452,6 @@
             this.dgvFilesFromDrive.TabIndex = 20;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
-            // 
-            // btnDownload
-            // 
-            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDownload.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnDownload.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDownload.Location = new System.Drawing.Point(11, 566);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(272, 40);
-            this.btnDownload.TabIndex = 21;
-            this.btnDownload.Text = "Download File";
-            this.btnDownload.UseVisualStyleBackColor = false;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.BackColor = System.Drawing.Color.Crimson;
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRemove.Location = new System.Drawing.Point(12, 618);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(272, 40);
-            this.btnRemove.TabIndex = 22;
-            this.btnRemove.Text = "Remove File";
-            this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // menuMain
-            // 
-            this.menuMain.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.menuMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.menuMain.Location = new System.Drawing.Point(0, 0);
-            this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(1012, 25);
-            this.menuMain.TabIndex = 30;
-            this.menuMain.Text = "Menu";
-            // 
-            // menuToolStripMenuItem
-            // 
-            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_Load,
-            this.mnu_StartWithWindows,
-            this.minimizeToTrayToolStripMenuItem});
-            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(53, 21);
-            this.menuToolStripMenuItem.Text = "&Menu";
-            // 
-            // mnu_Load
-            // 
-            this.mnu_Load.Name = "mnu_Load";
-            this.mnu_Load.Size = new System.Drawing.Size(193, 22);
-            this.mnu_Load.Text = "&Load BackUp Profile";
-            // 
-            // mnu_StartWithWindows
-            // 
-            this.mnu_StartWithWindows.Checked = true;
-            this.mnu_StartWithWindows.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mnu_StartWithWindows.Name = "mnu_StartWithWindows";
-            this.mnu_StartWithWindows.Size = new System.Drawing.Size(193, 22);
-            this.mnu_StartWithWindows.Text = "Start with Windows";
-            // 
-            // minimizeToTrayToolStripMenuItem
-            // 
-            this.minimizeToTrayToolStripMenuItem.Name = "minimizeToTrayToolStripMenuItem";
-            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_About,
-            this.helpToolStripMenuItem});
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
-            this.aboutToolStripMenuItem.Text = "&Help";
-            // 
-            // mnu_About
-            // 
-            this.mnu_About.Name = "mnu_About";
-            this.mnu_About.Size = new System.Drawing.Size(111, 22);
-            this.mnu_About.Text = "A&bout";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.helpToolStripMenuItem.Text = "Help";
             // 
             // fileName
             // 
@@ -578,15 +494,117 @@
             this.fileType.Name = "fileType";
             this.fileType.ReadOnly = true;
             // 
+            // btnDownload
+            // 
+            this.btnDownload.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnDownload.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDownload.Location = new System.Drawing.Point(6, 6);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(272, 40);
+            this.btnDownload.TabIndex = 21;
+            this.btnDownload.Text = "Download File";
+            this.btnDownload.UseVisualStyleBackColor = false;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRemove.Location = new System.Drawing.Point(7, 52);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(272, 40);
+            this.btnRemove.TabIndex = 22;
+            this.btnRemove.Text = "Remove File";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // menuMain
+            // 
+            this.menuMain.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.menuMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuMain.Location = new System.Drawing.Point(0, 0);
+            this.menuMain.Name = "menuMain";
+            this.menuMain.Size = new System.Drawing.Size(1012, 25);
+            this.menuMain.TabIndex = 30;
+            this.menuMain.Text = "Menu";
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_Load,
+            this.mnu_StartWithWindows,
+            this.minimizeToTrayToolStripMenuItem});
+            this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(53, 21);
+            this.menuToolStripMenuItem.Text = "&Menu";
+            // 
+            // mnu_Load
+            // 
+            this.mnu_Load.Name = "mnu_Load";
+            this.mnu_Load.Size = new System.Drawing.Size(193, 22);
+            this.mnu_Load.Text = "&Load BackUp Profile";
+            // 
+            // mnu_StartWithWindows
+            // 
+            this.mnu_StartWithWindows.Checked = true;
+            this.mnu_StartWithWindows.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnu_StartWithWindows.Name = "mnu_StartWithWindows";
+            this.mnu_StartWithWindows.Size = new System.Drawing.Size(193, 22);
+            this.mnu_StartWithWindows.Text = "Start with Windows";
+            // 
+            // minimizeToTrayToolStripMenuItem
+            // 
+            this.minimizeToTrayToolStripMenuItem.Name = "minimizeToTrayToolStripMenuItem";
+            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_About,
+            this.helpToolStripMenuItem});
+            this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.aboutToolStripMenuItem.Text = "&Help";
+            // 
+            // mnu_About
+            // 
+            this.mnu_About.Name = "mnu_About";
+            this.mnu_About.Size = new System.Drawing.Size(152, 22);
+            this.mnu_About.Text = "A&bout";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.Controls.Add(this.btnDownload);
+            this.panel1.Controls.Add(this.btnRemove);
+            this.panel1.Location = new System.Drawing.Point(7, 560);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(282, 98);
+            this.panel1.TabIndex = 31;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(1012, 681);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuMain);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.dgvFilesFromDrive);
             this.Controls.Add(this.lblPanel);
             this.Controls.Add(this.label5);
@@ -605,6 +623,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).EndInit();
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -659,6 +678,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
