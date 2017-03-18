@@ -21,6 +21,9 @@ namespace GDUploaderForm
         private static UserCredential credential;
         private static DriveService service;
 
+        private static readonly string[] SizeSuffixes =
+                  { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
         public static bool GoogleDriveConnection(string jsonSecretPath, string appName, string userName)
         {
 
@@ -36,7 +39,7 @@ namespace GDUploaderForm
             {
                 FilesResource.ListRequest listRequest = service.Files.List();
                 listRequest.PageSize = 1000;
-                listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size)";
+                listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime)";
 
                 // List files.
                 IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
@@ -47,8 +50,12 @@ namespace GDUploaderForm
                     foreach (var file in files)
                     {
 
-                        filesList.Add(new string[4] { file.Name, file.MimeType, file.Id, file.Size.ToString() });
-                        System.Diagnostics.Debug.WriteLine("{0} {1} {2}", file.Name, file.Id, file.MimeType);
+                        filesList.Add(new string[5] {
+                            file.Name, file.MimeType,
+                            file.Id, file.Size.ToString(),
+                            file.ModifiedTime.ToString() });
+                        System.Diagnostics.Debug.WriteLine("{0} {1} {2} {3}", 
+                            file.Name, file.Id, file.MimeType, file.Size.ToString());
                     }
                 }
                 else
@@ -61,10 +68,36 @@ namespace GDUploaderForm
                 System.Diagnostics.Debug.WriteLine(exc.Message);
             }
 
-
+            foreach(string[] array in filesList)
+            {
+                array[3] = sizeFix(array[3]);
+            }
             return filesList;
         }
 
+
+        private static string sizeFix(string valueToString, int decimalPlaces = 1)
+        {
+            long value;
+            if (long.TryParse(valueToString, out value))
+            {
+                if (value < 0) { return "-" + sizeFix((-value).ToString()); }
+
+                int i = 0;
+                decimal dValue = (decimal)value;
+                while (Math.Round(dValue, decimalPlaces) >= 1000)
+                {
+                    dValue /= 1024;
+                    i++;
+                }
+                return string.Format("{0:n" + decimalPlaces + "} {1}", dValue, SizeSuffixes[i]);
+            }
+            else
+            {
+                return "";
+            }
+            
+        }
 
         private static bool getCredential(string clientSecretPath, string applicationName, string userName)
         {

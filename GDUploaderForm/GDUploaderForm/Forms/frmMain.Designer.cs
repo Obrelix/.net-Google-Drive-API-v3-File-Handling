@@ -76,6 +76,7 @@
             this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -424,7 +425,8 @@
             this.fileName,
             this.fileType,
             this.ID,
-            this.fileSize});
+            this.fileSize,
+            this.fileModifiedTime});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -437,7 +439,7 @@
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 46);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             this.dgvFilesFromDrive.ReadOnly = true;
-            this.dgvFilesFromDrive.Size = new System.Drawing.Size(632, 612);
+            this.dgvFilesFromDrive.Size = new System.Drawing.Size(910, 612);
             this.dgvFilesFromDrive.TabIndex = 20;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
@@ -479,7 +481,7 @@
             this.aboutToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(939, 25);
+            this.menuMain.Size = new System.Drawing.Size(1217, 25);
             this.menuMain.TabIndex = 30;
             this.menuMain.Text = "Menu";
             // 
@@ -564,12 +566,19 @@
             this.fileSize.Name = "fileSize";
             this.fileSize.ReadOnly = true;
             // 
+            // fileModifiedTime
+            // 
+            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileModifiedTime.HeaderText = "Last Modified";
+            this.fileModifiedTime.Name = "fileModifiedTime";
+            this.fileModifiedTime.ReadOnly = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClientSize = new System.Drawing.Size(939, 681);
+            this.ClientSize = new System.Drawing.Size(1217, 681);
             this.Controls.Add(this.menuMain);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnDownload);
@@ -643,6 +652,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
     }
 }
 
