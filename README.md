@@ -8,11 +8,11 @@ A Windows Forms Application writen in c# making use of Google Drive API V3.
 
 # Features
 
-It can connects to multiple google drive accounts
+Connects to multiple google drive accounts
 
-previewing to a data grid view the Google Drive Files
+Previewing in a data grid view the Google Drive Files
 
-uploading files to Google Drive
+Uploading files to Google Drive
 
 Uploading directories with subdirectories to Drive
 
@@ -27,11 +27,11 @@ Running as console application with Windows Scheduler
 Downloading/Uploading asynchronous
 
 
-# Notes
+# Instrunctions
 
 In order to use this Application you have to follow the 1st step from this tutorial https://developers.google.com/drive/v3/web/quickstart/dotnet
 
-When you have already created an OAuth 2.0 client and downloaded the client_secret.Json file from https://console.developers.google.com
+When you have already created an "OAuth 2.0 client" and downloaded the client_secret.Json file from https://console.developers.google.com
 
 Start the application and:
 
@@ -39,8 +39,14 @@ Start the application and:
 
 2)Type your name for your profile
 
-3)Type your application name. Attention the application name is needed to be the same with OAuth 2.0 client name in order to connect to API.
+3)Type your application's name. 
 
-4)click on add user button to save your user profile
+4)Click on "save user" button to save your user profile
 
-5)Repeat this sequence for any Google account you want to connect.
+5)Click on "Connect to Google Drive" Button to open a connection.
+
+6)The first time a browser window will appear asking you to connect to your Google account.
+
+7)Connect and approve the Google notification.
+
+8)In order to connect to an other account repeat steps: 2), 4), 5), 6), 7).
