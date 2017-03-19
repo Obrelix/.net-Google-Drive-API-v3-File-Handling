@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using GDUploaderForm;
 
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -382,7 +381,7 @@ namespace GoogleDriveManager
 
         private void dgvFilesFromDrive_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvFilesFromDrive.Rows[e.RowIndex].Selected = true;
+            if (e.RowIndex >= 0) dgvFilesFromDrive.Rows[e.RowIndex].Selected = true ;
         }
     }
 }
