@@ -225,7 +225,7 @@ namespace GDUploaderForm
                 var request = service.Files.Create(fileMetadata);
                 request.Fields = "id";
                 var file = request.Execute();
-                System.Diagnostics.Debug.WriteLine(file.Name);
+                System.Diagnostics.Debug.WriteLine("{0} {1}",file.Name, file.Id);
                 return file.Id;
             }
             catch(Exception exc)

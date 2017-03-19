@@ -17,53 +17,64 @@ namespace Google_Drive_Manager
 
         static void Main(string[] args)
         {
-            string uploadFilePath, filename, parentID;
+            string uploadFilePath, filename, parentID, exceptionMessage;
             int user;
-            loadUsers(savePath, saveFile);
-            uploadFilePath = args[1];
-            filename = args[2];
-            parentID = args[3];
-
-            if(int.TryParse(args[0], out user))
+            int i = 0;
+            foreach(string arg in args)
             {
-                if(GoogleDriveAPIV3.GoogleDriveConnection(UserList[user].clientSecretPath,
-                    UserList[user].appName, UserList[user].userName) &&
-                    filename != null && uploadFilePath != null)
+                Console.WriteLine("arg{0} : {1}", i, arg);
+                i++;
+            }
+            try
+            {
+                if (loadUsers(savePath, saveFile) &&
+                args.Length > 0 &&
+                int.TryParse(args[0], out user))
                 {
+                    uploadFilePath = args[1];
+                    filename = args[2];
+                    if (args.Length > 3 ) parentID = args[3];
+                    else parentID = null;
+                    if (GoogleDriveAPIV3.GoogleDriveConnection(
+                        UserList[user].clientSecretPath,
+                        UserList[user].appName, 
+                        UserList[user].userName))
+                    {
                         GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID);
+                        Console.WriteLine("Upload Completed");
+                    }
+                    else{throw new Exception("Connection Error");}
                 }
+                else{throw new Exception("Arguments Error");}
+            }
+            catch(Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
+                Console.WriteLine(exc.Message);
             }
         }
 
-        private static void loadUsers(string savePath, string saveFile)
+        private static bool loadUsers(string savePath, string saveFile)
         {
             Directory.CreateDirectory(savePath);
             try
             {
-                if (System.IO.File.Exists(saveFile))
+                if (File.Exists(saveFile))
                 {
                     UserList.Clear();
                     UserList = JsonConvert.DeserializeObject<List<User>>(System.IO.File.ReadAllText(saveFile));
-
-
+                    return true;
                 }
                 else
                 {
-                    using (System.IO.FileStream fs = System.IO.File.Create(saveFile))
-                    {
-                        for (byte i = 0; i < 100; i++)
-                        {
-                            fs.WriteByte(i);
-                        }
-                    }
-
-                    System.IO.File.WriteAllText(saveFile, "[ ]");
-                    loadUsers(savePath, saveFile);
+                    return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " LoadUser Method");
+                Console.WriteLine(exc.Message);
+                return false;
 
             }
         }
