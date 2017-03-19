@@ -11,13 +11,13 @@ namespace Google_Drive_Manager
 {
     class Program
     {
-        public static List<User> UserList = new List<User>();
-        static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
-        static string saveFile = savePath + "\\GDASaves.json";
-
+        static List<User> UserList = new List<User>();
+        static string saveFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) 
+            + "\\BackUpManager\\GDASaves.json";
+        
         static void Main(string[] args)
         {
-            string uploadFilePath, filename, parentID, exceptionMessage;
+            string uploadFilePath, filename, parentID;
             int user;
             int i = 0;
             foreach(string arg in args)
@@ -27,14 +27,15 @@ namespace Google_Drive_Manager
             }
             try
             {
-                if (loadUsers(savePath, saveFile) &&
+                if (loadUsers() &&
                 args.Length > 0 &&
                 int.TryParse(args[0], out user))
                 {
                     uploadFilePath = args[1];
                     filename = args[2];
-                    if (args.Length > 3 ) parentID = args[3];
-                    else parentID = null;
+                    parentID = (args.Length > 3) ? args[3] : null;
+                    Console.WriteLine("{0} \n{1} \n{2} \n{3}",
+                        UserList[user].userName, uploadFilePath, filename, parentID);
                     if (GoogleDriveAPIV3.GoogleDriveConnection(
                         UserList[user].clientSecretPath,
                         UserList[user].appName, 
@@ -54,9 +55,8 @@ namespace Google_Drive_Manager
             }
         }
 
-        private static bool loadUsers(string savePath, string saveFile)
+        private static bool loadUsers()
         {
-            Directory.CreateDirectory(savePath);
             try
             {
                 if (File.Exists(saveFile))

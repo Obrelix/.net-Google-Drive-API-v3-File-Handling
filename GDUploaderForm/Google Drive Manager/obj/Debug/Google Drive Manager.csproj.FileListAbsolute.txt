@@ -26,3 +26,6 @@ C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderFo
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\Google Drive Manager\obj\Debug\Google Drive Manager.csprojResolveAssemblyReference.cache
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\Google Drive Manager\obj\Debug\Google Drive Manager.exe
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\Google Drive Manager\obj\Debug\Google Drive Manager.pdb
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\Google Drive Manager\obj\Debug\Google Drive Manager.csproj.GenerateResource.Cache
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\Google Drive Manager\obj\Debug\Google_Drive_Manager.Properties.Resources.resources
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\Google Drive Manager\obj\Debug\Google Drive Manager.g.resources
