@@ -1,0 +1,1 @@
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\GDUploaderForm\bin\Debug\GoogleDriveManager.exe.config

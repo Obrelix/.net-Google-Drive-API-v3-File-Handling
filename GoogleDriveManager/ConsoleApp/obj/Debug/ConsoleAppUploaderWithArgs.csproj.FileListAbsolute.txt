@@ -1,0 +1,2 @@
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\Google Drive Manager\bin\Debug\ConsoleUploader.exe.config
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\ConsoleApp\bin\Debug\ConsoleUploader.exe.config
