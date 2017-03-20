@@ -266,7 +266,7 @@ namespace GoogleDriveManager
                 foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
                 {
                     fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
-                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[2].Value.ToString();
+                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[4].Value.ToString();
                     downloadFile(fileName, fileId);
                 }
             }

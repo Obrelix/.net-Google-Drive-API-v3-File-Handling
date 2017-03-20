@@ -65,11 +65,6 @@
             this.lblPanel = new System.Windows.Forms.Label();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
@@ -82,6 +77,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -433,9 +433,9 @@
             this.dgvFilesFromDrive.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileName,
             this.fileSize,
-            this.ID,
             this.fileModifiedTime,
-            this.fileType});
+            this.fileType,
+            this.ID});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.MintCream;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -447,7 +447,6 @@
             this.dgvFilesFromDrive.GridColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 46);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
-            this.dgvFilesFromDrive.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.MintCream;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -461,47 +460,6 @@
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
             this.dgvFilesFromDrive.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
             this.dgvFilesFromDrive.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
-            // 
-            // fileName
-            // 
-            this.fileName.Frozen = true;
-            this.fileName.HeaderText = "Name";
-            this.fileName.Name = "fileName";
-            this.fileName.ReadOnly = true;
-            this.fileName.Width = 300;
-            // 
-            // fileSize
-            // 
-            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileSize.HeaderText = "Size";
-            this.fileSize.MinimumWidth = 90;
-            this.fileSize.Name = "fileSize";
-            this.fileSize.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 139;
-            // 
-            // fileModifiedTime
-            // 
-            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileModifiedTime.HeaderText = "Last Modified";
-            this.fileModifiedTime.MinimumWidth = 170;
-            this.fileModifiedTime.Name = "fileModifiedTime";
-            this.fileModifiedTime.ReadOnly = true;
-            // 
-            // fileType
-            // 
-            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileType.HeaderText = "Type";
-            this.fileType.MinimumWidth = 300;
-            this.fileType.Name = "fileType";
-            this.fileType.ReadOnly = true;
             // 
             // btnDownload
             // 
@@ -607,7 +565,7 @@
             this.button1.BackColor = System.Drawing.Color.LightCyan;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(582, 6);
+            this.button1.Location = new System.Drawing.Point(579, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 25);
             this.button1.TabIndex = 13;
@@ -620,6 +578,43 @@
             this.tmrUpdate.Enabled = true;
             this.tmrUpdate.Interval = 50;
             this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
+            // 
+            // fileName
+            // 
+            this.fileName.Frozen = true;
+            this.fileName.HeaderText = "Name";
+            this.fileName.Name = "fileName";
+            this.fileName.Width = 270;
+            // 
+            // fileSize
+            // 
+            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileSize.HeaderText = "Size";
+            this.fileSize.MinimumWidth = 100;
+            this.fileSize.Name = "fileSize";
+            this.fileSize.ReadOnly = true;
+            // 
+            // fileModifiedTime
+            // 
+            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileModifiedTime.HeaderText = "Last Modified";
+            this.fileModifiedTime.MinimumWidth = 170;
+            this.fileModifiedTime.Name = "fileModifiedTime";
+            this.fileModifiedTime.ReadOnly = true;
+            // 
+            // fileType
+            // 
+            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileType.HeaderText = "Type";
+            this.fileType.MinimumWidth = 300;
+            this.fileType.Name = "fileType";
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 420;
+            this.ID.Name = "ID";
             // 
             // frmMain
             // 
@@ -695,15 +690,15 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnu_About;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCreateBatch;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer tmrUpdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }
 

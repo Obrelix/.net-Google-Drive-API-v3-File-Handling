@@ -57,9 +57,11 @@ namespace GoogleDriveManager
                     {
 
                         filesList.Add(new string[5] {
-                            file.Name, file.Size.ToString(),
-                            file.Id,
-                            file.ModifiedTime.ToString(), file.MimeType });
+                            file.Name,
+                            sizeFix(file.Size.ToString()),
+                            file.ModifiedTime.ToString(),
+                            file.MimeType,
+                            file.Id});
                         System.Diagnostics.Debug.WriteLine("{0} {1} {2} {3}", 
                             file.Name, file.Id, file.MimeType, file.Size.ToString());
                     }
@@ -72,11 +74,6 @@ namespace GoogleDriveManager
             catch (Exception exc)
             {
                 System.Diagnostics.Debug.WriteLine(exc.Message);
-            }
-
-            foreach(string[] array in filesList)
-            {
-                array[1] = sizeFix(array[1]);
             }
             return filesList;
         }
