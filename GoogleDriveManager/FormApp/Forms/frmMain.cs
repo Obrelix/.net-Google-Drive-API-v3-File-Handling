@@ -66,14 +66,14 @@ namespace GoogleDriveManager
             {
                 pnlConnection.Height = 290;
                 pnlUser.Visible = true;
-                this.Height = 720;
+                this.Height = 600;
 
             }
             else
             {
                 pnlConnection.Height = 100;
                 pnlUser.Visible = false;
-                this.Height =  530;
+                this.Height =  410;
             }
         }
 
@@ -442,6 +442,63 @@ namespace GoogleDriveManager
                 return false;
             }
             
+        }
+
+        private void tmrUpdate_Tick(object sender, EventArgs e)
+        {
+            if(txtFileName.Text != "" && txtFilePath.Text != "")
+            {
+                btnCreateBatch.Enabled = true;
+                btnUpload.Enabled = true;
+            }
+            else
+            {
+                btnCreateBatch.Enabled = false;
+                btnUpload.Enabled = false;
+            }
+
+            if(cbUser.SelectedIndex >= 0)
+            {
+                btnConnect.Enabled = true;
+            }
+            else
+            {
+                btnConnect.Enabled = false;
+            }
+
+            if(dgvFilesFromDrive.SelectedRows.Count < 1)
+            {
+                btnDownload.Enabled = false;
+                btnRemove.Enabled = false;
+            }
+            else
+            {
+                btnDownload.Enabled = true;
+                btnRemove.Enabled = true;
+            }
+            if(txtJsonPath.Text != null && txtUserName.Text != null)
+            {
+                btnAddUser.Enabled = true;
+            }
+            else
+            {
+                btnAddUser.Enabled = false;
+            }
+            if(cbUser.SelectedIndex >= 0)
+            {
+                btnConnect.Enabled = true;
+                btnRemUser.Enabled = true;
+            }
+            else
+            {
+                btnConnect.Enabled = false;
+                btnRemUser.Enabled = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            updateDataGridView();
         }
     }
 }

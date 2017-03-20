@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ofgFileToUpload = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,6 +80,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCreateBatch = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -106,12 +110,12 @@
             // 
             // btnUpload
             // 
-            this.btnUpload.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpload.BackColor = System.Drawing.Color.LightCyan;
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnUpload.ForeColor = System.Drawing.Color.Transparent;
+            this.btnUpload.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnUpload.Location = new System.Drawing.Point(3, 162);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(117, 25);
+            this.btnUpload.Size = new System.Drawing.Size(120, 25);
             this.btnUpload.TabIndex = 9;
             this.btnUpload.Text = "Upload File";
             this.btnUpload.UseVisualStyleBackColor = false;
@@ -170,7 +174,7 @@
             this.pnlDragAndDrop.Controls.Add(this.btnUpload);
             this.pnlDragAndDrop.Controls.Add(this.txtFileName);
             this.pnlDragAndDrop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 361);
+            this.pnlDragAndDrop.Location = new System.Drawing.Point(7, 360);
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
             this.pnlDragAndDrop.Size = new System.Drawing.Size(282, 193);
             this.pnlDragAndDrop.TabIndex = 17;
@@ -374,7 +378,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label5.Location = new System.Drawing.Point(4, 38);
+            this.label5.Location = new System.Drawing.Point(4, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(205, 16);
             this.label5.TabIndex = 100;
@@ -385,7 +389,7 @@
             this.lblPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPanel.AutoSize = true;
             this.lblPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblPanel.Location = new System.Drawing.Point(4, 352);
+            this.lblPanel.Location = new System.Drawing.Point(4, 340);
             this.lblPanel.Name = "lblPanel";
             this.lblPanel.Size = new System.Drawing.Size(268, 16);
             this.lblPanel.TabIndex = 19;
@@ -396,20 +400,22 @@
             this.dgvFilesFromDrive.AllowDrop = true;
             this.dgvFilesFromDrive.AllowUserToAddRows = false;
             this.dgvFilesFromDrive.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.MintCream;
+            this.dgvFilesFromDrive.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilesFromDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvFilesFromDrive.BackgroundColor = System.Drawing.Color.DarkSlateGray;
             this.dgvFilesFromDrive.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvFilesFromDrive.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFilesFromDrive.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFilesFromDrive.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFilesFromDrive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFilesFromDrive.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileName,
@@ -417,26 +423,26 @@
             this.ID,
             this.fileModifiedTime,
             this.fileType});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFilesFromDrive.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.MintCream;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilesFromDrive.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFilesFromDrive.GridColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 46);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             this.dgvFilesFromDrive.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFilesFromDrive.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.MintCream;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilesFromDrive.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilesFromDrive.RowTemplate.Height = 30;
-            this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 612);
+            this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 464);
             this.dgvFilesFromDrive.TabIndex = 10;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
@@ -486,12 +492,12 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnDownload.BackColor = System.Drawing.Color.LightCyan;
             this.btnDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnDownload.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDownload.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDownload.Location = new System.Drawing.Point(6, 6);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(272, 40);
+            this.btnDownload.Size = new System.Drawing.Size(120, 25);
             this.btnDownload.TabIndex = 11;
             this.btnDownload.Text = "Download File";
             this.btnDownload.UseVisualStyleBackColor = false;
@@ -499,14 +505,14 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRemove.BackColor = System.Drawing.Color.LightCyan;
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnRemove.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRemove.Location = new System.Drawing.Point(7, 52);
+            this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRemove.Location = new System.Drawing.Point(132, 6);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(272, 40);
+            this.btnRemove.Size = new System.Drawing.Size(120, 25);
             this.btnRemove.TabIndex = 12;
-            this.btnRemove.Text = "Remove File";
+            this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
@@ -571,34 +577,56 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnDownload);
             this.panel1.Controls.Add(this.btnRemove);
-            this.panel1.Location = new System.Drawing.Point(7, 560);
+            this.panel1.Location = new System.Drawing.Point(295, 515);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(282, 98);
+            this.panel1.Size = new System.Drawing.Size(705, 38);
             this.panel1.TabIndex = 31;
             // 
             // btnCreateBatch
             // 
-            this.btnCreateBatch.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateBatch.BackColor = System.Drawing.Color.LightCyan;
             this.btnCreateBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnCreateBatch.ForeColor = System.Drawing.Color.Transparent;
-            this.btnCreateBatch.Location = new System.Drawing.Point(159, 162);
+            this.btnCreateBatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCreateBatch.Location = new System.Drawing.Point(155, 162);
             this.btnCreateBatch.Name = "btnCreateBatch";
-            this.btnCreateBatch.Size = new System.Drawing.Size(116, 26);
+            this.btnCreateBatch.Size = new System.Drawing.Size(120, 25);
             this.btnCreateBatch.TabIndex = 17;
             this.btnCreateBatch.Text = "Create batch";
             this.btnCreateBatch.UseVisualStyleBackColor = false;
             this.btnCreateBatch.Click += new System.EventHandler(this.btnCreateBatch_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.LightCyan;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(582, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 25);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tmrUpdate
+            // 
+            this.tmrUpdate.Enabled = true;
+            this.tmrUpdate.Interval = 50;
+            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
-            this.ClientSize = new System.Drawing.Size(1012, 681);
+            this.ClientSize = new System.Drawing.Size(1012, 561);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuMain);
             this.Controls.Add(this.dgvFilesFromDrive);
@@ -607,6 +635,7 @@
             this.Controls.Add(this.pnlConnection);
             this.Controls.Add(this.pnlDragAndDrop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(700, 410);
             this.Name = "frmMain";
             this.Text = "Google Drive Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -673,6 +702,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCreateBatch;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer tmrUpdate;
     }
 }
 
