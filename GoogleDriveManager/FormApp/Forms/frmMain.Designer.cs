@@ -42,6 +42,7 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.pnlDragAndDrop = new System.Windows.Forms.Panel();
+            this.btnCreateBatch = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnDirToUpload = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnCreateBatch = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlDragAndDrop.SuspendLayout();
@@ -113,7 +113,7 @@
             this.btnUpload.BackColor = System.Drawing.Color.LightCyan;
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnUpload.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnUpload.Location = new System.Drawing.Point(3, 162);
+            this.btnUpload.Location = new System.Drawing.Point(3, 160);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(120, 25);
             this.btnUpload.TabIndex = 9;
@@ -178,6 +178,19 @@
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
             this.pnlDragAndDrop.Size = new System.Drawing.Size(282, 193);
             this.pnlDragAndDrop.TabIndex = 17;
+            // 
+            // btnCreateBatch
+            // 
+            this.btnCreateBatch.BackColor = System.Drawing.Color.LightCyan;
+            this.btnCreateBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnCreateBatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCreateBatch.Location = new System.Drawing.Point(155, 160);
+            this.btnCreateBatch.Name = "btnCreateBatch";
+            this.btnCreateBatch.Size = new System.Drawing.Size(120, 25);
+            this.btnCreateBatch.TabIndex = 17;
+            this.btnCreateBatch.Text = "Create batch";
+            this.btnCreateBatch.UseVisualStyleBackColor = false;
+            this.btnCreateBatch.Click += new System.EventHandler(this.btnCreateBatch_Click);
             // 
             // label9
             // 
@@ -587,19 +600,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(705, 38);
             this.panel1.TabIndex = 31;
-            // 
-            // btnCreateBatch
-            // 
-            this.btnCreateBatch.BackColor = System.Drawing.Color.LightCyan;
-            this.btnCreateBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnCreateBatch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCreateBatch.Location = new System.Drawing.Point(155, 162);
-            this.btnCreateBatch.Name = "btnCreateBatch";
-            this.btnCreateBatch.Size = new System.Drawing.Size(120, 25);
-            this.btnCreateBatch.TabIndex = 17;
-            this.btnCreateBatch.Text = "Create batch";
-            this.btnCreateBatch.UseVisualStyleBackColor = false;
-            this.btnCreateBatch.Click += new System.EventHandler(this.btnCreateBatch_Click);
             // 
             // button1
             // 

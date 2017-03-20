@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 namespace GoogleDriveManager
 {
@@ -469,6 +471,11 @@ namespace GoogleDriveManager
                 return null;
             }
             
+        }
+
+        private static void notify(string title, string text)
+        {
+            Application.Run(new NotifyIcon(title , text));
         }
     }
 }

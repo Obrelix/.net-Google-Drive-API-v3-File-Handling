@@ -63,9 +63,9 @@ namespace GoogleDriveManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon Google_Drive_Folder {
+        internal static System.Drawing.Icon TrayIcon {
             get {
-                object obj = ResourceManager.GetObject("Google_Drive_Folder", resourceCulture);
+                object obj = ResourceManager.GetObject("TrayIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
