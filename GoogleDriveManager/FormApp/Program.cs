@@ -56,7 +56,6 @@ namespace GoogleDriveManager
                         UserList[user].userName, uploadFilePath, filename, parentID);
                     if (GoogleDriveAPIV3.GoogleDriveConnection(
                         UserList[user].clientSecretPath,
-                        UserList[user].appName,
                         UserList[user].userName))
                     {
                         GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID);

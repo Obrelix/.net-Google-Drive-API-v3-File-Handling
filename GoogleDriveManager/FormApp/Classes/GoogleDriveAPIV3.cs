@@ -20,18 +20,22 @@ namespace GoogleDriveManager
         private static string[] Scopes = { DriveService.Scope.Drive };
         private static UserCredential credential;
         private static DriveService service;
+        private static string appDataSavePath = Environment.GetFolderPath(
+            Environment.SpecialFolder.ApplicationData)
+            + "\\BackUpManager";
+        private static string applicationName = "Google Drive Manager";
 
         private static readonly string[] SizeSuffixes =
                   { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
 
-        public static bool GoogleDriveConnection(string jsonSecretPath, string appName, string userName)
+        public static bool GoogleDriveConnection(string jsonSecretPath, string userName)
         {
 
-            return (getCredential(jsonSecretPath, appName, userName) && createDriveService(appName));
+            return (getCredential(jsonSecretPath, userName) && createDriveService());
 
         }
 
-        public static List<string[]> updateDriveFiles()
+        public static List<string[]> listDriveFiles()
         {
             List<string[]> filesList = new List<string[]>();
 
@@ -99,34 +103,42 @@ namespace GoogleDriveManager
             
         }
 
-        private static bool getCredential(string clientSecretPath, string applicationName, string userName)
+        private static bool getCredential(string clientSecretPath, string userName)
         {
-            try
+            string savePath = Path.Combine(appDataSavePath , Path.GetFileName(clientSecretPath));
+            if (System.IO.File.Exists(savePath))
             {
-                using (var stream = new FileStream(clientSecretPath, FileMode.Open, FileAccess.Read))
+                try
                 {
-                    string credPath = System.Environment.GetFolderPath(
-                        System.Environment.SpecialFolder.Personal);
-                    credPath = Path.Combine(credPath, ".credentials/"+ userName);
+                    using (var stream = new FileStream(savePath, FileMode.Open, FileAccess.Read))
+                    {
+                        string  credPath = Path.Combine(appDataSavePath, ".credentials");
 
-                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                        GoogleClientSecrets.Load(stream).Secrets,
-                        Scopes,
-                        "user",
-                        CancellationToken.None,
-                        new FileDataStore(credPath, true)).Result;
+                        credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                            GoogleClientSecrets.Load(stream).Secrets,
+                            Scopes,
+                            userName,
+                            CancellationToken.None,
+                            new FileDataStore(credPath, true)).Result;
+                    }
+                    return true;
+
                 }
-                return true;
-
+                catch (Exception exc)
+                {
+                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                    return false;
+                }
             }
-            catch (Exception exc)
+            else
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
-                return false;
+                System.IO.File.Copy(clientSecretPath, appDataSavePath);
+                return getCredential(clientSecretPath, userName);
             }
+            
         }
 
-        private static bool createDriveService(string applicationName)
+        private static bool createDriveService()
         {
             try
             {

@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ofgFileToUpload = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -317,7 +318,7 @@
             // txtJsonPath
             // 
             this.txtJsonPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtJsonPath.Location = new System.Drawing.Point(4, 124);
+            this.txtJsonPath.Location = new System.Drawing.Point(4, 130);
             this.txtJsonPath.Name = "txtJsonPath";
             this.txtJsonPath.ReadOnly = true;
             this.txtJsonPath.Size = new System.Drawing.Size(271, 22);
@@ -327,7 +328,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label8.Location = new System.Drawing.Point(4, 105);
+            this.label8.Location = new System.Drawing.Point(4, 111);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 16);
             this.label8.TabIndex = 17;
@@ -390,6 +391,7 @@
             // 
             // dgvFilesFromDrive
             // 
+            this.dgvFilesFromDrive.AllowDrop = true;
             this.dgvFilesFromDrive.AllowUserToAddRows = false;
             this.dgvFilesFromDrive.AllowUserToDeleteRows = false;
             this.dgvFilesFromDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -425,10 +427,19 @@
             this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 46);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             this.dgvFilesFromDrive.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilesFromDrive.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvFilesFromDrive.RowTemplate.Height = 30;
             this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 612);
             this.dgvFilesFromDrive.TabIndex = 10;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
+            this.dgvFilesFromDrive.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
+            this.dgvFilesFromDrive.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
             // 
             // fileName
             // 

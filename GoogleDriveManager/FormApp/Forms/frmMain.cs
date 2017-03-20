@@ -22,7 +22,6 @@ namespace GoogleDriveManager
         public static List<User> UserList = new List<User>();
         static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
         static string saveFile = savePath + "\\GDASaves.json";
-        static string appName = ".Net Client";
 
         public frmMain()
         {
@@ -55,7 +54,7 @@ namespace GoogleDriveManager
         private void updateDataGridView()
         {
             dgvFilesFromDrive.Rows.Clear();
-            foreach(string[] array in GoogleDriveAPIV3.updateDriveFiles())
+            foreach(string[] array in GoogleDriveAPIV3.listDriveFiles())
             {
                 dgvFilesFromDrive.Rows.Add(array);
             }
@@ -168,7 +167,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, appName, txtUserName.Text))
+                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtUserName.Text))
                 {
                     btnConnect.BackColor = Color.Green;
                     
@@ -247,7 +246,7 @@ namespace GoogleDriveManager
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
             string filePath = txtFilePath.Text;
             string fileName = txtFileName.Text;
-            if(!GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, appName, txtUserName.Text))
+            if(!GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtUserName.Text))
             {
                 MessageBox.Show("You have to Connect First in order to upload Files");
             }
@@ -317,7 +316,7 @@ namespace GoogleDriveManager
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            UserList.Add(new User(txtUserName.Text, txtJsonPath.Text, appName));
+            UserList.Add(new User(txtUserName.Text, txtJsonPath.Text));
             saveUsers(saveFile);
             cbUserInit();
         }

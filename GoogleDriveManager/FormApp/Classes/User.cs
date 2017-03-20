@@ -10,13 +10,11 @@ namespace GoogleDriveManager
     {
         public string userName { get; set; }
         public string clientSecretPath { get; set; }
-        public string appName { get; set; }
 
-        public User(string name, string path, string appName)
+        public User(string name, string path)
         {
             userName = name;
             clientSecretPath = path;
-            this.appName = appName;
         }
     }
 }
