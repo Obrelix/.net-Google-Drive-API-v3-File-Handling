@@ -77,6 +77,7 @@
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCreateBatch = new System.Windows.Forms.Button();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -108,11 +109,11 @@
             this.btnUpload.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnUpload.ForeColor = System.Drawing.Color.Transparent;
-            this.btnUpload.Location = new System.Drawing.Point(4, 145);
+            this.btnUpload.Location = new System.Drawing.Point(3, 162);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(272, 40);
+            this.btnUpload.Size = new System.Drawing.Size(117, 25);
             this.btnUpload.TabIndex = 9;
-            this.btnUpload.Text = "Upload to Drive";
+            this.btnUpload.Text = "Upload File";
             this.btnUpload.UseVisualStyleBackColor = false;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
@@ -158,6 +159,7 @@
             this.pnlDragAndDrop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlDragAndDrop.BackColor = System.Drawing.Color.DarkSlateGray;
             this.pnlDragAndDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDragAndDrop.Controls.Add(this.btnCreateBatch);
             this.pnlDragAndDrop.Controls.Add(this.label9);
             this.pnlDragAndDrop.Controls.Add(this.btnDirToUpload);
             this.pnlDragAndDrop.Controls.Add(this.label4);
@@ -578,6 +580,19 @@
             this.panel1.Size = new System.Drawing.Size(282, 98);
             this.panel1.TabIndex = 31;
             // 
+            // btnCreateBatch
+            // 
+            this.btnCreateBatch.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnCreateBatch.ForeColor = System.Drawing.Color.Transparent;
+            this.btnCreateBatch.Location = new System.Drawing.Point(159, 162);
+            this.btnCreateBatch.Name = "btnCreateBatch";
+            this.btnCreateBatch.Size = new System.Drawing.Size(116, 26);
+            this.btnCreateBatch.TabIndex = 17;
+            this.btnCreateBatch.Text = "Create batch";
+            this.btnCreateBatch.UseVisualStyleBackColor = false;
+            this.btnCreateBatch.Click += new System.EventHandler(this.btnCreateBatch_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,6 +672,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnCreateBatch;
     }
 }
 

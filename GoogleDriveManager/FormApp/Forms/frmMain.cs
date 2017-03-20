@@ -91,15 +91,7 @@ namespace GoogleDriveManager
                 }
                 else
                 {
-                    using (System.IO.FileStream fs = System.IO.File.Create(saveFile))
-                    {
-                        for (byte i = 0; i < 100; i++)
-                        {
-                            fs.WriteByte(i);
-                        }
-                    }
-
-                    System.IO.File.WriteAllText(saveFile, "[ ]");
+                    createFile(saveFile, "[ ]");
                     loadUsers(savePath, saveFile);
                 }
             }
@@ -398,6 +390,58 @@ namespace GoogleDriveManager
         private void dgvFilesFromDrive_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) dgvFilesFromDrive.Rows[e.RowIndex].Selected = true ;
+        }
+
+        private void btnCreateBatch_Click(object sender, EventArgs e)
+        {
+            string contentToWrite = "cls" + Environment.NewLine +
+                "@ECHO OFF" + Environment.NewLine +
+                "set param1=" + cbUser.SelectedIndex + Environment.NewLine +
+                "set param2=" + txtFilePath.Text + Environment.NewLine +
+                "set param3=" + txtFileName.Text + Environment.NewLine +
+                "GoogleDriveManager.exe %param1% %param2% %param3%";
+
+            if (cbUser.SelectedIndex != -1)
+            {
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                DialogResult result = fbd.ShowDialog();
+                switch (result)
+                {
+                    case DialogResult.OK:
+
+                        createFile( Path.Combine(fbd.SelectedPath,
+                            UserList[cbUser.SelectedIndex].userName + "_File_" + txtFileName.Text.Split('.').First() + ".bat")
+                            , contentToWrite);
+
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+
+        private bool createFile(string saveFile, string contentToWrite)
+        {
+            try
+            {
+                using (System.IO.FileStream fs = System.IO.File.Create(saveFile))
+                {
+                    for (byte i = 0; i < 100; i++)
+                    {
+                        fs.WriteByte(i);
+                    }
+                }
+
+                System.IO.File.WriteAllText(saveFile, contentToWrite);
+                return true;
+            }
+            catch(Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
+                return false;
+            }
+            
         }
     }
 }
