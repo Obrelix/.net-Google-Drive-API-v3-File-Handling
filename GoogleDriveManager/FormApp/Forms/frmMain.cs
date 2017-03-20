@@ -167,7 +167,9 @@ namespace GoogleDriveManager
             }
             else
             {
-                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtUserName.Text))
+                if (GoogleDriveAPIV3.GoogleDriveConnection(
+                    UserList[cbUser.SelectedIndex].clientSecretPath, 
+                    UserList[cbUser.SelectedIndex].userName))
                 {
                     btnConnect.BackColor = Color.Green;
                     
@@ -246,7 +248,9 @@ namespace GoogleDriveManager
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
             string filePath = txtFilePath.Text;
             string fileName = txtFileName.Text;
-            if(!GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtUserName.Text))
+            if(!GoogleDriveAPIV3.GoogleDriveConnection(
+                UserList[cbUser.SelectedIndex].clientSecretPath,
+                UserList[cbUser.SelectedIndex].userName))
             {
                 MessageBox.Show("You have to Connect First in order to upload Files");
             }
@@ -366,6 +370,7 @@ namespace GoogleDriveManager
                 switch (result)
                 {
                     case DialogResult.Yes:
+                        deleteCredFile(UserList[cbUser.SelectedIndex].userName);
                         UserList.Remove(UserList[cbUser.SelectedIndex]);
                         saveUsers(saveFile);
                         cbUserInit();
@@ -375,6 +380,19 @@ namespace GoogleDriveManager
                 }
                 
             }
+        }
+
+        private void deleteCredFile(string userName)
+        {
+            string[] files = Directory.GetFiles(Path.Combine(savePath, ".credentials"));
+            foreach(string file in files)
+            {
+                if(userName == file.Split('-').Last())
+                {
+                    System.IO.File.Delete(file);
+                }
+            }
+            //"Google.Apis.Auth.OAuth2.Responses.TokenResponse -"
         }
 
         private void dgvFilesFromDrive_CellClick(object sender, DataGridViewCellEventArgs e)
