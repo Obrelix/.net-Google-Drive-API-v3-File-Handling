@@ -30,3 +30,4 @@ C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveM
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Zlib.Portable.xml
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.exe
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.pdb
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\RunWithArgsBatch.bat

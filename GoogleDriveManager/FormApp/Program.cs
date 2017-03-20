@@ -10,21 +10,30 @@ namespace GoogleDriveManager
     {
         /// <summary>
         /// The main entry point for the application.
+        /// 
         /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-        }
 
         static List<User> UserList = new List<User>();
         static string saveFile = Environment.GetFolderPath(
             Environment.SpecialFolder.ApplicationData)
             + "\\BackUpManager\\GDASaves.json";
 
+        [STAThread]
         static void Main(string[] args)
+        {
+            if(args.Length > 0)
+            {
+                startWithArgs(args);
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMain());
+            }
+        }
+
+        private static void startWithArgs(string[] args)
         {
             string uploadFilePath, filename, parentID;
             int user;
@@ -81,5 +90,6 @@ namespace GoogleDriveManager
                 return false;
             }
         }
+
     }
 }

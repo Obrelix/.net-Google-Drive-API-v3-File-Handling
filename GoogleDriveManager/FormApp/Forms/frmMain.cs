@@ -22,6 +22,7 @@ namespace GoogleDriveManager
         public static List<User> UserList = new List<User>();
         static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
         static string saveFile = savePath + "\\GDASaves.json";
+        static string appName = ".Net Client";
 
         public frmMain()
         {
@@ -167,7 +168,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtAppName.Text, txtUserName.Text))
+                if (GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, appName, txtUserName.Text))
                 {
                     btnConnect.BackColor = Color.Green;
                     
@@ -246,7 +247,7 @@ namespace GoogleDriveManager
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
             string filePath = txtFilePath.Text;
             string fileName = txtFileName.Text;
-            if(!GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, txtAppName.Text, txtUserName.Text))
+            if(!GoogleDriveAPIV3.GoogleDriveConnection(txtJsonPath.Text, appName, txtUserName.Text))
             {
                 MessageBox.Show("You have to Connect First in order to upload Files");
             }
@@ -316,7 +317,7 @@ namespace GoogleDriveManager
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            UserList.Add(new User(txtUserName.Text, txtJsonPath.Text, txtAppName.Text));
+            UserList.Add(new User(txtUserName.Text, txtJsonPath.Text, appName));
             saveUsers(saveFile);
             cbUserInit();
         }
@@ -346,13 +347,11 @@ namespace GoogleDriveManager
         {
             if (i >= 0)
             {
-                txtAppName.Text = UserList[i].appName;
                 txtUserName.Text = UserList[i].userName;
                 txtJsonPath.Text = UserList[i].clientSecretPath;
             }
             else
             {
-                txtAppName.Text = "";
                 txtUserName.Text = "";
                 txtJsonPath.Text = "";
             }
