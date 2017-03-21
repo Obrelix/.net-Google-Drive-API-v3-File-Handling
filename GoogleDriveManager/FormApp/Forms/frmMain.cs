@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Ionic.Zip;
+
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -66,14 +68,14 @@ namespace GoogleDriveManager
             {
                 pnlConnection.Height = 290;
                 pnlUser.Visible = true;
-                this.Height = 600;
+                this.Height = 660;
 
             }
             else
             {
                 pnlConnection.Height = 100;
                 pnlUser.Visible = false;
-                this.Height =  410;
+                this.Height =  470;
             }
         }
 
@@ -237,6 +239,10 @@ namespace GoogleDriveManager
         private void btnUpload_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
+            if (chbCompress.Checked)
+            {
+                txtFilePath.Text = compressFile(txtFilePath.Text);
+            }
             string filePath = txtFilePath.Text;
             string fileName = txtFileName.Text;
             if(!GoogleDriveAPIV3.GoogleDriveConnection(
@@ -247,7 +253,8 @@ namespace GoogleDriveManager
             }
             else
             {
-                GoogleDriveAPIV3.uploadToDrive(filePath, fileName, null);
+                string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
+                GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
                 updateDataGridView();
             }
         }
@@ -449,11 +456,13 @@ namespace GoogleDriveManager
             {
                 btnCreateBatch.Enabled = true;
                 btnUpload.Enabled = true;
+                chbCompress.Enabled = true;
             }
             else
             {
                 btnCreateBatch.Enabled = false;
                 btnUpload.Enabled = false;
+                chbCompress.Enabled = false;
             }
 
             if(cbUser.SelectedIndex >= 0)
@@ -498,6 +507,32 @@ namespace GoogleDriveManager
         private void button1_Click(object sender, EventArgs e)
         {
             updateDataGridView();
+        }
+
+        private void chbCompress_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private static string compressFile(string path)
+        {
+            string zipPath = path.Split('.').First() + ".zip";
+            try
+            {
+                using (ZipFile zip = new ZipFile())
+                {
+                    zip.AddFile(@path);
+
+                    zip.Save(@zipPath);
+                }
+                return @zipPath;
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
+                return null;
+            }
+
         }
     }
 }

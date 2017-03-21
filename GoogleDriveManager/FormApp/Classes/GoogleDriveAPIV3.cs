@@ -58,7 +58,7 @@ namespace GoogleDriveManager
 
                         filesList.Add(new string[5] {
                             file.Name,
-                            sizeFix(file.Size.ToString()),
+                            sizeFix(file.Size.ToString(), file.MimeType),
                             file.ModifiedTime.ToString(),
                             file.MimeType,
                             file.Id});
@@ -79,12 +79,12 @@ namespace GoogleDriveManager
         }
 
 
-        private static string sizeFix(string bytesString, int decimalPlaces = 1)
+        private static string sizeFix(string bytesString, string type, int decimalPlaces = 1)
         {
             long value;
             if (long.TryParse(bytesString, out value))
             {
-                if (value < 0) { return "-" + sizeFix((-value).ToString()); }
+                if (value < 0) { return "-" + sizeFix((-value).ToString(), type); }
 
                 int i = 0;
                 decimal dValue = (decimal)value;
@@ -97,7 +97,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                return "";
+                return type.Split('.').Last();
             }
             
         }
@@ -247,16 +247,16 @@ namespace GoogleDriveManager
         }
 
 
-
         public static void uploadToDrive(string path, string name, string parentId)
         {
+            
             if (Path.HasExtension(path))
             {
                 uploadFileToDrive(
-                        null,
-                        name,
-                        path,
-                        getMimeType(Path.GetFileName(path)));
+                    parentId,
+                    name,
+                    path,
+                    getMimeType(Path.GetFileName(path)));
             }
             else
             {
