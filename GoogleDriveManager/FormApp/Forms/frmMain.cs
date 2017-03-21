@@ -150,12 +150,10 @@ namespace GoogleDriveManager
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            if(txtJsonPath.Text == string.Empty)
+            if(cbUser.SelectedIndex == -1)
             {
                 MessageBox.Show("You have to:" + Environment.NewLine +
-                    "A) Select the client_secret.Json file "+ Environment.NewLine +
-                    "B) Type your OAuth 2.0 client ID in Application Name TextBox"+ Environment.NewLine +
-                    "in order to begining connection with your Google Drive");
+                    "Select A User in order to connect", "Attention!!",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -170,6 +168,7 @@ namespace GoogleDriveManager
                 else
                 {
                     btnConnect.BackColor = Color.Red;
+                    MessageBox.Show("Connection Error", "Attention!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
             }
@@ -293,7 +292,7 @@ namespace GoogleDriveManager
                 foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
                 {
                     fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
-                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[2].Value.ToString();
+                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[4].Value.ToString();
                     DialogResult result = MessageBox.Show("Do you want to delete the File: " + fileName, "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     switch (result)

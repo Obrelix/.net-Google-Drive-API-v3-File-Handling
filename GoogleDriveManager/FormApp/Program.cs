@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,12 +53,17 @@ namespace GoogleDriveManager
                     uploadFilePath = args[1];
                     filename = args[2];
                     parentID = (args.Length > 3) ? args[3] : null;
-                    Console.WriteLine("{0} \n{1} \n{2} \n{3}",
-                        UserList[user].userName, uploadFilePath, filename, parentID);
                     if (GoogleDriveAPIV3.GoogleDriveConnection(
                         UserList[user].clientSecretPath,
                         UserList[user].userName))
                     {
+                        parentID =  GoogleDriveAPIV3.createFolderToDrive(
+                            "BackUp_" + filename.Split('.').First() + "_"+
+                            DateTime.Now.ToShortDateString() + "_" + DateTime.Now.ToShortTimeString(), 
+                            parentID);
+
+                        Console.WriteLine("{0} \n{1} \n{2} \n{3}",
+                            UserList[user].userName, uploadFilePath, filename, parentID);
                         GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID);
                         Console.WriteLine("Upload Completed");
                     }

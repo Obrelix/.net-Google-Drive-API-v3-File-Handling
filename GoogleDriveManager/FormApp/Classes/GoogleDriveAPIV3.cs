@@ -131,7 +131,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                System.IO.File.Copy(clientSecretPath, appDataSavePath);
+                System.IO.File.Copy(clientSecretPath, Path.Combine(appDataSavePath, Path.GetFileName(clientSecretPath)));
                 return getCredential(clientSecretPath, userName);
             }
             
@@ -214,7 +214,7 @@ namespace GoogleDriveManager
             }
         }
 
-        private static string createFolderToDrive(string folderName, string parentId)
+        public static string createFolderToDrive(string folderName, string parentId)
         {
             try
             {
