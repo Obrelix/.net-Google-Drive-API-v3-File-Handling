@@ -78,7 +78,7 @@ namespace GoogleDriveManager
             return filesList;
         }
 
-        public static List<string[]> listDriveFiles(string fileName)
+        public static List<string[]> listDriveFiles(string fileName, string fileType = null)
         {
             List<string[]> filesList = new List<string[]>();
 
@@ -92,7 +92,11 @@ namespace GoogleDriveManager
                     FilesResource.ListRequest request = service.Files.List();
                     request.PageSize = 100;
                     //request.Q = "mimeType='image/jpeg'";
-                    request.Q = "name contains '"+fileName+"'";
+                    request.Q = "name contains '" + fileName + "'";
+                    if(fileType != null)
+                    {
+                        request.Q += "and (mimeType contains '" + fileType + "')";
+                    }
                     request.Spaces = "drive";
                     request.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime)";
                     request.PageToken = pageToken;

@@ -90,7 +90,7 @@
             this.txtSearchFile = new System.Windows.Forms.TextBox();
             this.txtCreateFolder = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbFileType = new System.Windows.Forms.ComboBox();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -679,7 +679,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.cbFileType);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.txtSearchFile);
             this.panel2.Controls.Add(this.btnRefresh);
@@ -722,14 +722,14 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comboBox1
+            // cbFileType
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(328, 7);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(120, 24);
-            this.comboBox1.TabIndex = 24;
+            this.cbFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.cbFileType.FormattingEnabled = true;
+            this.cbFileType.Location = new System.Drawing.Point(328, 7);
+            this.cbFileType.Name = "cbFileType";
+            this.cbFileType.Size = new System.Drawing.Size(120, 24);
+            this.cbFileType.TabIndex = 24;
             // 
             // frmMain
             // 
@@ -826,7 +826,7 @@
         private System.Windows.Forms.TextBox txtSearchFile;
         private System.Windows.Forms.TextBox txtCreateFolder;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbFileType;
     }
 }
 

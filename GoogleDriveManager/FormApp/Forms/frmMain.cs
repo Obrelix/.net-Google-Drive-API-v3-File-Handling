@@ -22,6 +22,7 @@ namespace GoogleDriveManager
     public partial class frmMain : Form
     {
         public static List<User> UserList = new List<User>();
+        static List<ListId> cbList = new List<ListId>();
         static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
         static string saveFile = savePath + "\\GDASaves.json";
 
@@ -43,14 +44,44 @@ namespace GoogleDriveManager
            // dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
         }
 
+        private void cbTypeInit()
+        {
+            cbList.Add(new ListId("All", null));
+            cbList.Add(new ListId("folder", "application/vnd.google-apps.folder"));
+            cbList.Add(new ListId("document", "application/vnd.google-apps.document"));
+            cbList.Add(new ListId("msword", "application/msword"));
+            cbList.Add(new ListId("spreadsheet", "application/vnd.google-apps.spreadsheet"));
+            cbList.Add(new ListId("pdf", "application/pdf"));
+            cbList.Add(new ListId("video", "video/"));
+            cbList.Add(new ListId("image", "image/"));
+            cbList.Add(new ListId("music", "image/"));
+            cbList.Add(new ListId("html", "application/vnd.jgraph.mxfile.realtime"));
+            cbList.Add(new ListId("text", "text/"));
+            cbList.Add(new ListId("epub", "application/epub+zip"));
+            cbList.Add(new ListId("zip", "application/zip"));
+            cbList.Add(new ListId("ZIP", "application/x-zip-compressed"));
+            cbList.Add(new ListId("rar", "application/x-rar"));
+            cbList.Add(new ListId("code", "application/octet-stream"));
+            cbList.Add(new ListId("bat", "application/x-msdos-program"));
+            cbList.Add(new ListId("exe", "application/x-dosexec"));
+            cbList.Add(new ListId("unknown", "document/unknown"));
+
+            cbFileType.DataSource = null;
+            cbFileType.Items.Clear();
+            cbFileType.DataSource = cbList;
+            cbFileType.DisplayMember = "name";
+            cbFileType.ValueMember = "type";
+            cbFileType.SelectedIndex = 0;
+            cbFileType.Text = "Select Type...";
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridViewInit();
             loadUsers(savePath, saveFile);
             UIinit();
             cbUserInit();
-
-
+            cbTypeInit();
         }
 
         private void updateDataGridView()
@@ -62,10 +93,10 @@ namespace GoogleDriveManager
             }
         }
 
-        private void updateDataGridView(string name)
+        private void updateDataGridView(string name, string type)
         {
             dgvFilesFromDrive.Rows.Clear();
-            foreach (string[] array in GoogleDriveAPIV3.listDriveFiles(name))
+            foreach (string[] array in GoogleDriveAPIV3.listDriveFiles(name, type))
             {
                 dgvFilesFromDrive.Rows.Add(array);
             }
@@ -471,6 +502,7 @@ namespace GoogleDriveManager
 
         private void tmrUpdate_Tick(object sender, EventArgs e)
         {
+            
             if(txtFileName.Text != "" && txtFilePath.Text != "")
             {
                 btnCreateBatch.Enabled = true;
@@ -521,7 +553,7 @@ namespace GoogleDriveManager
                 btnConnect.Enabled = false;
                 btnRemUser.Enabled = false;
             }
-            if (txtSearchFile.Text != string.Empty) btnSearch.Enabled = true;
+            if (txtSearchFile.Text != string.Empty || cbFileType.SelectedIndex != 0) btnSearch.Enabled = true;
             else btnSearch.Enabled = false;
             if(txtCreateFolder.Text != string.Empty) btnCreate.Enabled = true;
             else btnCreate.Enabled = false;
@@ -566,7 +598,7 @@ namespace GoogleDriveManager
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            updateDataGridView(txtSearchFile.Text);
+            updateDataGridView(txtSearchFile.Text, cbList[cbFileType.SelectedIndex].type);
         }
     }
 }
