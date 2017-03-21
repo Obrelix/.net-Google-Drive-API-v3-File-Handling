@@ -80,17 +80,24 @@
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.txtParentID = new System.Windows.Forms.TextBox();
             this.chbCompress = new System.Windows.Forms.CheckBox();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtSearchFile = new System.Windows.Forms.TextBox();
+            this.txtCreateFolder = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).BeginInit();
             this.menuMain.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -460,7 +467,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFilesFromDrive.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilesFromDrive.RowTemplate.Height = 30;
-            this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 525);
+            this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 480);
             this.dgvFilesFromDrive.TabIndex = 10;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
@@ -594,7 +601,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.txtCreateFolder);
+            this.panel1.Controls.Add(this.btnCreate);
             this.panel1.Controls.Add(this.btnDownload);
             this.panel1.Controls.Add(this.btnRemove);
             this.panel1.Location = new System.Drawing.Point(295, 576);
@@ -602,19 +610,19 @@
             this.panel1.Size = new System.Drawing.Size(705, 38);
             this.panel1.TabIndex = 31;
             // 
-            // button1
+            // btnRefresh
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.LightCyan;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(579, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 25);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.BackColor = System.Drawing.Color.LightCyan;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRefresh.Location = new System.Drawing.Point(580, 6);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(120, 25);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.button1_Click);
             // 
             // tmrUpdate
             // 
@@ -652,12 +660,84 @@
             this.chbCompress.UseVisualStyleBackColor = true;
             this.chbCompress.CheckedChanged += new System.EventHandler(this.chbCompress_CheckedChanged);
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreate.BackColor = System.Drawing.Color.LightCyan;
+            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCreate.Location = new System.Drawing.Point(580, 6);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(120, 25);
+            this.btnCreate.TabIndex = 14;
+            this.btnCreate.Text = "Create Folder";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.btnSearch);
+            this.panel2.Controls.Add(this.txtSearchFile);
+            this.panel2.Controls.Add(this.btnRefresh);
+            this.panel2.Location = new System.Drawing.Point(295, 532);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(705, 38);
+            this.panel2.TabIndex = 32;
+            // 
+            // txtSearchFile
+            // 
+            this.txtSearchFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearchFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtSearchFile.Location = new System.Drawing.Point(6, 8);
+            this.txtSearchFile.Name = "txtSearchFile";
+            this.txtSearchFile.Size = new System.Drawing.Size(316, 22);
+            this.txtSearchFile.TabIndex = 25;
+            // 
+            // txtCreateFolder
+            // 
+            this.txtCreateFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCreateFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtCreateFolder.Location = new System.Drawing.Point(328, 8);
+            this.txtCreateFolder.Name = "txtCreateFolder";
+            this.txtCreateFolder.Size = new System.Drawing.Size(246, 22);
+            this.txtCreateFolder.TabIndex = 26;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.Color.LightCyan;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearch.Location = new System.Drawing.Point(454, 6);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(120, 25);
+            this.btnSearch.TabIndex = 26;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(328, 7);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(120, 24);
+            this.comboBox1.TabIndex = 24;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(1012, 622);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuMain);
             this.Controls.Add(this.dgvFilesFromDrive);
@@ -680,6 +760,9 @@
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -728,7 +811,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCreateBatch;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Timer tmrUpdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
@@ -738,6 +821,12 @@
         private System.Windows.Forms.CheckBox chbCompress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtParentID;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox txtSearchFile;
+        private System.Windows.Forms.TextBox txtCreateFolder;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

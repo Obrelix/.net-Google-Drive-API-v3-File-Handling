@@ -78,6 +78,47 @@ namespace GoogleDriveManager
             return filesList;
         }
 
+        public static List<string[]> listDriveFiles(string fileName)
+        {
+            List<string[]> filesList = new List<string[]>();
+
+            try
+            {
+                filesList.Clear();
+
+                string pageToken = null;
+                do
+                {
+                    FilesResource.ListRequest request = service.Files.List();
+                    request.PageSize = 100;
+                    //request.Q = "mimeType='image/jpeg'";
+                    request.Q = "name contains '"+fileName+"'";
+                    request.Spaces = "drive";
+                    request.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime)";
+                    request.PageToken = pageToken;
+                    var result = request.Execute();
+                    foreach (var file in result.Files)
+                    {
+                        filesList.Add(new string[5] {
+                            file.Name,
+                            sizeFix(file.Size.ToString(), file.MimeType),
+                            file.ModifiedTime.ToString(),
+                            file.MimeType,
+                            file.Id});
+                    }
+                    pageToken = result.NextPageToken;
+                } while (pageToken != null);
+
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
+            }
+            return filesList;
+        }
+
+
+
 
         private static string sizeFix(string bytesString, string type, int decimalPlaces = 1)
         {
@@ -474,5 +515,7 @@ namespace GoogleDriveManager
         {
             Application.Run(new NotifyIcon(title , text));
         }
+
+        
     }
 }

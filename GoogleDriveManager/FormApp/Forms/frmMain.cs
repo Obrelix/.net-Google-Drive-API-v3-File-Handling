@@ -62,6 +62,15 @@ namespace GoogleDriveManager
             }
         }
 
+        private void updateDataGridView(string name)
+        {
+            dgvFilesFromDrive.Rows.Clear();
+            foreach (string[] array in GoogleDriveAPIV3.listDriveFiles(name))
+            {
+                dgvFilesFromDrive.Rows.Add(array);
+            }
+        }
+
         private void UIinit()
         {
             if (chbAddUser.Checked)
@@ -239,13 +248,10 @@ namespace GoogleDriveManager
         private void btnUpload_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
-            if (chbCompress.Checked)
-            {
-                txtFilePath.Text = compressFile(txtFilePath.Text);
-            }
-            string filePath = txtFilePath.Text;
-            string fileName = txtFileName.Text;
-            if(!GoogleDriveAPIV3.GoogleDriveConnection(
+            string filePath = (chbCompress.Checked) ? compressFile(txtFilePath.Text) : txtFilePath.Text;
+            string fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
+            string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
+            if (!GoogleDriveAPIV3.GoogleDriveConnection(
                 UserList[cbUser.SelectedIndex].clientSecretPath,
                 UserList[cbUser.SelectedIndex].userName))
             {
@@ -253,7 +259,6 @@ namespace GoogleDriveManager
             }
             else
             {
-                string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
                 GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
                 updateDataGridView();
             }
@@ -400,12 +405,26 @@ namespace GoogleDriveManager
 
         private void btnCreateBatch_Click(object sender, EventArgs e)
         {
+
+            int compressing = (chbCompress.Checked) ? 1 : 0;
             string contentToWrite = "cls" + Environment.NewLine +
                 "@ECHO OFF" + Environment.NewLine +
-                "set param1=" + cbUser.SelectedIndex + Environment.NewLine +
-                "set param2=" + txtFilePath.Text + Environment.NewLine +
-                "set param3=" + txtFileName.Text + Environment.NewLine +
-                "GoogleDriveManager.exe %param1% %param2% %param3%";
+                "set param1=\"" + cbUser.SelectedIndex + "\"" + Environment.NewLine +
+                "set param2=\"" + txtFilePath.Text + "\"" + Environment.NewLine +
+                "set param3=\"" + txtFileName.Text + "\"" + Environment.NewLine +
+                "set param4=\"" + compressing + "\"" + Environment.NewLine;
+            if (txtParentID.Text != string.Empty)
+            {
+                contentToWrite += "set param5=\"" + txtParentID.Text + "\"" + Environment.NewLine;
+            }
+
+
+            contentToWrite += "GoogleDriveManager.exe %param1% %param2% %param3% %param4%";
+
+            if (txtParentID.Text != string.Empty)
+            {
+                contentToWrite += " %param5%";
+            }
 
             if (cbUser.SelectedIndex != -1)
             {
@@ -502,6 +521,10 @@ namespace GoogleDriveManager
                 btnConnect.Enabled = false;
                 btnRemUser.Enabled = false;
             }
+            if (txtSearchFile.Text != string.Empty) btnSearch.Enabled = true;
+            else btnSearch.Enabled = false;
+            if(txtCreateFolder.Text != string.Empty) btnCreate.Enabled = true;
+            else btnCreate.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -514,7 +537,7 @@ namespace GoogleDriveManager
 
         }
 
-        private static string compressFile(string path)
+        public static string compressFile(string path)
         {
             string zipPath = path.Split('.').First() + ".zip";
             try
@@ -533,6 +556,17 @@ namespace GoogleDriveManager
                 return null;
             }
 
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            GoogleDriveAPIV3.createFolderToDrive(txtCreateFolder.Text, null);
+            updateDataGridView();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            updateDataGridView(txtSearchFile.Text);
         }
     }
 }

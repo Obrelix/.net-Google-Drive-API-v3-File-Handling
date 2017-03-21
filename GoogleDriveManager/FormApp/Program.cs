@@ -37,7 +37,7 @@ namespace GoogleDriveManager
         private static void startWithArgs(string[] args)
         {
             string uploadFilePath, filename, parentID;
-            int user;
+            int user, compressing = 0;
             int i = 0;
             foreach (string arg in args)
             {
@@ -46,19 +46,21 @@ namespace GoogleDriveManager
             }
             try
             {
-                if (loadUsers() &&
-                args.Length > 2 &&
-                int.TryParse(args[0], out user))
+                if (loadUsers() && args.Length > 3 )
                 {
-                    uploadFilePath = args[1];
-                    filename = args[2];
-                    parentID = (args.Length > 3) ? args[3] : null;
+                    int.TryParse(args[0], out user);
+                    int.TryParse(args[3], out compressing);
+
+                    uploadFilePath = (compressing == 0) ? args[1] : frmMain.compressFile(args[1]);
+                    filename = (compressing == 0) ? args[2] : args[2].Split('.').First() + ".zip";
+
+                    parentID = (args.Length > 4) ? args[4] : null;
                     if (GoogleDriveAPIV3.GoogleDriveConnection(
                         UserList[user].clientSecretPath,
                         UserList[user].userName))
                     {
                         parentID =  GoogleDriveAPIV3.createFolderToDrive(
-                            "BackUp_" + filename.Split('.').First() + "_"+
+                            "BackUp_" + filename /*.Split('.').First()*/ + "_"+
                             DateTime.Now.ToShortDateString() + "_" + DateTime.Now.ToShortTimeString(), 
                             parentID);
 
