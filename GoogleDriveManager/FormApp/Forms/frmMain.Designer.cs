@@ -42,6 +42,9 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.pnlDragAndDrop = new System.Windows.Forms.Panel();
+            this.chbCompress = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtParentID = new System.Windows.Forms.TextBox();
             this.btnCreateBatch = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnDirToUpload = new System.Windows.Forms.Button();
@@ -80,17 +83,14 @@
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCreateFolder = new System.Windows.Forms.TextBox();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtParentID = new System.Windows.Forms.TextBox();
-            this.chbCompress = new System.Windows.Forms.CheckBox();
-            this.btnCreate = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSearchFile = new System.Windows.Forms.TextBox();
-            this.txtCreateFolder = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.cbFileType = new System.Windows.Forms.ComboBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearchFile = new System.Windows.Forms.TextBox();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -191,6 +191,36 @@
             this.pnlDragAndDrop.Name = "pnlDragAndDrop";
             this.pnlDragAndDrop.Size = new System.Drawing.Size(282, 243);
             this.pnlDragAndDrop.TabIndex = 17;
+            // 
+            // chbCompress
+            // 
+            this.chbCompress.AutoSize = true;
+            this.chbCompress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.chbCompress.Location = new System.Drawing.Point(4, 188);
+            this.chbCompress.Name = "chbCompress";
+            this.chbCompress.Size = new System.Drawing.Size(89, 20);
+            this.chbCompress.TabIndex = 24;
+            this.chbCompress.Text = "Compress";
+            this.chbCompress.UseVisualStyleBackColor = true;
+            this.chbCompress.CheckedChanged += new System.EventHandler(this.chbCompress_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label2.Location = new System.Drawing.Point(4, 144);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Parent ID";
+            // 
+            // txtParentID
+            // 
+            this.txtParentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtParentID.Location = new System.Drawing.Point(4, 160);
+            this.txtParentID.Name = "txtParentID";
+            this.txtParentID.Size = new System.Drawing.Size(271, 22);
+            this.txtParentID.TabIndex = 18;
             // 
             // btnCreateBatch
             // 
@@ -610,6 +640,30 @@
             this.panel1.Size = new System.Drawing.Size(705, 38);
             this.panel1.TabIndex = 31;
             // 
+            // txtCreateFolder
+            // 
+            this.txtCreateFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCreateFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtCreateFolder.Location = new System.Drawing.Point(328, 8);
+            this.txtCreateFolder.Name = "txtCreateFolder";
+            this.txtCreateFolder.Size = new System.Drawing.Size(246, 22);
+            this.txtCreateFolder.TabIndex = 26;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreate.BackColor = System.Drawing.Color.LightCyan;
+            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCreate.Location = new System.Drawing.Point(580, 6);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(120, 25);
+            this.btnCreate.TabIndex = 14;
+            this.btnCreate.Text = "Create Folder";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -630,50 +684,6 @@
             this.tmrUpdate.Interval = 50;
             this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label2.Location = new System.Drawing.Point(4, 144);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Parent ID";
-            // 
-            // txtParentID
-            // 
-            this.txtParentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtParentID.Location = new System.Drawing.Point(4, 160);
-            this.txtParentID.Name = "txtParentID";
-            this.txtParentID.Size = new System.Drawing.Size(271, 22);
-            this.txtParentID.TabIndex = 18;
-            // 
-            // chbCompress
-            // 
-            this.chbCompress.AutoSize = true;
-            this.chbCompress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbCompress.Location = new System.Drawing.Point(4, 188);
-            this.chbCompress.Name = "chbCompress";
-            this.chbCompress.Size = new System.Drawing.Size(89, 20);
-            this.chbCompress.TabIndex = 24;
-            this.chbCompress.Text = "Compress";
-            this.chbCompress.UseVisualStyleBackColor = true;
-            this.chbCompress.CheckedChanged += new System.EventHandler(this.chbCompress_CheckedChanged);
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.BackColor = System.Drawing.Color.LightCyan;
-            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnCreate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCreate.Location = new System.Drawing.Point(580, 6);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(120, 25);
-            this.btnCreate.TabIndex = 14;
-            this.btnCreate.Text = "Create Folder";
-            this.btnCreate.UseVisualStyleBackColor = false;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -688,25 +698,15 @@
             this.panel2.Size = new System.Drawing.Size(705, 38);
             this.panel2.TabIndex = 32;
             // 
-            // txtSearchFile
+            // cbFileType
             // 
-            this.txtSearchFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtSearchFile.Location = new System.Drawing.Point(6, 8);
-            this.txtSearchFile.Name = "txtSearchFile";
-            this.txtSearchFile.Size = new System.Drawing.Size(316, 22);
-            this.txtSearchFile.TabIndex = 25;
-            // 
-            // txtCreateFolder
-            // 
-            this.txtCreateFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCreateFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtCreateFolder.Location = new System.Drawing.Point(328, 8);
-            this.txtCreateFolder.Name = "txtCreateFolder";
-            this.txtCreateFolder.Size = new System.Drawing.Size(246, 22);
-            this.txtCreateFolder.TabIndex = 26;
+            this.cbFileType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.cbFileType.FormattingEnabled = true;
+            this.cbFileType.Location = new System.Drawing.Point(328, 7);
+            this.cbFileType.Name = "cbFileType";
+            this.cbFileType.Size = new System.Drawing.Size(120, 24);
+            this.cbFileType.TabIndex = 24;
             // 
             // btnSearch
             // 
@@ -722,15 +722,15 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // cbFileType
+            // txtSearchFile
             // 
-            this.cbFileType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.cbFileType.FormattingEnabled = true;
-            this.cbFileType.Location = new System.Drawing.Point(328, 7);
-            this.cbFileType.Name = "cbFileType";
-            this.cbFileType.Size = new System.Drawing.Size(120, 24);
-            this.cbFileType.TabIndex = 24;
+            this.txtSearchFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearchFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtSearchFile.Location = new System.Drawing.Point(6, 8);
+            this.txtSearchFile.Name = "txtSearchFile";
+            this.txtSearchFile.Size = new System.Drawing.Size(316, 22);
+            this.txtSearchFile.TabIndex = 25;
             // 
             // frmMain
             // 
@@ -747,10 +747,11 @@
             this.Controls.Add(this.pnlConnection);
             this.Controls.Add(this.pnlDragAndDrop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(700, 410);
+            this.MinimumSize = new System.Drawing.Size(750, 470);
             this.Name = "frmMain";
             this.Text = "Google Drive Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlDragAndDrop.ResumeLayout(false);
             this.pnlDragAndDrop.PerformLayout();
             this.pnlConnection.ResumeLayout(false);

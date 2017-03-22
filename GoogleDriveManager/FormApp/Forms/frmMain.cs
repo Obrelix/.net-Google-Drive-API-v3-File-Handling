@@ -82,6 +82,7 @@ namespace GoogleDriveManager
             UIinit();
             cbUserInit();
             cbTypeInit();
+            txtJsonPath.Text = "client_secret.json";
         }
 
         private void updateDataGridView()
@@ -451,8 +452,11 @@ namespace GoogleDriveManager
                 contentToWrite += "set param5=\"" + txtParentID.Text + "\"" + Environment.NewLine;
             }
 
+            //string appPath ="\""+ Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) +
+            //    "\\Obrelix\\Google Drive Manager\\GoogleDriveManager.exe\"";
 
-            contentToWrite += "GoogleDriveManager.exe %param1% %param2% %param3% %param4%";
+            string appPath = "\"" + Path.GetFullPath(Application.ExecutablePath)+"\"";
+            contentToWrite += appPath + " %param1% %param2% %param3% %param4%";
 
             if (txtParentID.Text != string.Empty)
             {
@@ -573,14 +577,18 @@ namespace GoogleDriveManager
 
         public static string compressFile(string path)
         {
+            
             string zipPath = path.Split('.').First() + ".zip";
             try
             {
                 using (ZipFile zip = new ZipFile())
                 {
-                    
-                    zip.AddFile(@path);
-
+                    if (Path.HasExtension(path)) zip.AddFile(@path);
+                    else
+                    {
+                        zip.UseUnicodeAsNecessary = true;
+                        zip.AddDirectory(@path);
+                    } 
                     zip.Save(@zipPath);
                 }
                 return @zipPath;
@@ -602,6 +610,18 @@ namespace GoogleDriveManager
         private void btnSearch_Click(object sender, EventArgs e)
         {
             updateDataGridView(txtSearchFile.Text, cbList[cbFileType.SelectedIndex].type);
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            if (chbAddUser.Checked)
+            {
+                this.MinimumSize = new Size(900, 660);
+            }
+            else
+            {
+                this.MinimumSize = new Size(900, 470);
+            }
         }
     }
 }
