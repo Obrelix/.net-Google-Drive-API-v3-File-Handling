@@ -68,11 +68,6 @@
             this.lblPanel = new System.Windows.Forms.Label();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
@@ -91,6 +86,13 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
+            this.lblMd5Checksum = new System.Windows.Forms.Label();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MD5Checksum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
@@ -173,6 +175,7 @@
             this.pnlDragAndDrop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlDragAndDrop.BackColor = System.Drawing.Color.DarkSlateGray;
             this.pnlDragAndDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDragAndDrop.Controls.Add(this.lblMd5Checksum);
             this.pnlDragAndDrop.Controls.Add(this.chbCompress);
             this.pnlDragAndDrop.Controls.Add(this.label2);
             this.pnlDragAndDrop.Controls.Add(this.txtParentID);
@@ -434,6 +437,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(4, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(177, 16);
@@ -445,6 +449,7 @@
             this.lblPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPanel.AutoSize = true;
             this.lblPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblPanel.ForeColor = System.Drawing.Color.White;
             this.lblPanel.Location = new System.Drawing.Point(4, 351);
             this.lblPanel.Name = "lblPanel";
             this.lblPanel.Size = new System.Drawing.Size(268, 16);
@@ -478,7 +483,8 @@
             this.fileSize,
             this.fileModifiedTime,
             this.fileType,
-            this.ID});
+            this.ID,
+            this.MD5Checksum});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.MintCream;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -488,7 +494,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFilesFromDrive.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFilesFromDrive.GridColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvFilesFromDrive.Location = new System.Drawing.Point(295, 46);
+            this.dgvFilesFromDrive.Location = new System.Drawing.Point(296, 90);
             this.dgvFilesFromDrive.Name = "dgvFilesFromDrive";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.MintCream;
@@ -503,43 +509,6 @@
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
             this.dgvFilesFromDrive.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
             this.dgvFilesFromDrive.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
-            // 
-            // fileName
-            // 
-            this.fileName.Frozen = true;
-            this.fileName.HeaderText = "Name";
-            this.fileName.Name = "fileName";
-            this.fileName.Width = 270;
-            // 
-            // fileSize
-            // 
-            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileSize.HeaderText = "Size";
-            this.fileSize.MinimumWidth = 100;
-            this.fileSize.Name = "fileSize";
-            this.fileSize.ReadOnly = true;
-            // 
-            // fileModifiedTime
-            // 
-            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileModifiedTime.HeaderText = "Last Modified";
-            this.fileModifiedTime.MinimumWidth = 170;
-            this.fileModifiedTime.Name = "fileModifiedTime";
-            this.fileModifiedTime.ReadOnly = true;
-            // 
-            // fileType
-            // 
-            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileType.HeaderText = "Type";
-            this.fileType.MinimumWidth = 300;
-            this.fileType.Name = "fileType";
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 420;
-            this.ID.Name = "ID";
             // 
             // btnDownload
             // 
@@ -686,14 +655,14 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DarkSlateGray;
             this.panel2.Controls.Add(this.cbFileType);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.txtSearchFile);
             this.panel2.Controls.Add(this.btnRefresh);
-            this.panel2.Location = new System.Drawing.Point(295, 532);
+            this.panel2.Location = new System.Drawing.Point(295, 46);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(705, 38);
             this.panel2.TabIndex = 32;
@@ -731,6 +700,59 @@
             this.txtSearchFile.Name = "txtSearchFile";
             this.txtSearchFile.Size = new System.Drawing.Size(316, 22);
             this.txtSearchFile.TabIndex = 25;
+            // 
+            // lblMd5Checksum
+            // 
+            this.lblMd5Checksum.AutoSize = true;
+            this.lblMd5Checksum.Location = new System.Drawing.Point(90, 191);
+            this.lblMd5Checksum.Name = "lblMd5Checksum";
+            this.lblMd5Checksum.Size = new System.Drawing.Size(83, 13);
+            this.lblMd5Checksum.TabIndex = 25;
+            this.lblMd5Checksum.Text = "MD5 Checksum";
+            // 
+            // fileName
+            // 
+            this.fileName.Frozen = true;
+            this.fileName.HeaderText = "Name";
+            this.fileName.Name = "fileName";
+            this.fileName.Width = 270;
+            // 
+            // fileSize
+            // 
+            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileSize.HeaderText = "Size";
+            this.fileSize.MinimumWidth = 100;
+            this.fileSize.Name = "fileSize";
+            this.fileSize.ReadOnly = true;
+            // 
+            // fileModifiedTime
+            // 
+            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileModifiedTime.HeaderText = "Last Modified";
+            this.fileModifiedTime.MinimumWidth = 170;
+            this.fileModifiedTime.Name = "fileModifiedTime";
+            this.fileModifiedTime.ReadOnly = true;
+            // 
+            // fileType
+            // 
+            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileType.HeaderText = "Type";
+            this.fileType.MinimumWidth = 300;
+            this.fileType.Name = "fileType";
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 420;
+            this.ID.Name = "ID";
+            // 
+            // MD5Checksum
+            // 
+            this.MD5Checksum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MD5Checksum.HeaderText = "MD5 Checksum";
+            this.MD5Checksum.MinimumWidth = 300;
+            this.MD5Checksum.Name = "MD5Checksum";
             // 
             // frmMain
             // 
@@ -815,11 +837,6 @@
         private System.Windows.Forms.Button btnCreateBatch;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Timer tmrUpdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.CheckBox chbCompress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtParentID;
@@ -829,6 +846,13 @@
         private System.Windows.Forms.TextBox txtCreateFolder;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbFileType;
+        private System.Windows.Forms.Label lblMd5Checksum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MD5Checksum;
     }
 }
 

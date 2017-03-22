@@ -223,6 +223,18 @@ namespace GoogleDriveManager
         private void textBox_path_TextChanged(object sender, EventArgs e)
         {
             txtFileName.Text = Path.GetFileName(txtFilePath.Text);
+            lblMd5Checksum.Text = md5ChecksumGenerator(txtFilePath.Text);
+        }
+
+        public string md5ChecksumGenerator(string filePath)
+        {
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            {
+                using (var stream = System.IO.File.OpenRead(filePath))
+                {
+                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "‌​").ToLower();
+                }
+            }
         }
 
         private void btnDirToUpload_Click(object sender, EventArgs e)

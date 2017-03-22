@@ -50,8 +50,8 @@ namespace GoogleDriveManager
             {
                 FilesResource.ListRequest listRequest = service.Files.List();
                 listRequest.PageSize = 1000;
-                listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime)";
-
+                listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum)";
+                //listRequest.OrderBy = "mimeType";
                 // List files.
                 IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
 
@@ -60,15 +60,19 @@ namespace GoogleDriveManager
                 {
                     foreach (var file in files)
                     {
-
-                        filesList.Add(new string[5] {
+                        //if (file.Id == "root")
+                        //{
+                        //"bb6fc5f401d7582396294aba3fc7bc17"
+                            filesList.Add(new string[6] {
                             file.Name,
                             sizeFix(file.Size.ToString(), file.MimeType),
                             file.ModifiedTime.ToString(),
                             file.MimeType,
-                            file.Id});
-                        System.Diagnostics.Debug.WriteLine("{0} {1} {2} {3}", 
-                            file.Name, file.Id, file.MimeType, file.Size.ToString());
+                            file.Id, file.Md5Checksum});
+                            System.Diagnostics.Debug.WriteLine("{0} {1} {2} {3}",
+                                file.Name, file.Id, file.MimeType, file.Size.ToString());
+                        //}
+
                     }
                 }
                 else
