@@ -418,41 +418,6 @@ namespace GoogleDriveManager
                     convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename);
                     stream.Dispose();
                 }
-                else if(mimeType == "application/vnd.google-apps.folder")
-                {
-                    var request = service.Files.Get(fileId);
-
-                    var stream = new System.IO.MemoryStream();
-                    System.Diagnostics.Debug.WriteLine(fileId);
-                    // Add a handler which will be notified on progress changes.
-                    // It will notify on each chunk download and when the
-                    // download is completed or failed.
-                    request.MediaDownloader.ProgressChanged +=
-                        (IDownloadProgress progress) =>
-                        {
-                            switch (progress.Status)
-                            {
-                                case DownloadStatus.Downloading:
-                                    {
-                                        System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
-                                        break;
-                                    }
-                                case DownloadStatus.Completed:
-                                    {
-                                        System.Diagnostics.Debug.WriteLine("Download complete.");
-                                        break;
-                                    }
-                                case DownloadStatus.Failed:
-                                    {
-                                        System.Diagnostics.Debug.WriteLine("Download failed.");
-                                        break;
-                                    }
-                            }
-                        };
-                    request.Download(stream);
-                    convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename+ ".zip");
-                    stream.Dispose();
-                }
                 else
                 {
                     string extension = "", converter = "";
