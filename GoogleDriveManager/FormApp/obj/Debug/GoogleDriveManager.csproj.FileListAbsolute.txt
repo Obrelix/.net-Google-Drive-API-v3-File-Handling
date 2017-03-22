@@ -1,5 +1,4 @@
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GDUploaderForm\GDUploaderForm\bin\Debug\GoogleDriveManager.exe.config
-C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\RunWithArgsBatch.bat
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe.config
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.pdb
@@ -33,3 +32,5 @@ C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveM
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.exe
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.pdb
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.csprojResolveAssemblyReference.cache
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\client_secret.json
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\Google-Drive-Folder.ico

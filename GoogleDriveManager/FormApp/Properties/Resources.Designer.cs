@@ -61,6 +61,15 @@ namespace GoogleDriveManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {&quot;installed&quot;:{&quot;client_id&quot;:&quot;552181211941-sf4tveb7bbqg4gbpdrq2kre4lnckhimm.apps.googleusercontent.com&quot;,&quot;project_id&quot;:&quot;adroit-minutia-161613&quot;,&quot;auth_uri&quot;:&quot;https://accounts.google.com/o/oauth2/auth&quot;,&quot;token_uri&quot;:&quot;https://accounts.google.com/o/oauth2/token&quot;,&quot;auth_provider_x509_cert_url&quot;:&quot;https://www.googleapis.com/oauth2/v1/certs&quot;,&quot;client_secret&quot;:&quot;8CPF_TwDTY7ocMtGE6Tvl8bP&quot;,&quot;redirect_uris&quot;:[&quot;urn:ietf:wg:oauth:2.0:oob&quot;,&quot;http://localhost&quot;]}}.
+        /// </summary>
+        internal static string client_secret {
+            get {
+                return ResourceManager.GetString("client_secret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon TrayIcon {

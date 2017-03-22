@@ -82,7 +82,8 @@ namespace GoogleDriveManager
             UIinit();
             cbUserInit();
             cbTypeInit();
-            txtJsonPath.Text = "client_secret.json";
+            txtJsonPath.Text = "Resources\\client_secret.json" ;
+            //Properties.Resources.client_secret
         }
 
         private void updateDataGridView()
@@ -582,12 +583,13 @@ namespace GoogleDriveManager
             string zipPath = path.Split('.').First() + ".zip";
             try
             {
-                using (ZipFile zip = new ZipFile())
+                using (ZipFile zip = new ZipFile(Encoding.UTF8))
                 {
                     if (Path.HasExtension(path)) zip.AddFile(@path);
                     else
                     {
-                        zip.UseUnicodeAsNecessary = true;
+                        //zip.AlternateEncodingUsage = ZipOption.Always;
+                        //zip.AlternateEncoding = Encoding.GetEncoding(866);
                         zip.AddDirectory(@path);
                     } 
                     zip.Save(@zipPath);

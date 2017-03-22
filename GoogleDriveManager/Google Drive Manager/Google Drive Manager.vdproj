@@ -69,12 +69,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2FB46DBEF21049D98A59713CB66F29B9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5911D894D2FD4A29F0D089AA0B26F065"
         "OwnerKey" = "8:_5A44352A8A1444499FB83B573C6471FD"
         "MsmSig" = "8:_UNDEFINED"
@@ -100,13 +94,7 @@
         "Entry"
         {
         "MsmKey" = "8:_771F31BABA9DBFEE2D920E599FEE6985"
-        "OwnerKey" = "8:_0163E95DF0DD45A985F0A3717E3F4FE0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_771F31BABA9DBFEE2D920E599FEE6985"
-        "OwnerKey" = "8:_2DFB15A0D3E8F043977D5FFD496A056E"
+        "OwnerKey" = "8:_6894C093D943706B7CB0CBD53F4261AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,7 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_771F31BABA9DBFEE2D920E599FEE6985"
-        "OwnerKey" = "8:_6894C093D943706B7CB0CBD53F4261AF"
+        "OwnerKey" = "8:_2DFB15A0D3E8F043977D5FFD496A056E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_771F31BABA9DBFEE2D920E599FEE6985"
+        "OwnerKey" = "8:_0163E95DF0DD45A985F0A3717E3F4FE0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -153,7 +147,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BF0AB1EC458848648786D51901709AD4"
+        "MsmKey" = "8:_D3ACEC7B24A04E75A7594717E057B7C8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -189,8 +183,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_771F31BABA9DBFEE2D920E599FEE6985"
+        "MsmKey" = "8:_E39C74C6C8B549D8B9228A16899F0EB3"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -253,6 +247,12 @@
         "OwnerKey" = "8:_A118C04F05CD2F195EED9DB585B1AD6C"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_771F31BABA9DBFEE2D920E599FEE6985"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -271,6 +271,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -287,6 +295,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -407,26 +423,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2FB46DBEF21049D98A59713CB66F29B9"
-            {
-            "SourcePath" = "8:..\\FormApp\\Resources\\Google-Drive-Folder.ico"
-            "TargetName" = "8:Google-Drive-Folder.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5911D894D2FD4A29F0D089AA0B26F065"
@@ -615,12 +611,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF0AB1EC458848648786D51901709AD4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D3ACEC7B24A04E75A7594717E057B7C8"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Desktop\\client_secret_IekDelta.json"
-            "TargetName" = "8:client_secret.json"
+            "SourcePath" = "8:..\\FormApp\\Resources\\Google-Drive-Folder.ico"
+            "TargetName" = "8:Google-Drive-Folder.ico"
             "Tag" = "8:"
-            "Folder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
+            "Folder" = "8:_9016BEB1D19341998788A398847D47A6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -664,6 +660,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E39C74C6C8B549D8B9228A16899F0EB3"
+            {
+            "SourcePath" = "8:..\\FormApp\\Resources\\client_secret.json"
+            "TargetName" = "8:client_secret.json"
+            "Tag" = "8:"
+            "Folder" = "8:_9016BEB1D19341998788A398847D47A6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -715,6 +731,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9016BEB1D19341998788A398847D47A6"
+                    {
+                    "Name" = "8:Resources"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_AA98962465164520A335EE1EA038E73F"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -865,7 +892,7 @@
             "Target" = "8:_5A44352A8A1444499FB83B573C6471FD"
             "Folder" = "8:_E224BFBF6FC14A32935DBEC61F855AC4"
             "WorkingFolder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
-            "Icon" = "8:_2FB46DBEF21049D98A59713CB66F29B9"
+            "Icon" = "8:_D3ACEC7B24A04E75A7594717E057B7C8"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F3AAB2D3B83841E7BE65CAD72D0E35A4"
@@ -879,7 +906,7 @@
             "Target" = "8:_5A44352A8A1444499FB83B573C6471FD"
             "Folder" = "8:_A4A40C5904904374AC7E6CCD47299A1D"
             "WorkingFolder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
-            "Icon" = "8:_2FB46DBEF21049D98A59713CB66F29B9"
+            "Icon" = "8:_D3ACEC7B24A04E75A7594717E057B7C8"
             "Feature" = "8:"
             }
         }
@@ -1370,7 +1397,7 @@
             "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
+            "Folder" = "8:_9016BEB1D19341998788A398847D47A6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
