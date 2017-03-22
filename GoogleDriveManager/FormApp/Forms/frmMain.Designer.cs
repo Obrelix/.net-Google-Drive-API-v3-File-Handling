@@ -317,9 +317,9 @@
             this.pnlUser.Controls.Add(this.txtJsonPath);
             this.pnlUser.Controls.Add(this.label8);
             this.pnlUser.Controls.Add(this.label7);
-            this.pnlUser.Location = new System.Drawing.Point(0, 38);
+            this.pnlUser.Location = new System.Drawing.Point(1, 48);
             this.pnlUser.Name = "pnlUser";
-            this.pnlUser.Size = new System.Drawing.Size(277, 197);
+            this.pnlUser.Size = new System.Drawing.Size(277, 187);
             this.pnlUser.TabIndex = 23;
             this.pnlUser.Visible = false;
             // 
@@ -327,7 +327,7 @@
             // 
             this.btnRemUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnRemUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemUser.Location = new System.Drawing.Point(4, 168);
+            this.btnRemUser.Location = new System.Drawing.Point(4, 155);
             this.btnRemUser.Name = "btnRemUser";
             this.btnRemUser.Size = new System.Drawing.Size(106, 25);
             this.btnRemUser.TabIndex = 23;
@@ -338,7 +338,7 @@
             // txtUserName
             // 
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtUserName.Location = new System.Drawing.Point(3, 36);
+            this.txtUserName.Location = new System.Drawing.Point(3, 23);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(272, 22);
             this.txtUserName.TabIndex = 2;
@@ -347,7 +347,7 @@
             // 
             this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnAddUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddUser.Location = new System.Drawing.Point(187, 168);
+            this.btnAddUser.Location = new System.Drawing.Point(187, 155);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(88, 25);
             this.btnAddUser.TabIndex = 5;
@@ -359,7 +359,7 @@
             // 
             this.btnJsonBroswe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnJsonBroswe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnJsonBroswe.Location = new System.Drawing.Point(187, 78);
+            this.btnJsonBroswe.Location = new System.Drawing.Point(187, 62);
             this.btnJsonBroswe.Name = "btnJsonBroswe";
             this.btnJsonBroswe.Size = new System.Drawing.Size(88, 23);
             this.btnJsonBroswe.TabIndex = 3;
@@ -371,7 +371,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label10.Location = new System.Drawing.Point(3, 20);
+            this.label10.Location = new System.Drawing.Point(3, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 16);
             this.label10.TabIndex = 19;
@@ -380,7 +380,7 @@
             // txtJsonPath
             // 
             this.txtJsonPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtJsonPath.Location = new System.Drawing.Point(4, 130);
+            this.txtJsonPath.Location = new System.Drawing.Point(4, 115);
             this.txtJsonPath.Name = "txtJsonPath";
             this.txtJsonPath.ReadOnly = true;
             this.txtJsonPath.Size = new System.Drawing.Size(271, 22);
@@ -390,7 +390,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label8.Location = new System.Drawing.Point(4, 111);
+            this.label8.Location = new System.Drawing.Point(4, 96);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 16);
             this.label8.TabIndex = 17;
@@ -400,7 +400,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label7.Location = new System.Drawing.Point(2, 81);
+            this.label7.Location = new System.Drawing.Point(2, 65);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(165, 16);
             this.label7.TabIndex = 15;
@@ -436,9 +436,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label5.Location = new System.Drawing.Point(4, 28);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(205, 16);
+            this.label5.Size = new System.Drawing.Size(177, 16);
             this.label5.TabIndex = 100;
-            this.label5.Text = "Connect to Google Drive API";
+            this.label5.Text = "Connect to Google Drive";
             // 
             // lblPanel
             // 

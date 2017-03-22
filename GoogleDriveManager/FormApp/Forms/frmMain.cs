@@ -108,13 +108,14 @@ namespace GoogleDriveManager
         {
             if (chbAddUser.Checked)
             {
+                this.MinimumSize = new Size(900, 660);
                 pnlConnection.Height = 290;
                 pnlUser.Visible = true;
                 this.Height = 660;
-
             }
             else
             {
+                this.MinimumSize = new Size(900, 470);
                 pnlConnection.Height = 100;
                 pnlUser.Visible = false;
                 this.Height =  470;
@@ -617,14 +618,6 @@ namespace GoogleDriveManager
 
         private void frmMain_Resize(object sender, EventArgs e)
         {
-            if (chbAddUser.Checked)
-            {
-                this.MinimumSize = new Size(900, 660);
-            }
-            else
-            {
-                this.MinimumSize = new Size(900, 470);
-            }
         }
     }
 }
