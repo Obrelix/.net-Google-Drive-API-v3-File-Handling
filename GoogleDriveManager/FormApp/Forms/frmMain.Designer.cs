@@ -724,6 +724,7 @@
             // 
             // cbFileType
             // 
+            this.cbFileType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbFileType.FormattingEnabled = true;
             this.cbFileType.Location = new System.Drawing.Point(328, 7);

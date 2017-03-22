@@ -20,15 +20,20 @@ namespace GoogleDriveManager
     public static class GoogleDriveAPIV3
     {
         private static string[] Scopes = { DriveService.Scope.Drive };
+
         private static UserCredential credential;
         private static DriveService service;
+
+
         private static string appDataSavePath = Environment.GetFolderPath(
             Environment.SpecialFolder.ApplicationData)
             + "\\BackUpManager";
         private static string applicationName = "Google Drive Manager";
 
+        
         private static readonly string[] SizeSuffixes =
                   { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
 
         public static bool GoogleDriveConnection(string jsonSecretPath, string userName)
         {
@@ -374,42 +379,124 @@ namespace GoogleDriveManager
                 System.Diagnostics.Debug.WriteLine(exc.Message);
             }
         }
-        public static void downloadFromDrive(string filename, string fileId, string savePath)
+        public static void downloadFromDrive(string filename, string fileId, string savePath, string mimeType)
         {
             try
             {
-               
-                var request = service.Files.Get(fileId);
-                var stream = new System.IO.MemoryStream();
-                
-                // Add a handler which will be notified on progress changes.
-                // It will notify on each chunk download and when the
-                // download is completed or failed.
-                request.MediaDownloader.ProgressChanged +=
-                    (IDownloadProgress progress) =>
-                    {
-                        switch (progress.Status)
+                if (Path.HasExtension(filename))
+                {
+                    var request = service.Files.Get(fileId);
+
+                    var stream = new System.IO.MemoryStream();
+                    System.Diagnostics.Debug.WriteLine(fileId);
+                    // Add a handler which will be notified on progress changes.
+                    // It will notify on each chunk download and when the
+                    // download is completed or failed.
+                    request.MediaDownloader.ProgressChanged +=
+                        (IDownloadProgress progress) =>
                         {
-                            case DownloadStatus.Downloading:
-                                {
-                                    System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
-                                    break;
-                                }
-                            case DownloadStatus.Completed:
-                                {
-                                    System.Diagnostics.Debug.WriteLine("Download complete.");
-                                    break;
-                                }
-                            case DownloadStatus.Failed:
-                                {
-                                    System.Diagnostics.Debug.WriteLine("Download failed.");
-                                    break;
-                                }
+                            switch (progress.Status)
+                            {
+                                case DownloadStatus.Downloading:
+                                    {
+                                        System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
+                                        break;
+                                    }
+                                case DownloadStatus.Completed:
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Download complete.");
+                                        break;
+                                    }
+                                case DownloadStatus.Failed:
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Download failed.");
+                                        break;
+                                    }
+                            }
+                        };
+                    request.Download(stream);
+                    convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename);
+                    stream.Dispose();
+                }
+                else if(mimeType == "application/vnd.google-apps.folder")
+                {
+                    var request = service.Files.Get(fileId);
+
+                    var stream = new System.IO.MemoryStream();
+                    System.Diagnostics.Debug.WriteLine(fileId);
+                    // Add a handler which will be notified on progress changes.
+                    // It will notify on each chunk download and when the
+                    // download is completed or failed.
+                    request.MediaDownloader.ProgressChanged +=
+                        (IDownloadProgress progress) =>
+                        {
+                            switch (progress.Status)
+                            {
+                                case DownloadStatus.Downloading:
+                                    {
+                                        System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
+                                        break;
+                                    }
+                                case DownloadStatus.Completed:
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Download complete.");
+                                        break;
+                                    }
+                                case DownloadStatus.Failed:
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Download failed.");
+                                        break;
+                                    }
+                            }
+                        };
+                    request.Download(stream);
+                    convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename+ ".zip");
+                    stream.Dispose();
+                }
+                else
+                {
+                    string extension = "", converter = "";
+                    foreach(MimeTypeConvert obj in MimeConverter.mimeList())
+                    {
+                        if (mimeType == obj.mimeType)
+                        {
+                            extension = obj.extension;
+                            converter = obj.converterType;
                         }
-                    };
-                request.Download(stream);
-                convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename);
-                stream.Dispose();
+                    }
+                    System.Diagnostics.Debug.WriteLine("{0} {1} {2}", fileId, extension, mimeType);
+                    var request = service.Files.Export(fileId, converter);
+                    var stream = new System.IO.MemoryStream();
+                    // Add a handler which will be notified on progress changes.
+                    // It will notify on each chunk download and when the
+                    // download is completed or failed.
+                    request.MediaDownloader.ProgressChanged +=
+                            (IDownloadProgress progress) =>
+                            {
+                                switch (progress.Status)
+                                {
+                                    case DownloadStatus.Downloading:
+                                        {
+                                            Console.WriteLine(progress.BytesDownloaded);
+                                            break;
+                                        }
+                                    case DownloadStatus.Completed:
+                                        {
+                                            Console.WriteLine("Download complete.");
+                                            break;
+                                        }
+                                    case DownloadStatus.Failed:
+                                        {
+                                            Console.WriteLine("Download failed.");
+                                            break;
+                                        }
+                                }
+                            };
+                    request.Download(stream);
+                    convertMemoryStreamToFileStream(stream, savePath + @"\" + @filename + extension);
+                    stream.Dispose();
+                }
+
             }
             catch (Exception exc)
             {
@@ -428,92 +515,7 @@ namespace GoogleDriveManager
             return mimeType;
         }
 
-        private static String GetFileType(string file)
-        {
-            try
-            {
-                string extension = Path.GetExtension(file);
-                System.Diagnostics.Debug.WriteLine("extension: " + extension);
-                string mime;
-                switch (extension.ToLower())
-                {
-                    //image files
-                    case ".svg":
-                        mime = "image/svg+xml";
-                        break;
-                    case ".jpg":
-                        mime = "image/jpeg";
-                        break;
-                    case ".jpeg":
-                        mime = "image/jpeg";
-                        break;
-                    case ".png":
-                        mime = "image/png";
-                        break;
-
-                    //Documents
-                    //Excel Formats
-                    case ".xlt":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-                    case ".xlsx":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-                    case ".xlsm":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-                    case ".xlsb":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-                    case ".xltx":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-                    case ".xltm":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-                    case ".xls":
-                        mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        break;
-
-                    //PowerPoint Formats
-                    case ".pptx":
-                        mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-                        break;
-                    case ".ppt":
-                        mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-                        break;
-
-                    case ".bat":
-                        mime = "application/vnd.google-apps.script+json";
-                        break;
-
-                    case ".csv":
-                        mime = "text/csv";
-                        break;
-                    case ".doc":
-                        mime = "application/msword";
-                        break;
-                    case ".pdf":
-                        mime = "application/pdf";
-                        break;
-
-                    case ".html":
-                        mime = "text/html";
-                        break;
-
-                    default:
-                        mime = "text/plain";
-                        break;
-                }
-                return mime;
-            }
-            catch (Exception exc)
-            {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
-                return null;
-            }
-            
-        }
+        
 
         private static void notify(string title, string text)
         {

@@ -54,7 +54,7 @@ namespace GoogleDriveManager
             cbList.Add(new ListId("pdf", "application/pdf"));
             cbList.Add(new ListId("video", "video/"));
             cbList.Add(new ListId("image", "image/"));
-            cbList.Add(new ListId("music", "image/"));
+            cbList.Add(new ListId("music", "audio/"));
             cbList.Add(new ListId("html", "application/vnd.jgraph.mxfile.realtime"));
             cbList.Add(new ListId("text", "text/"));
             cbList.Add(new ListId("epub", "application/epub+zip"));
@@ -261,7 +261,7 @@ namespace GoogleDriveManager
                     break;
             }
         }
-        private void downloadFile(string fileName, string fileID)
+        private void downloadFile(string fileName, string fileID, string mimeType)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
@@ -269,7 +269,7 @@ namespace GoogleDriveManager
             {
                 case DialogResult.OK:
                     txtJsonPath.Text = ofgJsonFile.FileName;
-                    GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, fbd.SelectedPath);
+                    GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, fbd.SelectedPath, mimeType);
                     break;
                 default:
                     break;
@@ -297,7 +297,7 @@ namespace GoogleDriveManager
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            string fileName, fileId;
+            string fileName, fileId, mimeType;
             if (dgvFilesFromDrive.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("You have to select a row  in order to download");
@@ -308,8 +308,9 @@ namespace GoogleDriveManager
                 foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
                 {
                     fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
+                    mimeType = dgvFilesFromDrive.Rows[row.Index].Cells[3].Value.ToString();
                     fileId = dgvFilesFromDrive.Rows[row.Index].Cells[4].Value.ToString();
-                    downloadFile(fileName, fileId);
+                    downloadFile(fileName, fileId, mimeType);
                 }
             }
         }
@@ -317,9 +318,10 @@ namespace GoogleDriveManager
         private void dgvFilesFromDrive_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[2].Value.ToString();
+            string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[4].Value.ToString();
             string fileName = dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString();
-            downloadFile(fileName, fileID);
+            string mimeType = dgvFilesFromDrive.Rows[e.RowIndex].Cells[3].Value.ToString();
+            downloadFile(fileName, fileID, mimeType);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -576,6 +578,7 @@ namespace GoogleDriveManager
             {
                 using (ZipFile zip = new ZipFile())
                 {
+                    
                     zip.AddFile(@path);
 
                     zip.Save(@zipPath);
