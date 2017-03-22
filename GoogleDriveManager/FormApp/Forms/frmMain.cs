@@ -320,9 +320,10 @@ namespace GoogleDriveManager
         {
 
             string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string fileName = dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string mimeType = dgvFilesFromDrive.Rows[e.RowIndex].Cells[3].Value.ToString();
-            downloadFile(fileName, fileID, mimeType);
+           // string fileName = dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString();
+            //string mimeType = dgvFilesFromDrive.Rows[e.RowIndex].Cells[3].Value.ToString();
+            Clipboard.SetText(fileID);
+            //downloadFile(fileName, fileID, mimeType);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
