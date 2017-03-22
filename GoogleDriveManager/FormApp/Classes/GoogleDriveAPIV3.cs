@@ -386,7 +386,7 @@ namespace GoogleDriveManager
                 if (Path.HasExtension(filename))
                 {
                     var request = service.Files.Get(fileId);
-
+                    
                     var stream = new System.IO.MemoryStream();
                     System.Diagnostics.Debug.WriteLine(fileId);
                     // Add a handler which will be notified on progress changes.

@@ -32,7 +32,7 @@ namespace GoogleDriveManager
             list.Add(new MimeTypeConvert(".doc", "application/vnd.google-apps.document", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
             list.Add(new MimeTypeConvert(".pptx", "application/vnd.google-apps.presentation", "application/vnd.openxmlformats-officedocument.presentationml.presentation"));
             list.Add(new MimeTypeConvert(".html", "application/vnd.google-apps.site", "text/html"));
-            list.Add(new MimeTypeConvert(".zip", "application/vnd.google-apps.folder", "application/zip"));
+            list.Add(new MimeTypeConvert(".zip", "application/vnd.google-apps.folder", "application/vnd.google-apps.folder"));
             
             return list;
         }
