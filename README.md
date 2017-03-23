@@ -53,11 +53,8 @@ Start the application and:
 
 7)Connect and approve the Google notification.
 
-8)In order to connect to an other account repeat previous sequence.
+8)In order to connect to an other account repeat the previous sequence.
 
 If you want to use your own client you have to follow the First step from this tutorial https://developers.google.com/drive/v3/web/quickstart/dotnet
 
-When you have already created an "OAuth 2.0 client" and downloaded the client_secret.Json file from https://console.developers.google.com
-
-1)Add your clien_secret.Json file.
-
+When you have already created an "OAuth 2.0 client" and downloaded the client_secret.Json file from https://console.developers.google.com Add your clien_secret.Json file.
