@@ -71,7 +71,7 @@ namespace GoogleDriveManager
                         using (var stream = System.IO.File.OpenRead(filePath))
                         {
                             return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", null).ToLower();
-                            // "" is 8203 ascii character and the total lenght of string doesnt change 
+                            // "" is the 8203 ascii character and the total lenght of the string doesnt change 
                             //return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
                         }
                     }
@@ -94,12 +94,8 @@ namespace GoogleDriveManager
         {
             foreach (string[] array in GoogleDriveAPIV3.listDriveFiles())
             {
-                if (Array.FindAll(array, s => s.Equals(hashToCompare)).Length > 0) return true;
-                //array[5] = UnicodeEncoding.UTF8.g
-                //if (@array[5][0] == hashToCompare[0])
-                //{
-                //    return true;
-                //}
+                //if (Array.FindAll(array, s => s.Equals(hashToCompare)).Length > 0) return true;
+                if(array[5].Contains(hashToCompare)) return true;
             }
             return false;
         }

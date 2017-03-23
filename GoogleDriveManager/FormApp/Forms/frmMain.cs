@@ -369,7 +369,6 @@ namespace GoogleDriveManager
                     {
                         case DialogResult.Yes:
                             GoogleDriveAPIV3.removeFile(fileId);
-                            
                             break;
                         default:
                             break;
