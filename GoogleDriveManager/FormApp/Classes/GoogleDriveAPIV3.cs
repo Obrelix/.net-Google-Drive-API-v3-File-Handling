@@ -99,7 +99,7 @@ namespace GoogleDriveManager
                 do
                 {
                     FilesResource.ListRequest request = service.Files.List();
-                    request.PageSize = 100;
+                    request.PageSize = 1000;
                     //request.Q = "mimeType='image/jpeg'";
                     request.Q = "name contains '" + fileName + "'";
                     if(fileType != null)
@@ -107,7 +107,7 @@ namespace GoogleDriveManager
                         request.Q += "and (mimeType contains '" + fileType + "')";
                     }
                     request.Spaces = "drive";
-                    request.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime)";
+                    request.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum)";
                     request.PageToken = pageToken;
                     var result = request.Execute();
                     foreach (var file in result.Files)
@@ -252,6 +252,7 @@ namespace GoogleDriveManager
                             case UploadStatus.Failed:
                                 {
                                     System.Diagnostics.Debug.WriteLine("Upload failed.");
+                                    //MessageBox.Show("File failed to upload!!!", "Upload Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     break;
                                 }
                         }
@@ -303,7 +304,6 @@ namespace GoogleDriveManager
 
         public static void uploadToDrive(string path, string name, string parentId)
         {
-            
             if (Path.HasExtension(path))
             {
                 uploadFileToDrive(
@@ -314,43 +314,48 @@ namespace GoogleDriveManager
             }
             else
             {
-                try
+                directoryUpload(path, parentId);
+            }
+        }
+
+        public static void directoryUpload(string path, string parentId)
+        {
+            try
+            {
+                // Get the subdirectories for the specified directory.
+                string folderId = createFolderToDrive(
+                        Path.GetFileName(path),
+                        parentId);
+
+                System.Diagnostics.Debug.WriteLine(folderId);
+
+                DirectoryInfo dir = new DirectoryInfo(path);
+                if (!dir.Exists)
                 {
-                    // Get the subdirectories for the specified directory.
-                    string folderId = createFolderToDrive(
-                            Path.GetFileName(path),
-                            parentId);
-                    System.Diagnostics.Debug.WriteLine(folderId);
-
-                    DirectoryInfo dir = new DirectoryInfo(path);
-                    if (!dir.Exists)
-                    {
-                        throw new DirectoryNotFoundException(
-                            "Source directory does not exist or could not be found: "
-                            + path);
-                    }
-
-
-                    DirectoryInfo[] dirs = dir.GetDirectories();
-                    FileInfo[] files = dir.GetFiles();
-                    foreach (FileInfo file in files)
-                    {
-                        uploadFileToDrive(
-                            folderId, file.Name,
-                            Path.Combine(path, file.Name),
-                            getMimeType(file.Name));
-                    }
-
-                    foreach (DirectoryInfo subdir in dirs)
-                    {
-                        uploadToDrive(subdir.FullName, null, folderId);
-                    }
-                }
-                catch (Exception exc)
-                {
-                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                    throw new DirectoryNotFoundException(
+                        "Source directory does not exist or could not be found: "
+                        + path);
                 }
 
+
+                FileInfo[] files = dir.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    uploadFileToDrive(
+                        folderId, file.Name,
+                        Path.Combine(path, file.Name),
+                        getMimeType(file.Name));
+                }
+
+                DirectoryInfo[] dirs = dir.GetDirectories();
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    directoryUpload(subdir.FullName,  folderId);
+                }
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message);
             }
         }
 
@@ -414,6 +419,7 @@ namespace GoogleDriveManager
                                 case DownloadStatus.Failed:
                                     {
                                         System.Diagnostics.Debug.WriteLine("Download failed.");
+                                        MessageBox.Show("File failed to download!!!", "Download Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         break;
                                     }
                             }
@@ -457,6 +463,7 @@ namespace GoogleDriveManager
                                     case DownloadStatus.Failed:
                                         {
                                             Console.WriteLine("Download failed.");
+                                            MessageBox.Show("File failed to download!!!", "Download Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             break;
                                         }
                                 }

@@ -9,8 +9,8 @@ namespace GoogleDriveManager
     public class ListId
     {
         public string name { get; set; }
-
         public string type { get; set; }
+
         public ListId()
         {
 

@@ -131,12 +131,10 @@ namespace GoogleDriveManager
                 {
                     UserList.Clear();
                     UserList = JsonConvert.DeserializeObject<List<User>>(System.IO.File.ReadAllText(saveFile));
-                  
-
                 }
                 else
                 {
-                    createFile(saveFile, "[ ]");
+                    Gtools.createFile(saveFile, "[ ]");
                     loadUsers(savePath, saveFile);
                 }
             }
@@ -223,36 +221,9 @@ namespace GoogleDriveManager
         private void textBox_path_TextChanged(object sender, EventArgs e)
         {
             txtFileName.Text = Path.GetFileName(txtFilePath.Text);
-            lblMd5Checksum.Text = md5ChecksumGenerator(txtFilePath.Text);
+            lblMd5Checksum.Text = Gtools.md5ChecksumGenerator(txtFilePath.Text);
         }
 
-        public string md5ChecksumGenerator(string filePath)
-        {
-            if (Path.HasExtension(filePath))
-            {
-                try
-                {
-                    using (var md5 = System.Security.Cryptography.MD5.Create())
-                    {
-                        using (var stream = System.IO.File.OpenRead(filePath))
-                        {
-                            return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "‌​").ToLower();
-                        }
-                    }
-                }
-                catch (Exception exc)
-                {
-                    System.Diagnostics.Debug.WriteLine(exc.Message);
-                    return null;
-                }
-                
-            }
-            else
-            {
-                return null;
-            }
-            
-        }
 
         private void btnDirToUpload_Click(object sender, EventArgs e)
         {
@@ -308,19 +279,11 @@ namespace GoogleDriveManager
             }
         }
 
-        private bool compareHash(string hashToCompare)
-        {
-            foreach (string[] array in GoogleDriveAPIV3.listDriveFiles())
-            {
-                if (Array.FindAll(array, s => s.Equals(hashToCompare)) != null)
-                    return true;
-            }
-            return false;
-        }
+        
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            string filePath = (chbCompress.Checked) ? compressFile(txtFilePath.Text) : txtFilePath.Text;
+            string filePath = (chbCompress.Checked) ? Gtools.compressFile(txtFilePath.Text) : txtFilePath.Text;
             string fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
             string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
             if (!GoogleDriveAPIV3.GoogleDriveConnection(
@@ -331,7 +294,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                if (compareHash(lblMd5Checksum.Text))
+                if (Gtools.compareHash(lblMd5Checksum.Text))
                 {
                     DialogResult result = MessageBox.Show("The file : \"" + fileName +
                         "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
@@ -406,13 +369,13 @@ namespace GoogleDriveManager
                     {
                         case DialogResult.Yes:
                             GoogleDriveAPIV3.removeFile(fileId);
-                            updateDataGridView();
+                            
                             break;
                         default:
-                            updateDataGridView();
                             break;
                     }
                 }
+                updateDataGridView();
             }
         }
 
@@ -468,7 +431,7 @@ namespace GoogleDriveManager
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        deleteCredFile(UserList[cbUser.SelectedIndex].userName);
+                        Gtools.deleteCredFile(savePath, UserList[cbUser.SelectedIndex].userName);
                         UserList.Remove(UserList[cbUser.SelectedIndex]);
                         saveUsers(saveFile);
                         cbUserInit();
@@ -480,18 +443,6 @@ namespace GoogleDriveManager
             }
         }
 
-        private void deleteCredFile(string userName)
-        {
-            string[] files = Directory.GetFiles(Path.Combine(savePath, ".credentials"));
-            foreach(string file in files)
-            {
-                if(userName == file.Split('-').Last())
-                {
-                    System.IO.File.Delete(file);
-                }
-            }
-            //"Google.Apis.Auth.OAuth2.Responses.TokenResponse -"
-        }
 
         private void dgvFilesFromDrive_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -532,7 +483,7 @@ namespace GoogleDriveManager
                 {
                     case DialogResult.OK:
 
-                        createFile( Path.Combine(fbd.SelectedPath,
+                        Gtools.createFile( Path.Combine(fbd.SelectedPath,
                             UserList[cbUser.SelectedIndex].userName + "_File_" + txtFileName.Text.Split('.').First() + ".bat")
                             , contentToWrite);
 
@@ -544,28 +495,6 @@ namespace GoogleDriveManager
             }
         }
 
-        private bool createFile(string saveFile, string contentToWrite)
-        {
-            try
-            {
-                using (System.IO.FileStream fs = System.IO.File.Create(saveFile))
-                {
-                    for (byte i = 0; i < 100; i++)
-                    {
-                        fs.WriteByte(i);
-                    }
-                }
-
-                System.IO.File.WriteAllText(saveFile, contentToWrite);
-                return true;
-            }
-            catch(Exception exc)
-            {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
-                return false;
-            }
-            
-        }
 
         private void tmrUpdate_Tick(object sender, EventArgs e)
         {
@@ -636,32 +565,6 @@ namespace GoogleDriveManager
 
         }
 
-        public static string compressFile(string path)
-        {
-            
-            string zipPath = path.Split('.').First() + ".zip";
-            try
-            {
-                using (ZipFile zip = new ZipFile(Encoding.UTF8))
-                {
-                    if (Path.HasExtension(path)) zip.AddFile(@path);
-                    else
-                    {
-                        //zip.AlternateEncodingUsage = ZipOption.Always;
-                        //zip.AlternateEncoding = Encoding.GetEncoding(866);
-                        zip.AddDirectory(@path);
-                    } 
-                    zip.Save(@zipPath);
-                }
-                return @zipPath;
-            }
-            catch (Exception exc)
-            {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
-                return null;
-            }
-
-        }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
@@ -677,5 +580,7 @@ namespace GoogleDriveManager
         private void frmMain_Resize(object sender, EventArgs e)
         {
         }
+
+        
     }
 }
