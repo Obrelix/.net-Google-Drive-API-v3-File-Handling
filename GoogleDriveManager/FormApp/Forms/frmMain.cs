@@ -228,13 +228,30 @@ namespace GoogleDriveManager
 
         public string md5ChecksumGenerator(string filePath)
         {
-            using (var md5 = System.Security.Cryptography.MD5.Create())
+            if (Path.HasExtension(filePath))
             {
-                using (var stream = System.IO.File.OpenRead(filePath))
+                try
                 {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "‌​").ToLower();
+                    using (var md5 = System.Security.Cryptography.MD5.Create())
+                    {
+                        using (var stream = System.IO.File.OpenRead(filePath))
+                        {
+                            return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "‌​").ToLower();
+                        }
+                    }
                 }
+                catch (Exception exc)
+                {
+                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                    return null;
+                }
+                
             }
+            else
+            {
+                return null;
+            }
+            
         }
 
         private void btnDirToUpload_Click(object sender, EventArgs e)
@@ -291,9 +308,18 @@ namespace GoogleDriveManager
             }
         }
 
+        private bool compareHash(string hashToCompare)
+        {
+            foreach (string[] array in GoogleDriveAPIV3.listDriveFiles())
+            {
+                if (Array.FindAll(array, s => s.Equals(hashToCompare)) != null)
+                    return true;
+            }
+            return false;
+        }
+
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(txtFilePath.Text);
             string filePath = (chbCompress.Checked) ? compressFile(txtFilePath.Text) : txtFilePath.Text;
             string fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
             string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
@@ -305,8 +331,28 @@ namespace GoogleDriveManager
             }
             else
             {
-                GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
-                updateDataGridView();
+                if (compareHash(lblMd5Checksum.Text))
+                {
+                    DialogResult result = MessageBox.Show("The file : \"" + fileName +
+                        "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
+                        "File already exist on Google Drive",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
+                            updateDataGridView();
+                            break;
+                        default:
+                            updateDataGridView();
+                            break;
+                    }
+                }
+                else
+                {
+                    GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
+                    updateDataGridView();
+                }
             }
         }
 
