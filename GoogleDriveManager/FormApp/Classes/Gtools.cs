@@ -94,8 +94,7 @@ namespace GoogleDriveManager
         {
             foreach (string[] array in GoogleDriveAPIV3.listDriveFiles())
             {
-                //if (Array.FindAll(array, s => s.Equals(hashToCompare)).Length > 0) return true;
-                if(array[5].Contains(hashToCompare)) return true;
+                if (array[5] == hashToCompare)  return true;
             }
             return false;
         }
