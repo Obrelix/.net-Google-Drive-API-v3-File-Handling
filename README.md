@@ -20,35 +20,42 @@ Downloading files from Google Drive
 
 Deleting files from Goolge Drive
 
-# Upcomming
+Searching files in Google Drive
 
-Running as console application with Windows Scheduler
+Creating a Batch file for the upload, to add it in Windows Scheduler and run the application with arguments.
+
+Running as a background console application when you start the application with arguments 
+
+# Upcomming
 
 Downloading/Uploading asynchronous
 
 
 # Instrunctions
 
-In order to use this Application you have to follow the 1st step from this tutorial https://developers.google.com/drive/v3/web/quickstart/dotnet
-
-When you have already created an "OAuth 2.0 client" and downloaded the client_secret.Json file from https://console.developers.google.com
+In order to use this Application you have 
 
 Start the application and:
 
-1)Check the checkbox add user
+1)Check the checkbox "add user"
 
 2)Type your name for your profile
 
-3)Add your clien_secret.Json file.
+3)Click on "save user" button to save your user profile
 
-4)Type your application's name. 
+4)Select your profile from the combobox.
 
-5)Click on "save user" button to save your user profile
+5)Click on "Connect to Google Drive" Button to open a connection.
 
-6)Click on "Connect to Google Drive" Button to open a connection.
+6)The first time you connect to a user profile, a browser window will appear asking you to connect to your Google account.
 
-7)The first time a browser window will appear asking you to connect to your Google account.
+7)Connect and approve the Google notification.
 
-8)Connect and approve the Google notification.
+8)In order to connect to an other account repeat previous sequence.
 
-9)In order to connect to an other account repeat steps: 2),  5), 6), 7), 8).
+If you want to use your own client you have to follow the First step from this tutorial https://developers.google.com/drive/v3/web/quickstart/dotnet
+
+When you have already created an "OAuth 2.0 client" and downloaded the client_secret.Json file from https://console.developers.google.com
+
+1)Add your clien_secret.Json file.
+
