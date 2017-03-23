@@ -1,6 +1,6 @@
-![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample.PNG)
+![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample4.PNG)
 
-![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample2.PNG)
+![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample3.PNG)
 
 # .Net Google Drive API v3 file handling application
 
@@ -21,6 +21,8 @@ Downloading files from Google Drive
 Deleting files from Goolge Drive
 
 Searching files in Google Drive
+
+Generating the Md5 Checksum hash for the uploading files in order to compare it with the hash of google drive files and warning the user that the file already exist in the Drive.
 
 Creating a Batch file for the upload, to add it in Windows Scheduler and run the application with arguments.
 
