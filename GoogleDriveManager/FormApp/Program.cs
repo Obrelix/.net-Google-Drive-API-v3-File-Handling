@@ -54,8 +54,7 @@ namespace GoogleDriveManager
                         UserList[user].userName))
                     {
                         parentID =  GoogleDriveAPIV3.createFolderToDrive(
-                            "BackUp_" + filename /*.Split('.').First()*/ + "_"+
-                            DateTime.Now.ToShortDateString() + "_" + DateTime.Now.ToShortTimeString(), 
+                            DateTime.Now.Year+DateTime.Now.Month+DateTime.Now.Day+"_"+DateTime.Now.Hour+DateTime.Now.Minute+"_" + filename, 
                             parentID);
                         
                         GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID);

@@ -16,6 +16,7 @@ using Ionic.Zip;
 
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Data;
 
 namespace GoogleDriveManager
 {
@@ -23,6 +24,7 @@ namespace GoogleDriveManager
     {
         public static List<User> UserList = new List<User>();
         static List<ListId> cbList = new List<ListId>();
+        DataTable dtDriveFiles;
         static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
         static string saveFile = savePath + "\\GDASaves.json";
 
@@ -34,15 +36,6 @@ namespace GoogleDriveManager
             pnlDragAndDrop.DragDrop += new DragEventHandler(pnlDragAndDrop_DragDrop);
         }
 
-        private void dataGridViewInit()
-        {
-            //dgvFilesFromDrive.ColumnCount = 3;
-            //dgvFilesFromDrive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //dgvFilesFromDrive.Columns[0].Name = "Name";
-            //dgvFilesFromDrive.Columns[1].Name = "Type";
-            //dgvFilesFromDrive.Columns[2].Name = "ID";
-           // dgvFilesFromDrive.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
-        }
 
         private void cbTypeInit()
         {
@@ -77,31 +70,21 @@ namespace GoogleDriveManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridViewInit();
             loadUsers(savePath, saveFile);
             UIinit();
             cbUserInit();
             cbTypeInit();
             txtJsonPath.Text = "Resources\\client_secret.json" ;
             //Properties.Resources.client_secret
+            dtDriveFiles = new DataTable();
+            dgvFilesFromDrive.DataSource = dtDriveFiles;
         }
 
-        private void updateDataGridView()
+        private void updateDataGridView(string name = null, string type = null)
         {
-            dgvFilesFromDrive.Rows.Clear();
-            foreach(string[] array in GoogleDriveAPIV3.listDriveFiles())
-            {
-                dgvFilesFromDrive.Rows.Add(array);
-            }
-        }
-
-        private void updateDataGridView(string name, string type)
-        {
-            dgvFilesFromDrive.Rows.Clear();
-            foreach (string[] array in GoogleDriveAPIV3.listDriveFiles(name, type))
-            {
-                dgvFilesFromDrive.Rows.Add(array);
-            }
+            dtDriveFiles = null;
+            dtDriveFiles = Gtools.ToDataTable<GoogleDriveFile>(GoogleDriveAPIV3.listDriveFiles(name, type));
+            dgvFilesFromDrive.DataSource = dtDriveFiles;
         }
 
         private void UIinit()
@@ -111,6 +94,7 @@ namespace GoogleDriveManager
                 this.MinimumSize = new Size(900, 660);
                 pnlConnection.Height = 290;
                 pnlUser.Visible = true;
+                pnlClient.Visible = true;
                 this.Height = 660;
             }
             else
@@ -118,6 +102,7 @@ namespace GoogleDriveManager
                 this.MinimumSize = new Size(900, 470);
                 pnlConnection.Height = 100;
                 pnlUser.Visible = false;
+                pnlClient.Visible = false;
                 this.Height =  470;
             }
         }
@@ -221,7 +206,7 @@ namespace GoogleDriveManager
         private void textBox_path_TextChanged(object sender, EventArgs e)
         {
             txtFileName.Text = Path.GetFileName(txtFilePath.Text);
-            lblMd5Checksum.Text = Gtools.md5ChecksumGenerator(txtFilePath.Text);
+            txtMd5.Text = Gtools.md5ChecksumGenerator(txtFilePath.Text);
         }
 
 
@@ -245,6 +230,7 @@ namespace GoogleDriveManager
             {
                 case DialogResult.OK:
                     txtFilePath.Text = ofgFileToUpload.FileName;
+                    txtMd5.Text = Gtools.md5ChecksumGenerator(ofgFileToUpload.FileName);
                     break;
                 default:
                     break;
@@ -294,7 +280,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                if (Gtools.compareHash(lblMd5Checksum.Text))
+                if (GoogleDriveAPIV3.compareHash(Gtools.md5ChecksumGenerator(txtFilePath.Text)))
                 {
                     DialogResult result = MessageBox.Show("The file : \"" + fileName +
                         "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
@@ -342,10 +328,10 @@ namespace GoogleDriveManager
         private void dgvFilesFromDrive_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            string fileID = dgvFilesFromDrive.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtParentID.Text = dgvFilesFromDrive.Rows[e.RowIndex].Cells[4].Value.ToString();
            // string fileName = dgvFilesFromDrive.Rows[e.RowIndex].Cells[0].Value.ToString();
             //string mimeType = dgvFilesFromDrive.Rows[e.RowIndex].Cells[3].Value.ToString();
-            Clipboard.SetText(fileID);
+           // Clipboard.SetText(fileID);
             //downloadFile(fileName, fileID, mimeType);
         }
 
@@ -450,8 +436,8 @@ namespace GoogleDriveManager
 
         private void btnCreateBatch_Click(object sender, EventArgs e)
         {
-
             int compressing = (chbCompress.Checked) ? 1 : 0;
+            string appPath = "\"" + Path.GetFullPath(Application.ExecutablePath) + "\"";
             string contentToWrite = "cls" + Environment.NewLine +
                 "@ECHO OFF" + Environment.NewLine +
                 "set param1=\"" + cbUser.SelectedIndex + "\"" + Environment.NewLine +
@@ -463,17 +449,25 @@ namespace GoogleDriveManager
                 contentToWrite += "set param5=\"" + txtParentID.Text + "\"" + Environment.NewLine;
             }
 
-            //string appPath ="\""+ Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) +
-            //    "\\Obrelix\\Google Drive Manager\\GoogleDriveManager.exe\"";
+            DialogResult resultFiles = MessageBox.Show("Do you want to Upload only \"new/changed\" files to Google Drive?" +
+                        UserList[cbUser.SelectedIndex].userName, "Uploading Arguments",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            switch (resultFiles)
+            {
+                case DialogResult.Yes:
+                    break;
+                default:
+                    break;
+            }
 
-            string appPath = "\"" + Path.GetFullPath(Application.ExecutablePath)+"\"";
+            
             contentToWrite += appPath + " %param1% %param2% %param3% %param4%";
 
             if (txtParentID.Text != string.Empty)
             {
                 contentToWrite += " %param5%";
             }
-
+            
             if (cbUser.SelectedIndex != -1)
             {
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
