@@ -37,27 +37,30 @@ namespace GoogleDriveManager
         private static void startWithArgs(string[] args)
         {
             string uploadFilePath, filename, parentID;
-            int user, compressing = 0;
+            int user, compressing = 0, onlyNew = 0;
             try
             {
-                if (loadUsers() && args.Length > 3 )
+                if (loadUsers() && args.Length > 5 )
                 {
-                    int.TryParse(args[0], out user);
-                    int.TryParse(args[3], out compressing);
+                    uploadFilePath = (compressing == 0) ? args[0] : Gtools.compressFile(args[1]);
+                    filename = (compressing == 0) ? args[1] : args[2].Split('.').First() + ".zip";
+                    parentID = (args[2] != "0") ? args[2] : null;
+                    int.TryParse(args[3], out user);
+                    int.TryParse(args[4], out onlyNew);
+                    int.TryParse(args[5], out compressing);
 
-                    uploadFilePath = (compressing == 0) ? args[1] : Gtools.compressFile(args[1]);
-                    filename = (compressing == 0) ? args[2] : args[2].Split('.').First() + ".zip";
 
-                    parentID = (args.Length > 4) ? args[4] : null;
                     if (GoogleDriveAPIV3.GoogleDriveConnection(
                         UserList[user].clientSecretPath,
                         UserList[user].userName))
                     {
-                        parentID =  GoogleDriveAPIV3.createFolderToDrive(
-                            DateTime.Now.Year+DateTime.Now.Month+DateTime.Now.Day+"_"+DateTime.Now.Hour+DateTime.Now.Minute+"_" + filename, 
-                            parentID);
-                        
-                        GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID);
+                        parentID = GoogleDriveAPIV3.createFolderToDrive(
+                        DateTime.Now.Year.ToString() +
+                        DateTime.Now.Month.ToString() +
+                        DateTime.Now.Day.ToString() + "_" +
+                        DateTime.Now.Hour + DateTime.Now.Minute + "_" + filename +"_BackUp",
+                        parentID);
+                        GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID, (onlyNew != 0));
                     }
                     else throw new Exception("Connection Error");
                 }
@@ -65,9 +68,13 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Start with Args Error.\n");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Start with Args Error.\n");
             }
         }
+
+        
 
         private static bool loadUsers()
         {
@@ -81,7 +88,9 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message + " LoadUser Error");
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Load User Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                   Environment.NewLine + exc.Message + " Load User Error.\n");
                 return false;
             }
         }

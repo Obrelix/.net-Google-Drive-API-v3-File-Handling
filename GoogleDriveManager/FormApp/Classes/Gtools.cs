@@ -32,7 +32,9 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Compress IO.File Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Compress IO.File Error.\n");
                 return null;
             }
 
@@ -55,14 +57,34 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message +" Create IO.File Error");
+                writeToFile(frmMain.errorLog, DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Create IO.File Error.\n");
                 return false;
             }
+        }
 
+        public static bool writeToFile(string saveFile, string contentToWrite)
+        {
+            try
+            {
+                using (StreamWriter w = File.AppendText(saveFile))
+                {
+                    w.WriteLine(contentToWrite);
+                }
+                return true;
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Write to IO.File Error");
+                writeToFile(frmMain.errorLog, DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Write to IO.File Error.\n");
+                return false;
+            }
         }
 
 
-        public static string md5ChecksumGenerator(string filePath)
+        public static string hashGenerator(string filePath)
         {
             if (Path.HasExtension(filePath))
             {
@@ -80,7 +102,9 @@ namespace GoogleDriveManager
                 }
                 catch (Exception exc)
                 {
-                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                    System.Diagnostics.Debug.WriteLine(exc.Message + " Hash Generator Error");
+                    writeToFile(frmMain.errorLog, DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Hash Generator Error.\n");
                     return null;
                 }
 
@@ -109,28 +133,40 @@ namespace GoogleDriveManager
         public static DataTable ToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
-
-            //Get all the properties
-            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (PropertyInfo prop in Props)
+            try
             {
-                //Defining type of data column gives proper data table 
-                var type = (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) ? Nullable.GetUnderlyingType(prop.PropertyType) : prop.PropertyType);
-                //Setting column names as Property names
-                dataTable.Columns.Add(prop.Name, type);
-            }
-            foreach (T item in items)
-            {
-                var values = new object[Props.Length];
-                for (int i = 0; i < Props.Length; i++)
+                //Get all the properties
+                PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                foreach (PropertyInfo prop in Props)
                 {
-                    //inserting property values to datatable rows
-                    values[i] = Props[i].GetValue(item, null);
+                    //Defining type of data column gives proper data table 
+                    var type = (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) ? Nullable.GetUnderlyingType(prop.PropertyType) : prop.PropertyType);
+                    //Setting column names as Property names
+                    dataTable.Columns.Add(prop.Name, type);
                 }
-                dataTable.Rows.Add(values);
+                foreach (T item in items)
+                {
+                    var values = new object[Props.Length];
+                    for (int i = 0; i < Props.Length; i++)
+                    {
+                        //inserting property values to datatable rows
+                        values[i] = Props[i].GetValue(item, null);
+                    }
+                    dataTable.Rows.Add(values);
+                }
+                //put a breakpoint here and check datatable
+                return dataTable;
             }
-            //put a breakpoint here and check datatable
-            return dataTable;
+
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Convert to DataTable Error");
+                writeToFile(frmMain.errorLog, DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Convert to DataTable Error.\n");
+                return null;
+            }
+
+            
         }
 
     }

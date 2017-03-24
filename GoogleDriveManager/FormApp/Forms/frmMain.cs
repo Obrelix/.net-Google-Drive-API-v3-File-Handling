@@ -27,6 +27,7 @@ namespace GoogleDriveManager
         DataTable dtDriveFiles;
         static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
         static string saveFile = savePath + "\\GDASaves.json";
+        public static string errorLog = savePath + "\\LogFile.log";
 
         public frmMain()
         {
@@ -78,6 +79,13 @@ namespace GoogleDriveManager
             //Properties.Resources.client_secret
             dtDriveFiles = new DataTable();
             dgvFilesFromDrive.DataSource = dtDriveFiles;
+            createLogFile();
+        }
+
+        private void createLogFile()
+        {
+            if(!System.IO.File.Exists(errorLog))
+                Gtools.createFile(errorLog, DateTime.Now.ToString() + Environment.NewLine + "Error Log file Created\n" + Environment.NewLine);
         }
 
         private void updateDataGridView(string name = null, string type = null)
@@ -123,10 +131,12 @@ namespace GoogleDriveManager
                     loadUsers(savePath, saveFile);
                 }
             }
-            catch (Exception ex)
+            catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Load User Error.\n");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Load User Error.\n");
+
             }
         }
 
@@ -139,9 +149,11 @@ namespace GoogleDriveManager
                 System.IO.File.WriteAllText(saveFile, contentsToWriteToFile);
 
             }
-            catch (Exception ex)
+            catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Save User Error.\n");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Save User Error.\n");
 
             }
         }
@@ -180,8 +192,7 @@ namespace GoogleDriveManager
         {
             if(cbUser.SelectedIndex == -1)
             {
-                MessageBox.Show("You have to:" + Environment.NewLine +
-                    "Select A User in order to connect", "Attention!!",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("You have to Select A User in order to connect", "Attention!!",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -206,7 +217,7 @@ namespace GoogleDriveManager
         private void textBox_path_TextChanged(object sender, EventArgs e)
         {
             txtFileName.Text = Path.GetFileName(txtFilePath.Text);
-            txtMd5.Text = Gtools.md5ChecksumGenerator(txtFilePath.Text);
+            txtMd5.Text = Gtools.hashGenerator(txtFilePath.Text);
         }
 
 
@@ -230,7 +241,7 @@ namespace GoogleDriveManager
             {
                 case DialogResult.OK:
                     txtFilePath.Text = ofgFileToUpload.FileName;
-                    txtMd5.Text = Gtools.md5ChecksumGenerator(ofgFileToUpload.FileName);
+                    txtMd5.Text = Gtools.hashGenerator(ofgFileToUpload.FileName);
                     break;
                 default:
                     break;
@@ -272,36 +283,30 @@ namespace GoogleDriveManager
             string filePath = (chbCompress.Checked) ? Gtools.compressFile(txtFilePath.Text) : txtFilePath.Text;
             string fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
             string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
-            if (!GoogleDriveAPIV3.GoogleDriveConnection(
-                UserList[cbUser.SelectedIndex].clientSecretPath,
-                UserList[cbUser.SelectedIndex].userName))
+            if (GoogleDriveAPIV3.compareHash(Gtools.hashGenerator(txtFilePath.Text)))
             {
-                MessageBox.Show("You have to Connect First in order to upload Files");
+                DialogResult result = MessageBox.Show("The file : \"" + fileName +
+                    "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
+                    "File already exist on Google Drive",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false);
+                        updateDataGridView();
+                        break;
+                    default:
+                        updateDataGridView();
+                        break;
+                }
             }
             else
             {
-                if (GoogleDriveAPIV3.compareHash(Gtools.md5ChecksumGenerator(txtFilePath.Text)))
-                {
-                    DialogResult result = MessageBox.Show("The file : \"" + fileName +
-                        "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
-                        "File already exist on Google Drive",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
-                            updateDataGridView();
-                            break;
-                        default:
-                            updateDataGridView();
-                            break;
-                    }
-                }
-                else
-                {
-                    GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID);
-                    updateDataGridView();
-                }
+               bool result = (MessageBox.Show("Do you want to upload any already existing file on Google Drive ?" ,
+                       "Upload existing files?",
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, result);
+                updateDataGridView();
             }
         }
 
@@ -338,30 +343,24 @@ namespace GoogleDriveManager
         private void btnRemove_Click(object sender, EventArgs e)
         {
             string  fileId, fileName;
-            if (dgvFilesFromDrive.SelectedRows.Count <= 0)
+            DialogResult result = MessageBox.Show("Do you want to delete the " + dgvFilesFromDrive.SelectedRows.Count +" Selected Files?", "Confirm",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            switch (result)
             {
-                MessageBox.Show("You have to select a row  in order to download");
-
-            }
-            else
-            {
-                foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
-                {
-                    fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
-                    fileId = dgvFilesFromDrive.Rows[row.Index].Cells[4].Value.ToString();
-                    DialogResult result = MessageBox.Show("Do you want to delete the File: " + fileName, "Confirm",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    switch (result)
+                case DialogResult.Yes:
+                    foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
                     {
-                        case DialogResult.Yes:
-                            GoogleDriveAPIV3.removeFile(fileId);
-                            break;
-                        default:
-                            break;
+                        fileName = dgvFilesFromDrive.Rows[row.Index].Cells[0].Value.ToString();
+                        fileId = dgvFilesFromDrive.Rows[row.Index].Cells[4].Value.ToString();
+                        GoogleDriveAPIV3.removeFile(fileId);
+
                     }
-                }
-                updateDataGridView();
+                    break;
+                default:
+                    break;
             }
+            
+            updateDataGridView();
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -436,56 +435,44 @@ namespace GoogleDriveManager
 
         private void btnCreateBatch_Click(object sender, EventArgs e)
         {
-            int compressing = (chbCompress.Checked) ? 1 : 0;
+            string param1 = txtFilePath.Text;// file Path parameter
+            string param2 = txtFileName.Text;// file Name parameter
+            string param3 = (txtParentID.Text != string.Empty) ? txtParentID.Text : "0";// Parent Id parameter
+            int param4 = cbUser.SelectedIndex; // user index parameter
+            int param5 = (MessageBox.Show("Do you want to Upload only \"new/changed\" files to Google Drive?" +
+                        UserList[cbUser.SelectedIndex].userName, "Uploading Arguments",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) ? 1 : 0;// Copy Only new parameter
+            int param6 = (chbCompress.Checked) ? 1 : 0;// comporess parameter
+
             string appPath = "\"" + Path.GetFullPath(Application.ExecutablePath) + "\"";
+
+
             string contentToWrite = "cls" + Environment.NewLine +
                 "@ECHO OFF" + Environment.NewLine +
-                "set param1=\"" + cbUser.SelectedIndex + "\"" + Environment.NewLine +
-                "set param2=\"" + txtFilePath.Text + "\"" + Environment.NewLine +
-                "set param3=\"" + txtFileName.Text + "\"" + Environment.NewLine +
-                "set param4=\"" + compressing + "\"" + Environment.NewLine;
-            if (txtParentID.Text != string.Empty)
+                "set param1=\"" + param1 + "\"" + Environment.NewLine +
+                "set param2=\"" + param2 + "\"" + Environment.NewLine +
+                "set param3=\"" + param3 + "\"" + Environment.NewLine +
+                "set param4=\"" + param4 + "\"" + Environment.NewLine +
+                "set param5=\"" + param5 + "\"" + Environment.NewLine +
+                "set param6=\"" + param6 + "\"" + Environment.NewLine +
+                appPath + " %param1% %param2% %param3% %param4% %param5% %param6%";
+            
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+            switch (result)
             {
-                contentToWrite += "set param5=\"" + txtParentID.Text + "\"" + Environment.NewLine;
-            }
+                case DialogResult.OK:
 
-            DialogResult resultFiles = MessageBox.Show("Do you want to Upload only \"new/changed\" files to Google Drive?" +
-                        UserList[cbUser.SelectedIndex].userName, "Uploading Arguments",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            switch (resultFiles)
-            {
-                case DialogResult.Yes:
+                    Gtools.createFile( Path.Combine(fbd.SelectedPath,
+                        UserList[cbUser.SelectedIndex].userName + "_File_" + txtFileName.Text.Split('.').First() + ".bat")
+                        , contentToWrite);
+
                     break;
                 default:
                     break;
             }
 
-            
-            contentToWrite += appPath + " %param1% %param2% %param3% %param4%";
-
-            if (txtParentID.Text != string.Empty)
-            {
-                contentToWrite += " %param5%";
-            }
-            
-            if (cbUser.SelectedIndex != -1)
-            {
-                FolderBrowserDialog fbd = new FolderBrowserDialog();
-                DialogResult result = fbd.ShowDialog();
-                switch (result)
-                {
-                    case DialogResult.OK:
-
-                        Gtools.createFile( Path.Combine(fbd.SelectedPath,
-                            UserList[cbUser.SelectedIndex].userName + "_File_" + txtFileName.Text.Split('.').First() + ".bat")
-                            , contentToWrite);
-
-                        break;
-                    default:
-                        break;
-                }
-
-            }
+           
         }
 
 

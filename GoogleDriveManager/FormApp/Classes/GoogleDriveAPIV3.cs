@@ -77,7 +77,6 @@ namespace GoogleDriveManager
                     //listRequest.OrderBy = "mimeType";
                     // List files.
                     IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
-
                     filesList.Clear();
                     if (files != null && files.Count > 0)
                     {
@@ -132,20 +131,13 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Drivefile list Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                            Environment.NewLine + exc.Message + " Drivefile list Error.\n");
             }
             return filesList;
         }
 
-
-        public static bool compareHash(string hashToCompare)
-        {
-            foreach (GoogleDriveFile file in GoogleDriveAPIV3.listDriveFiles())
-            {
-                if (file.hash == hashToCompare) return true;
-            }
-            return false;
-        }
         
         private static string sizeFix(string bytesString, string type, int decimalPlaces = 1)
         {
@@ -193,7 +185,9 @@ namespace GoogleDriveManager
                 }
                 catch (Exception exc)
                 {
-                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                    System.Diagnostics.Debug.WriteLine(exc.Message + " Get Credential Error");
+                    Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                            Environment.NewLine + exc.Message + " Get Credential Error.\n");
                     return false;
                 }
             }
@@ -219,7 +213,9 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Create Drive Service Error.\n");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                            Environment.NewLine + exc.Message + " Create Drive Service Error.\n");
                 return false;
             }
 
@@ -228,7 +224,7 @@ namespace GoogleDriveManager
         
 
 
-        private static void uploadFileToDrive(string folderId, string fileName, string filePath, string fileType)
+        private static bool uploadFileToDrive(string folderId, string fileName, string filePath, string fileType)
         {
             try
             {
@@ -267,6 +263,8 @@ namespace GoogleDriveManager
                                 {
                                     System.Diagnostics.Debug.WriteLine("Upload failed.");
                                     //MessageBox.Show("File failed to upload!!!", "Upload Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                                                Environment.NewLine +  "Upload failed.\n");
                                     break;
                                 }
                         }
@@ -275,12 +273,46 @@ namespace GoogleDriveManager
                     request.Upload();
                 }
                 var file = request.ResponseBody;
-                System.Diagnostics.Debug.WriteLine("File ID: " + file.Id);
+                System.Diagnostics.Debug.WriteLine("File ID:{0} \n FileName {1} ", file.Id, file.Name);
+                return true;
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Upload file to Drive Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Upload file to Drive Error.\n");
+                return false;
             }
+        }
+
+        private static bool uploadFileToDrive(string folderId, string fileName, string filePath, string fileType, bool onlyNew)
+        {
+            if (onlyNew)
+            {
+                if (!compareHash(Gtools.hashGenerator(filePath)))
+                {
+                    uploadFileToDrive(folderId, fileName, filePath, fileType);
+                    return true;
+                }
+                else return false;
+
+            }
+            else
+            {
+                uploadFileToDrive(folderId, fileName, filePath, fileType);
+                return true;
+            }
+                
+        }
+
+
+        public static bool compareHash(string hashToCompare)
+        {
+            foreach (GoogleDriveFile file in GoogleDriveAPIV3.listDriveFiles())
+            {
+                if (file.hash == hashToCompare) return true;
+            }
+            return false;
         }
 
         public static string createFolderToDrive(string folderName, string parentId)
@@ -310,13 +342,15 @@ namespace GoogleDriveManager
             }
             catch(Exception exc)
             { 
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Create Folder to Drive Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Create Folder to Drive Error.\n");
                 return null;
             }
         }
 
 
-        public static void uploadToDrive(string path, string name, string parentId)
+        public static void uploadToDrive(string path, string name, string parentId, bool onlyNew)
         {
             if (Path.HasExtension(path))
             {
@@ -324,15 +358,16 @@ namespace GoogleDriveManager
                     parentId,
                     name,
                     path,
-                    getMimeType(Path.GetFileName(path)));
+                    getMimeType(Path.GetFileName(path)),
+                    onlyNew);
             }
             else
             {
-                directoryUpload(path, parentId);
+                directoryUpload(path, parentId, onlyNew);
             }
         }
 
-        public static void directoryUpload(string path, string parentId)
+        public static void directoryUpload(string path, string parentId, bool onlyNew)
         {
             try
             {
@@ -350,26 +385,27 @@ namespace GoogleDriveManager
                         "Source directory does not exist or could not be found: "
                         + path);
                 }
-
-
+                
                 FileInfo[] files = dir.GetFiles();
                 foreach (FileInfo file in files)
                 {
                     uploadFileToDrive(
                         folderId, file.Name,
                         Path.Combine(path, file.Name),
-                        getMimeType(file.Name));
+                        getMimeType(file.Name), onlyNew);
                 }
 
                 DirectoryInfo[] dirs = dir.GetDirectories();
                 foreach (DirectoryInfo subdir in dirs)
                 {
-                    directoryUpload(subdir.FullName,  folderId);
+                    directoryUpload(subdir.FullName,  folderId, onlyNew);
                 }
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message +" Directory upload Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Directory upload Error.\n");
             }
         }
 
@@ -386,7 +422,9 @@ namespace GoogleDriveManager
                 }
                 catch (Exception exc)
                 {
-                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                    System.Diagnostics.Debug.WriteLine(exc.Message +" Convert Memory stream Error");
+                    Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Convert Memory stream Error.\n");
                 }
             }
         }
@@ -399,7 +437,9 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message +" Remove Drive File error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Remove Drive File Error.\n");
             }
         }
         public static void downloadFromDrive(string filename, string fileId, string savePath, string mimeType)
@@ -490,7 +530,9 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message);
+                System.Diagnostics.Debug.WriteLine(exc.Message +" Download From Drive Error");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Download From Drive.\n");
             }
         }
 
