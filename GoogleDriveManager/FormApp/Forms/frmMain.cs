@@ -283,31 +283,31 @@ namespace GoogleDriveManager
             string filePath = (chbCompress.Checked) ? Gtools.compressFile(txtFilePath.Text) : txtFilePath.Text;
             string fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
             string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
-            if (GoogleDriveAPIV3.compareHash(Gtools.hashGenerator(txtFilePath.Text)))
-            {
-                DialogResult result = MessageBox.Show("The file : \"" + fileName +
-                    "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
-                    "File already exist on Google Drive",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false);
-                        updateDataGridView();
-                        break;
-                    default:
-                        updateDataGridView();
-                        break;
-                }
-            }
-            else
-            {
-               bool result = (MessageBox.Show("Do you want to upload any already existing file on Google Drive ?" ,
+            //if (GoogleDriveAPIV3.compareHash(Gtools.hashGenerator(txtFilePath.Text)))
+            //{
+            //    DialogResult result = MessageBox.Show("The file : \"" + fileName +
+            //        "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
+            //        "File already exist on Google Drive",
+            //        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    switch (result)
+            //    {
+            //        case DialogResult.Yes:
+            //            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false);
+            //            updateDataGridView();
+            //            break;
+            //        default:
+            //            updateDataGridView();
+            //            break;
+            //    }
+            //}
+            //else
+            //{
+               bool result = (MessageBox.Show("Do you want to upload only new/changed files on Google Drive ?" ,
                        "Upload existing files?",
                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
                 GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, result);
                 updateDataGridView();
-            }
+            //}
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
