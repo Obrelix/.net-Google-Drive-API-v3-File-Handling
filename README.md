@@ -1,6 +1,6 @@
-![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample4.PNG)
+![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample5.PNG)
 
-![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample3.PNG)
+![alt tag](https://raw.githubusercontent.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/master/images/pictureSample6.PNG)
 
 # .Net Google Drive API v3 file handling application
 
