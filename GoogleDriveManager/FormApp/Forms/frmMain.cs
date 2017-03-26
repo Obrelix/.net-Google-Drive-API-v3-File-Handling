@@ -166,10 +166,19 @@ namespace GoogleDriveManager
         private void pnlDragAndDrop_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            lbFilesToUpload.Items.Clear();
+
             foreach (string file in files)
             {
-                txtFilePath.Text = file;
-                System.Diagnostics.Debug.WriteLine("File: {0}", file);
+                if (chbUploadMultiple.Checked)
+                {
+                    lbFilesToUpload.Items.Add(file);
+                }
+                else
+                {
+                    txtFilePath.Text = file;
+                    System.Diagnostics.Debug.WriteLine("File: {0}", file);
+                }
             } 
         }
 
@@ -280,34 +289,63 @@ namespace GoogleDriveManager
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            string filePath = (chbCompress.Checked) ? Gtools.compressFile(txtFilePath.Text) : txtFilePath.Text;
-            string fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
+            string filePath, fileName;
             string parentID = (txtParentID.Text != string.Empty) ? txtParentID.Text : null;
-            //if (GoogleDriveAPIV3.compareHash(Gtools.hashGenerator(txtFilePath.Text)))
-            //{
-            //    DialogResult result = MessageBox.Show("The file : \"" + fileName +
-            //        "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?", 
-            //        "File already exist on Google Drive",
-            //        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    switch (result)
-            //    {
-            //        case DialogResult.Yes:
-            //            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false);
-            //            updateDataGridView();
-            //            break;
-            //        default:
-            //            updateDataGridView();
-            //            break;
-            //    }
-            //}
-            //else
-            //{
-               bool result = (MessageBox.Show("Do you want to upload only new/changed files on Google Drive ?" ,
+               bool result;
+            if (chbUploadMultiple.Checked)
+            {
+                result = (MessageBox.Show("Do you want to upload only new/changed files on Google Drive ?",
                        "Upload existing files?",
                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-                GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, result);
-                updateDataGridView();
-            //}
+                lbFilesToUpload.BeginUpdate();
+                try
+                {
+                    for (int i = lbFilesToUpload.Items.Count - 1; i >= 0; i--)
+                    {
+                       // lbFilesToUpload.Items[i].c
+                        filePath = (chbCompress.Checked) ? Gtools.compressFile(lbFilesToUpload.Items[i].ToString()) : lbFilesToUpload.Items[i].ToString();
+                        System.Diagnostics.Debug.WriteLine(filePath);
+                        fileName = (chbCompress.Checked) ? Path.GetFileName(lbFilesToUpload.Items[i].ToString().Split('.').First()) + ".zip" : Path.GetFileName(lbFilesToUpload.Items[i].ToString());
+                        GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, result);
+                        string newName = "DONE!  " + lbFilesToUpload.Items[i].ToString();
+
+                        lbFilesToUpload.Items.RemoveAt(i);
+                        lbFilesToUpload.Items.Insert(i, newName);
+                        updateDataGridView();
+                    }
+                }
+                catch(Exception exc)
+                {
+                    System.Diagnostics.Debug.WriteLine(exc.Message);
+                }
+                finally
+                {
+                    lbFilesToUpload.EndUpdate();
+                }
+                foreach (var item in lbFilesToUpload.Items) 
+                {
+                    
+                    
+                }
+
+            }
+            else
+            {
+                filePath = (chbCompress.Checked) ? Gtools.compressFile(txtFilePath.Text) : txtFilePath.Text;
+                fileName = (chbCompress.Checked) ? txtFileName.Text.Split('.').First() + ".zip" : txtFileName.Text;
+                if (GoogleDriveAPIV3.compareHash(Gtools.hashGenerator(filePath)))
+                {
+                    result = MessageBox.Show("The file : \"" + fileName +
+                        "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?",
+                        "File already exist on Google Drive",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                    
+                            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, !result);
+                            updateDataGridView();
+                           
+                }
+            }
+                
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
@@ -479,7 +517,7 @@ namespace GoogleDriveManager
         private void tmrUpdate_Tick(object sender, EventArgs e)
         {
             
-            if(txtFileName.Text != "" && txtFilePath.Text != "")
+            if((txtFileName.Text != "" && txtFilePath.Text != "")|| lbFilesToUpload.Items.Count > 0)
             {
                 btnCreateBatch.Enabled = true;
                 btnUpload.Enabled = true;
@@ -561,6 +599,10 @@ namespace GoogleDriveManager
         {
         }
 
-        
+        private void chbUploadMultiple_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlSF.Visible = !chbUploadMultiple.Checked;
+            pnlListBox.Visible = chbUploadMultiple.Checked;
+        }
     }
 }
