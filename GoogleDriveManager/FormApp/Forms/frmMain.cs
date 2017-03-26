@@ -641,5 +641,15 @@ namespace GoogleDriveManager
             txtBackUpName.Text = "Backup";
         }
 
+        private void mnu_About_Click(object sender, EventArgs e)
+        {
+            frmAbout form = new frmAbout();
+            form.Show();
+        }
+
+        private void mnuHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/issues");
+        }
     }
 }

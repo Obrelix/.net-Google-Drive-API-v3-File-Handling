@@ -43,6 +43,9 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.pnlDragAndDrop = new System.Windows.Forms.Panel();
             this.pnlListBox = new System.Windows.Forms.Panel();
+            this.lblBackUp = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.txtBackUpName = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.lbFilesToUpload = new System.Windows.Forms.ListBox();
             this.pnlSF = new System.Windows.Forms.Panel();
@@ -91,7 +94,7 @@
             this.minimizeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtCreateFolder = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -101,9 +104,6 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.lblBackUp = new System.Windows.Forms.Label();
-            this.txtBackUpName = new System.Windows.Forms.TextBox();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlListBox.SuspendLayout();
             this.pnlSF.SuspendLayout();
@@ -221,6 +221,38 @@
             this.pnlListBox.Size = new System.Drawing.Size(277, 131);
             this.pnlListBox.TabIndex = 102;
             this.pnlListBox.Visible = false;
+            // 
+            // lblBackUp
+            // 
+            this.lblBackUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblBackUp.AutoSize = true;
+            this.lblBackUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblBackUp.Location = new System.Drawing.Point(5, 110);
+            this.lblBackUp.Name = "lblBackUp";
+            this.lblBackUp.Size = new System.Drawing.Size(60, 16);
+            this.lblBackUp.TabIndex = 104;
+            this.lblBackUp.Text = "BackUp ";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnReset.Location = new System.Drawing.Point(208, 1);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(66, 20);
+            this.btnReset.TabIndex = 25;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // txtBackUpName
+            // 
+            this.txtBackUpName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtBackUpName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtBackUpName.Location = new System.Drawing.Point(71, 109);
+            this.txtBackUpName.Name = "txtBackUpName";
+            this.txtBackUpName.Size = new System.Drawing.Size(203, 20);
+            this.txtBackUpName.TabIndex = 103;
             // 
             // label13
             // 
@@ -739,14 +771,14 @@
             // 
             // mnu_StartWithWindows
             // 
-            this.mnu_StartWithWindows.Checked = true;
-            this.mnu_StartWithWindows.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnu_StartWithWindows.Enabled = false;
             this.mnu_StartWithWindows.Name = "mnu_StartWithWindows";
             this.mnu_StartWithWindows.Size = new System.Drawing.Size(187, 22);
             this.mnu_StartWithWindows.Text = "Start with Windows";
             // 
             // minimizeToTrayToolStripMenuItem
             // 
+            this.minimizeToTrayToolStripMenuItem.Enabled = false;
             this.minimizeToTrayToolStripMenuItem.Name = "minimizeToTrayToolStripMenuItem";
             this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
@@ -755,7 +787,7 @@
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_About,
-            this.helpToolStripMenuItem});
+            this.mnuHelp});
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
@@ -764,14 +796,16 @@
             // mnu_About
             // 
             this.mnu_About.Name = "mnu_About";
-            this.mnu_About.Size = new System.Drawing.Size(111, 22);
+            this.mnu_About.Size = new System.Drawing.Size(152, 22);
             this.mnu_About.Text = "A&bout";
+            this.mnu_About.Click += new System.EventHandler(this.mnu_About_Click);
             // 
-            // helpToolStripMenuItem
+            // mnuHelp
             // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.mnuHelp.Name = "mnuHelp";
+            this.mnuHelp.Size = new System.Drawing.Size(152, 22);
+            this.mnuHelp.Text = "Help";
+            this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
             // 
             // panel1
             // 
@@ -881,38 +915,6 @@
             this.txtSearchFile.Size = new System.Drawing.Size(314, 22);
             this.txtSearchFile.TabIndex = 25;
             // 
-            // btnReset
-            // 
-            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnReset.Location = new System.Drawing.Point(208, 1);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(66, 20);
-            this.btnReset.TabIndex = 25;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // lblBackUp
-            // 
-            this.lblBackUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBackUp.AutoSize = true;
-            this.lblBackUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblBackUp.Location = new System.Drawing.Point(5, 110);
-            this.lblBackUp.Name = "lblBackUp";
-            this.lblBackUp.Size = new System.Drawing.Size(60, 16);
-            this.lblBackUp.TabIndex = 104;
-            this.lblBackUp.Text = "BackUp ";
-            // 
-            // txtBackUpName
-            // 
-            this.txtBackUpName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtBackUpName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtBackUpName.Location = new System.Drawing.Point(71, 109);
-            this.txtBackUpName.Name = "txtBackUpName";
-            this.txtBackUpName.Size = new System.Drawing.Size(203, 20);
-            this.txtBackUpName.TabIndex = 103;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -997,7 +999,7 @@
         private System.Windows.Forms.ToolStripMenuItem minimizeToTrayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnu_About;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelp;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCreateBatch;
         private System.Windows.Forms.Button btnRefresh;
