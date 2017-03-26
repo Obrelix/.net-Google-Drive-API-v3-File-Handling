@@ -42,16 +42,21 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.pnlDragAndDrop = new System.Windows.Forms.Panel();
+            this.pnlListBox = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lbFilesToUpload = new System.Windows.Forms.ListBox();
+            this.pnlSF = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtMd5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.chbCompress = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtParentID = new System.Windows.Forms.TextBox();
-            this.btnCreateBatch = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnDirToUpload = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.chbUploadMultiple = new System.Windows.Forms.CheckBox();
+            this.chbCompress = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCreateBatch = new System.Windows.Forms.Button();
+            this.txtParentID = new System.Windows.Forms.TextBox();
             this.pnlConnection = new System.Windows.Forms.Panel();
             this.chbAddUser = new System.Windows.Forms.CheckBox();
             this.pnlUser = new System.Windows.Forms.Panel();
@@ -96,12 +101,12 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
-            this.chbUploadMultiple = new System.Windows.Forms.CheckBox();
-            this.pnlSF = new System.Windows.Forms.Panel();
-            this.pnlListBox = new System.Windows.Forms.Panel();
-            this.lbFilesToUpload = new System.Windows.Forms.ListBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.lblBackUp = new System.Windows.Forms.Label();
+            this.txtBackUpName = new System.Windows.Forms.TextBox();
             this.pnlDragAndDrop.SuspendLayout();
+            this.pnlListBox.SuspendLayout();
+            this.pnlSF.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlUser.SuspendLayout();
             this.pnlClient.SuspendLayout();
@@ -109,8 +114,6 @@
             this.menuMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.pnlSF.SuspendLayout();
-            this.pnlListBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -133,6 +136,7 @@
             // 
             // btnUpload
             // 
+            this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpload.BackColor = System.Drawing.Color.LightCyan;
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnUpload.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -183,7 +187,8 @@
             // pnlDragAndDrop
             // 
             this.pnlDragAndDrop.AllowDrop = true;
-            this.pnlDragAndDrop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlDragAndDrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlDragAndDrop.BackColor = System.Drawing.Color.DarkSlateGray;
             this.pnlDragAndDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDragAndDrop.Controls.Add(this.pnlListBox);
@@ -201,6 +206,70 @@
             this.pnlDragAndDrop.TabIndex = 17;
             this.pnlDragAndDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
             this.pnlDragAndDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
+            // 
+            // pnlListBox
+            // 
+            this.pnlListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlListBox.Controls.Add(this.lblBackUp);
+            this.pnlListBox.Controls.Add(this.btnReset);
+            this.pnlListBox.Controls.Add(this.txtBackUpName);
+            this.pnlListBox.Controls.Add(this.label13);
+            this.pnlListBox.Controls.Add(this.lbFilesToUpload);
+            this.pnlListBox.Location = new System.Drawing.Point(1, 27);
+            this.pnlListBox.Name = "pnlListBox";
+            this.pnlListBox.Size = new System.Drawing.Size(277, 131);
+            this.pnlListBox.TabIndex = 102;
+            this.pnlListBox.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label13.Location = new System.Drawing.Point(5, 4);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(157, 16);
+            this.label13.TabIndex = 101;
+            this.label13.Text = "Drag and Drop files here!";
+            // 
+            // lbFilesToUpload
+            // 
+            this.lbFilesToUpload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFilesToUpload.FormattingEnabled = true;
+            this.lbFilesToUpload.HorizontalScrollbar = true;
+            this.lbFilesToUpload.Location = new System.Drawing.Point(8, 22);
+            this.lbFilesToUpload.Name = "lbFilesToUpload";
+            this.lbFilesToUpload.Size = new System.Drawing.Size(266, 82);
+            this.lbFilesToUpload.TabIndex = 0;
+            // 
+            // pnlSF
+            // 
+            this.pnlSF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlSF.Controls.Add(this.label3);
+            this.pnlSF.Controls.Add(this.txtMd5);
+            this.pnlSF.Controls.Add(this.txtFileName);
+            this.pnlSF.Controls.Add(this.label6);
+            this.pnlSF.Controls.Add(this.label1);
+            this.pnlSF.Controls.Add(this.button_browse);
+            this.pnlSF.Controls.Add(this.txtFilePath);
+            this.pnlSF.Controls.Add(this.label4);
+            this.pnlSF.Controls.Add(this.label9);
+            this.pnlSF.Controls.Add(this.btnDirToUpload);
+            this.pnlSF.Location = new System.Drawing.Point(1, 27);
+            this.pnlSF.Name = "pnlSF";
+            this.pnlSF.Size = new System.Drawing.Size(277, 131);
+            this.pnlSF.TabIndex = 101;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label3.Location = new System.Drawing.Point(3, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 16);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Select a File : ";
             // 
             // txtMd5
             // 
@@ -222,48 +291,15 @@
             this.label6.TabIndex = 26;
             this.label6.Text = "MD5 Hash:";
             // 
-            // chbCompress
+            // label4
             // 
-            this.chbCompress.AutoSize = true;
-            this.chbCompress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbCompress.Location = new System.Drawing.Point(37, 188);
-            this.chbCompress.Name = "chbCompress";
-            this.chbCompress.Size = new System.Drawing.Size(208, 20);
-            this.chbCompress.TabIndex = 24;
-            this.chbCompress.Text = "Compress Files/Folders to .zip";
-            this.chbCompress.UseVisualStyleBackColor = true;
-            this.chbCompress.CheckedChanged += new System.EventHandler(this.chbCompress_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label2.Location = new System.Drawing.Point(6, 163);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Parent ID";
-            // 
-            // txtParentID
-            // 
-            this.txtParentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtParentID.Location = new System.Drawing.Point(72, 162);
-            this.txtParentID.Name = "txtParentID";
-            this.txtParentID.Size = new System.Drawing.Size(203, 20);
-            this.txtParentID.TabIndex = 18;
-            // 
-            // btnCreateBatch
-            // 
-            this.btnCreateBatch.BackColor = System.Drawing.Color.LightCyan;
-            this.btnCreateBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnCreateBatch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCreateBatch.Location = new System.Drawing.Point(155, 210);
-            this.btnCreateBatch.Name = "btnCreateBatch";
-            this.btnCreateBatch.Size = new System.Drawing.Size(120, 25);
-            this.btnCreateBatch.TabIndex = 17;
-            this.btnCreateBatch.Text = "Create batch";
-            this.btnCreateBatch.UseVisualStyleBackColor = false;
-            this.btnCreateBatch.Click += new System.EventHandler(this.btnCreateBatch_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label4.Location = new System.Drawing.Point(4, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 16);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "File path";
             // 
             // label9
             // 
@@ -287,25 +323,64 @@
             this.btnDirToUpload.UseVisualStyleBackColor = true;
             this.btnDirToUpload.Click += new System.EventHandler(this.btnDirToUpload_Click);
             // 
-            // label4
+            // chbUploadMultiple
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label4.Location = new System.Drawing.Point(4, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 16);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "File path";
+            this.chbUploadMultiple.AutoSize = true;
+            this.chbUploadMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.chbUploadMultiple.Location = new System.Drawing.Point(37, 4);
+            this.chbUploadMultiple.Name = "chbUploadMultiple";
+            this.chbUploadMultiple.Size = new System.Drawing.Size(196, 20);
+            this.chbUploadMultiple.TabIndex = 28;
+            this.chbUploadMultiple.Text = "Upload Multiple Files/Folder";
+            this.chbUploadMultiple.UseVisualStyleBackColor = true;
+            this.chbUploadMultiple.CheckedChanged += new System.EventHandler(this.chbUploadMultiple_CheckedChanged);
             // 
-            // label3
+            // chbCompress
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label3.Location = new System.Drawing.Point(3, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 16);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Select a File : ";
+            this.chbCompress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chbCompress.AutoSize = true;
+            this.chbCompress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.chbCompress.Location = new System.Drawing.Point(37, 188);
+            this.chbCompress.Name = "chbCompress";
+            this.chbCompress.Size = new System.Drawing.Size(208, 20);
+            this.chbCompress.TabIndex = 24;
+            this.chbCompress.Text = "Compress Files/Folders to .zip";
+            this.chbCompress.UseVisualStyleBackColor = true;
+            this.chbCompress.CheckedChanged += new System.EventHandler(this.chbCompress_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label2.Location = new System.Drawing.Point(6, 163);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Parent ID";
+            // 
+            // btnCreateBatch
+            // 
+            this.btnCreateBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateBatch.BackColor = System.Drawing.Color.LightCyan;
+            this.btnCreateBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnCreateBatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCreateBatch.Location = new System.Drawing.Point(155, 210);
+            this.btnCreateBatch.Name = "btnCreateBatch";
+            this.btnCreateBatch.Size = new System.Drawing.Size(120, 25);
+            this.btnCreateBatch.TabIndex = 17;
+            this.btnCreateBatch.Text = "Create batch";
+            this.btnCreateBatch.UseVisualStyleBackColor = false;
+            this.btnCreateBatch.Click += new System.EventHandler(this.btnCreateBatch_Click);
+            // 
+            // txtParentID
+            // 
+            this.txtParentID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtParentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtParentID.Location = new System.Drawing.Point(72, 162);
+            this.txtParentID.Name = "txtParentID";
+            this.txtParentID.Size = new System.Drawing.Size(203, 20);
+            this.txtParentID.TabIndex = 18;
             // 
             // pnlConnection
             // 
@@ -500,7 +575,6 @@
             // 
             // lblPanel
             // 
-            this.lblPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPanel.AutoSize = true;
             this.lblPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblPanel.ForeColor = System.Drawing.Color.White;
@@ -807,62 +881,37 @@
             this.txtSearchFile.Size = new System.Drawing.Size(314, 22);
             this.txtSearchFile.TabIndex = 25;
             // 
-            // chbUploadMultiple
+            // btnReset
             // 
-            this.chbUploadMultiple.AutoSize = true;
-            this.chbUploadMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbUploadMultiple.Location = new System.Drawing.Point(37, 4);
-            this.chbUploadMultiple.Name = "chbUploadMultiple";
-            this.chbUploadMultiple.Size = new System.Drawing.Size(196, 20);
-            this.chbUploadMultiple.TabIndex = 28;
-            this.chbUploadMultiple.Text = "Upload Multiple Files/Folder";
-            this.chbUploadMultiple.UseVisualStyleBackColor = true;
-            this.chbUploadMultiple.CheckedChanged += new System.EventHandler(this.chbUploadMultiple_CheckedChanged);
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnReset.Location = new System.Drawing.Point(208, 1);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(66, 20);
+            this.btnReset.TabIndex = 25;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // pnlSF
+            // lblBackUp
             // 
-            this.pnlSF.Controls.Add(this.label3);
-            this.pnlSF.Controls.Add(this.txtMd5);
-            this.pnlSF.Controls.Add(this.txtFileName);
-            this.pnlSF.Controls.Add(this.label6);
-            this.pnlSF.Controls.Add(this.label1);
-            this.pnlSF.Controls.Add(this.button_browse);
-            this.pnlSF.Controls.Add(this.txtFilePath);
-            this.pnlSF.Controls.Add(this.label4);
-            this.pnlSF.Controls.Add(this.label9);
-            this.pnlSF.Controls.Add(this.btnDirToUpload);
-            this.pnlSF.Location = new System.Drawing.Point(1, 27);
-            this.pnlSF.Name = "pnlSF";
-            this.pnlSF.Size = new System.Drawing.Size(277, 131);
-            this.pnlSF.TabIndex = 101;
+            this.lblBackUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblBackUp.AutoSize = true;
+            this.lblBackUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblBackUp.Location = new System.Drawing.Point(5, 110);
+            this.lblBackUp.Name = "lblBackUp";
+            this.lblBackUp.Size = new System.Drawing.Size(60, 16);
+            this.lblBackUp.TabIndex = 104;
+            this.lblBackUp.Text = "BackUp ";
             // 
-            // pnlListBox
+            // txtBackUpName
             // 
-            this.pnlListBox.Controls.Add(this.label13);
-            this.pnlListBox.Controls.Add(this.lbFilesToUpload);
-            this.pnlListBox.Location = new System.Drawing.Point(1, 27);
-            this.pnlListBox.Name = "pnlListBox";
-            this.pnlListBox.Size = new System.Drawing.Size(277, 131);
-            this.pnlListBox.TabIndex = 102;
-            this.pnlListBox.Visible = false;
-            // 
-            // lbFilesToUpload
-            // 
-            this.lbFilesToUpload.FormattingEnabled = true;
-            this.lbFilesToUpload.Location = new System.Drawing.Point(8, 22);
-            this.lbFilesToUpload.Name = "lbFilesToUpload";
-            this.lbFilesToUpload.Size = new System.Drawing.Size(266, 108);
-            this.lbFilesToUpload.TabIndex = 0;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label13.Location = new System.Drawing.Point(29, 4);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(215, 16);
-            this.label13.TabIndex = 101;
-            this.label13.Text = "Drag and Drop Files/Folders Here!";
+            this.txtBackUpName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtBackUpName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtBackUpName.Location = new System.Drawing.Point(71, 109);
+            this.txtBackUpName.Name = "txtBackUpName";
+            this.txtBackUpName.Size = new System.Drawing.Size(203, 20);
+            this.txtBackUpName.TabIndex = 103;
             // 
             // frmMain
             // 
@@ -886,6 +935,10 @@
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlDragAndDrop.ResumeLayout(false);
             this.pnlDragAndDrop.PerformLayout();
+            this.pnlListBox.ResumeLayout(false);
+            this.pnlListBox.PerformLayout();
+            this.pnlSF.ResumeLayout(false);
+            this.pnlSF.PerformLayout();
             this.pnlConnection.ResumeLayout(false);
             this.pnlConnection.PerformLayout();
             this.pnlUser.ResumeLayout(false);
@@ -899,10 +952,6 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.pnlSF.ResumeLayout(false);
-            this.pnlSF.PerformLayout();
-            this.pnlListBox.ResumeLayout(false);
-            this.pnlListBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -977,6 +1026,9 @@
         private System.Windows.Forms.Panel pnlListBox;
         private System.Windows.Forms.ListBox lbFilesToUpload;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Label lblBackUp;
+        private System.Windows.Forms.TextBox txtBackUpName;
     }
 }
 

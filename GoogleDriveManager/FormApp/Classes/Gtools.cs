@@ -168,6 +168,11 @@ namespace GoogleDriveManager
 
             
         }
+        
+        public static  string getTimeStamp()
+        {
+            return DateTime.Now.ToString("yyyyMMdd_HHmmss", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
+        }
 
     }
 

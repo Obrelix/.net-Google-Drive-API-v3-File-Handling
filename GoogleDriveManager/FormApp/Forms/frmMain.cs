@@ -34,8 +34,8 @@ namespace GoogleDriveManager
         {
             InitializeComponent();
             pnlDragAndDrop.AllowDrop = true;
-            pnlDragAndDrop.DragEnter += new DragEventHandler(pnlDragAndDrop_DragEnter);
-            pnlDragAndDrop.DragDrop += new DragEventHandler(pnlDragAndDrop_DragDrop);
+            //pnlDragAndDrop.DragEnter += new DragEventHandler(pnlDragAndDrop_DragEnter);
+            //pnlDragAndDrop.DragDrop += new DragEventHandler(pnlDragAndDrop_DragDrop);
         }
 
 
@@ -105,6 +105,10 @@ namespace GoogleDriveManager
                 pnlUser.Visible = true;
                 pnlClient.Visible = true;
                 this.Height = 660;
+                lblPanel.Location = new Point(4, 351);
+                pnlDragAndDrop.Location = new Point(7, 371);
+                pnlDragAndDrop.Height -= 190;
+
             }
             else
             {
@@ -112,6 +116,9 @@ namespace GoogleDriveManager
                 pnlConnection.Height = 100;
                 pnlUser.Visible = false;
                 pnlClient.Visible = false;
+                lblPanel.Location = new Point(4, 161);
+                pnlDragAndDrop.Location = new Point(7, 181);
+                pnlDragAndDrop.Height += 190;
                 this.Height =  470;
             }
         }
@@ -159,16 +166,39 @@ namespace GoogleDriveManager
             }
         }
 
+        private void saveFileLIst(string saveFile)
+        {
+            try
+            {
+                string contentsToWriteToFile = JsonConvert.SerializeObject(IOFileList.ToArray(), Newtonsoft.Json.Formatting.Indented);
+
+                System.IO.File.WriteAllText(saveFile, contentsToWriteToFile);
+
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Save User Error.\n");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                    Environment.NewLine + exc.Message + " Save User Error.\n");
+
+            }
+        }
+
         private void pnlDragAndDrop_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.All : DragDropEffects.None;
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //    e.Effect = DragDropEffects.All;
+            //else
+            //    e.Effect = DragDropEffects.None;
         }
 
         private void pnlDragAndDrop_DragDrop(object sender, DragEventArgs e)
         {
+
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            lbFilesToUpload.Items.Clear();
-            IOFileList.Clear();
+            
             foreach (string file in files)
             {
                 if (chbUploadMultiple.Checked)
@@ -180,8 +210,15 @@ namespace GoogleDriveManager
                 {
                     txtFilePath.Text = file;
                     System.Diagnostics.Debug.WriteLine("File: {0}", file);
+                    IOFileList.Add(new IOFile(file));
                 }
             } 
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            lbFilesToUpload.Items.Clear();
+            IOFileList.Clear();
         }
 
         private void pnlConnection_DragDragEnter(object sender, DragEventArgs e)
@@ -465,10 +502,14 @@ namespace GoogleDriveManager
             if (e.RowIndex >= 0) dgvFilesFromDrive.Rows[e.RowIndex].Selected = true ;
         }
 
+
         private void btnCreateBatch_Click(object sender, EventArgs e)
         {
-            string param1 = txtFilePath.Text;// file Path parameter
-            string param2 = txtFileName.Text;// file Name parameter
+            string fileListName = Gtools.getTimeStamp() + "_" + UserList[cbUser.SelectedIndex].userName + "_" + txtBackUpName.Text + ".json";
+            string fileListPath = Path.Combine(savePath, fileListName);
+            saveFileLIst(fileListPath);
+            string param1 = fileListPath;// filelist.json Path parameter
+            string param2 = (chbUploadMultiple.Checked)? txtBackUpName.Text : txtFileName.Text;// file Name parameter
             string param3 = (txtParentID.Text != string.Empty) ? txtParentID.Text : "0";// Parent Id parameter
             int param4 = cbUser.SelectedIndex; // user index parameter
             int param5 = (MessageBox.Show("Do you want to Upload only \"new/changed\" files to Google Drive?" +
@@ -597,6 +638,8 @@ namespace GoogleDriveManager
         {
             pnlSF.Visible = !chbUploadMultiple.Checked;
             pnlListBox.Visible = chbUploadMultiple.Checked;
+            txtBackUpName.Text = "Backup";
         }
+
     }
 }
