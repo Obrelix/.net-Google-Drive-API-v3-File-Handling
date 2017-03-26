@@ -23,6 +23,7 @@ namespace GoogleDriveManager
     public partial class frmMain : Form
     {
         public static List<User> UserList = new List<User>();
+        public List<IOFile> IOFileList = new List<IOFile>();
         static List<ListId> cbList = new List<ListId>();
         DataTable dtDriveFiles;
         static string savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BackUpManager";
@@ -167,12 +168,13 @@ namespace GoogleDriveManager
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             lbFilesToUpload.Items.Clear();
-
+            IOFileList.Clear();
             foreach (string file in files)
             {
                 if (chbUploadMultiple.Checked)
                 {
                     lbFilesToUpload.Items.Add(file);
+                    IOFileList.Add(new IOFile(file));
                 }
                 else
                 {
@@ -312,22 +314,14 @@ namespace GoogleDriveManager
                         lbFilesToUpload.Items.RemoveAt(i);
                         lbFilesToUpload.Items.Insert(i, newName);
                         updateDataGridView();
+                        lbFilesToUpload.EndUpdate();
                     }
                 }
                 catch(Exception exc)
                 {
                     System.Diagnostics.Debug.WriteLine(exc.Message);
-                }
-                finally
-                {
                     lbFilesToUpload.EndUpdate();
                 }
-                foreach (var item in lbFilesToUpload.Items) 
-                {
-                    
-                    
-                }
-
             }
             else
             {

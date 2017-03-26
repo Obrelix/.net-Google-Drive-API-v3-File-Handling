@@ -116,6 +116,7 @@
     <Compile Include="Classes\ListId.cs" />
     <Compile Include="Classes\MimeTypeConvert.cs" />
     <Compile Include="Classes\Gtools.cs" />
+    <Compile Include="IOFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\User.cs" />
