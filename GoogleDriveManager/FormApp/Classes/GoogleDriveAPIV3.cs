@@ -38,10 +38,6 @@ namespace GoogleDriveManager
         }
     }
 
-    public class GoogleCaledar
-    {
-
-    }
 
     public static class GoogleDriveAPIV3
     {
@@ -181,7 +177,7 @@ namespace GoogleDriveManager
                         credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                             GoogleClientSecrets.Load(stream).Secrets,
                             Scopes,
-                            userName,
+                            "Drive-"+userName,
                             CancellationToken.None,
                             new FileDataStore(credPath, true)).Result;
                     }

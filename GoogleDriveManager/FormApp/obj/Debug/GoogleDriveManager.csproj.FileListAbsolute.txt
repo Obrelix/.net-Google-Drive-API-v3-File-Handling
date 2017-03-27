@@ -38,3 +38,6 @@ C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveM
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.frmAbout.resources
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\software.jpg
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.frmCalendar.resources
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Google.Apis.Calendar.v3.dll
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Google.Apis.Calendar.v3.pdb
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Google.Apis.Calendar.v3.xml
