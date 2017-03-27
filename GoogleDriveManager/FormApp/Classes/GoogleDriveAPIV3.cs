@@ -38,12 +38,17 @@ namespace GoogleDriveManager
         }
     }
 
+    public class GoogleCaledar
+    {
+
+    }
+
     public static class GoogleDriveAPIV3
     {
         private static string[] Scopes = { DriveService.Scope.Drive };
 
         private static UserCredential credential;
-        private static DriveService service;
+        private static DriveService driveService;
 
 
         private static string appDataSavePath = Environment.GetFolderPath(
@@ -71,7 +76,7 @@ namespace GoogleDriveManager
             {
                 if(fileName == null && fileType == null)
                 {
-                    FilesResource.ListRequest listRequest = service.Files.List();
+                    FilesResource.ListRequest listRequest = driveService.Files.List();
                     listRequest.PageSize = 1000;
                     listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum)";
                     //listRequest.OrderBy = "mimeType";
@@ -102,7 +107,7 @@ namespace GoogleDriveManager
                     string pageToken = null;
                     do
                     {
-                        FilesResource.ListRequest request = service.Files.List();
+                        FilesResource.ListRequest request = driveService.Files.List();
                         request.PageSize = 1000;
                         //request.Q = "mimeType='image/jpeg'";
                         request.Q = "name contains '" + fileName + "'";
@@ -204,7 +209,7 @@ namespace GoogleDriveManager
             try
             {
                 // Create Drive API service.
-                service = new DriveService(new BaseClientService.Initializer()
+                driveService = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
                     ApplicationName = applicationName,
@@ -242,7 +247,7 @@ namespace GoogleDriveManager
                 FilesResource.CreateMediaUpload request;
                 using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open))
                 {
-                    request = service.Files.Create(
+                    request = driveService.Files.Create(
                         fileMetadata, stream, fileType);
                     request.ChunkSize = FilesResource.CreateMediaUpload.MinimumChunkSize;
                     request.ProgressChanged += (IUploadProgress progress) =>
@@ -334,7 +339,7 @@ namespace GoogleDriveManager
                     };
                 }
                 
-                var request = service.Files.Create(fileMetadata);
+                var request = driveService.Files.Create(fileMetadata);
                 request.Fields = "id";
                 var file = request.Execute();
                 System.Diagnostics.Debug.WriteLine("{0} {1}",file.Name, file.Id);
@@ -432,7 +437,7 @@ namespace GoogleDriveManager
         {
             try
             {
-                var request = service.Files.Delete(fileID);
+                var request = driveService.Files.Delete(fileID);
                 request.Execute();
             }
             catch (Exception exc)
@@ -448,7 +453,7 @@ namespace GoogleDriveManager
             {
                 if (Path.HasExtension(filename))
                 {
-                    var request = service.Files.Get(fileId);
+                    var request = driveService.Files.Get(fileId);
                     
                     var stream = new System.IO.MemoryStream();
                     System.Diagnostics.Debug.WriteLine(fileId);
@@ -494,7 +499,7 @@ namespace GoogleDriveManager
                         }
                     }
                     System.Diagnostics.Debug.WriteLine("{0} {1} {2}", fileId, extension, mimeType);
-                    var request = service.Files.Export(fileId, converter);
+                    var request = driveService.Files.Export(fileId, converter);
                     var stream = new System.IO.MemoryStream();
                     // Add a handler which will be notified on progress changes.
                     // It will notify on each chunk download and when the

@@ -652,5 +652,11 @@ namespace GoogleDriveManager
         {
             System.Diagnostics.Process.Start("https://github.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/issues");
         }
+
+        private void mnuCalendar_Click(object sender, EventArgs e)
+        {
+            frmCalendar form = new frmCalendar();
+            form.Show();
+        }
     }
 }

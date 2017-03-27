@@ -104,6 +104,7 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
+            this.mnuCalendar = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlListBox.SuspendLayout();
             this.pnlSF.SuspendLayout();
@@ -752,10 +753,11 @@
             this.menuMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
+            this.mnuCalendar,
             this.aboutToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(1012, 25);
+            this.menuMain.Size = new System.Drawing.Size(1012, 24);
             this.menuMain.TabIndex = 30;
             this.menuMain.Text = "Menu";
             // 
@@ -764,23 +766,24 @@
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_StartWithWindows,
             this.minimizeToTrayToolStripMenuItem});
+            this.menuToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(53, 21);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.menuToolStripMenuItem.Text = "&Menu";
             // 
             // mnu_StartWithWindows
             // 
             this.mnu_StartWithWindows.Enabled = false;
             this.mnu_StartWithWindows.Name = "mnu_StartWithWindows";
-            this.mnu_StartWithWindows.Size = new System.Drawing.Size(187, 22);
+            this.mnu_StartWithWindows.Size = new System.Drawing.Size(204, 22);
             this.mnu_StartWithWindows.Text = "Start with Windows";
             // 
             // minimizeToTrayToolStripMenuItem
             // 
             this.minimizeToTrayToolStripMenuItem.Enabled = false;
             this.minimizeToTrayToolStripMenuItem.Name = "minimizeToTrayToolStripMenuItem";
-            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
             // 
             // aboutToolStripMenuItem
@@ -788,9 +791,10 @@
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_About,
             this.mnuHelp});
+            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.aboutToolStripMenuItem.Text = "&Help";
             // 
             // mnu_About
@@ -876,6 +880,7 @@
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.txtSearchFile);
             this.panel2.Controls.Add(this.btnRefresh);
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.panel2.Location = new System.Drawing.Point(295, 46);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(705, 38);
@@ -914,6 +919,15 @@
             this.txtSearchFile.Name = "txtSearchFile";
             this.txtSearchFile.Size = new System.Drawing.Size(314, 22);
             this.txtSearchFile.TabIndex = 25;
+            // 
+            // mnuCalendar
+            // 
+            this.mnuCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.mnuCalendar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.mnuCalendar.Name = "mnuCalendar";
+            this.mnuCalendar.Size = new System.Drawing.Size(138, 20);
+            this.mnuCalendar.Text = "Google Calendar";
+            this.mnuCalendar.Click += new System.EventHandler(this.mnuCalendar_Click);
             // 
             // frmMain
             // 
@@ -1031,6 +1045,7 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lblBackUp;
         private System.Windows.Forms.TextBox txtBackUpName;
+        private System.Windows.Forms.ToolStripMenuItem mnuCalendar;
     }
 }
 
