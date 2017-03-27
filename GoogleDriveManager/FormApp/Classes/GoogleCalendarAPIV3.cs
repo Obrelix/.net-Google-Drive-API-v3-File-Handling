@@ -47,9 +47,7 @@ namespace GoogleDriveManager
 
         public static bool GoogleCalendarConnection(string jsonSecretPath, string userName)
         {
-
             return (getCredential(jsonSecretPath, userName) && createCalendarService());
-
         }
 
         private static bool getCredential(string clientSecretPath, string userName)
@@ -114,32 +112,41 @@ namespace GoogleDriveManager
         public static List<GoogleCaledar> listCalendar()
         {
             List<GoogleCaledar> calList = new List<GoogleCaledar>();
-            EventsResource.ListRequest request = calendarService.Events.List("primary");
-            request.TimeMin = DateTime.Now;
-            request.ShowDeleted = false;
-            request.SingleEvents = true;
-            request.MaxResults = 10;
-            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
-            // List events.
-            Events events = request.Execute();
-            System.Diagnostics.Debug.WriteLine("Upcoming events:");
-            if (events.Items != null && events.Items.Count > 0)
+            try
             {
-                foreach (var eventItem in events.Items)
+                EventsResource.ListRequest request = calendarService.Events.List("primary");
+                request.TimeMin = DateTime.Now;
+                request.ShowDeleted = false;
+                request.SingleEvents = true;
+                request.MaxResults = 10;
+                request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+
+                // List events.
+                Events events = request.Execute();
+                System.Diagnostics.Debug.WriteLine("Upcoming events:");
+                if (events.Items != null && events.Items.Count > 0)
                 {
-                    string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
+                    foreach (var eventItem in events.Items)
                     {
-                        when = eventItem.Start.Date;
+                        string when = eventItem.Start.DateTime.ToString();
+                        if (String.IsNullOrEmpty(when))
+                        {
+                            when = eventItem.Start.Date;
+                        }
+                        System.Diagnostics.Debug.WriteLine("{0} ({1})", eventItem.Summary, when);
+                        calList.Add(new GoogleCaledar(eventItem.Summary, when, eventItem.Updated.ToString(), eventItem.Id, eventItem.Status, eventItem.UpdatedRaw.ToString()));
                     }
-                    System.Diagnostics.Debug.WriteLine("{0} ({1})", eventItem.Summary, when);
-                    calList.Add(new GoogleCaledar(eventItem.Summary, when, eventItem.Updated.ToString(), eventItem.Id, eventItem.Status, eventItem.UpdatedRaw.ToString()));
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("No upcoming events found.");
                 }
             }
-            else
+            catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine("No upcoming events found.");
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Create Drive Service Error.\n");
+                Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
+                            Environment.NewLine + exc.Message + " Create Drive Service Error.\n");
             }
 
             return calList;
