@@ -101,9 +101,9 @@ namespace GoogleDriveManager
             }
             catch (Exception exc)
             {
-                System.Diagnostics.Debug.WriteLine(exc.Message + " Create Drive Service Error.\n");
+                System.Diagnostics.Debug.WriteLine(exc.Message + " Create Calendar Service Error.\n");
                 Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
-                            Environment.NewLine + exc.Message + " Create Drive Service Error.\n");
+                            Environment.NewLine + exc.Message + " Create Calendar Service Error.\n");
                 return false;
             }
 
