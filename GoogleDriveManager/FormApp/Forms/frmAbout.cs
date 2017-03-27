@@ -31,5 +31,10 @@ namespace GoogleDriveManager
         {
             System.Diagnostics.Process.Start("https://github.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/issues");
         }
+
+        private void lblLicence_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Obrelix/.net-Google-Drive-API-v3-File-Handling/blob/master/LICENCE");
+        }
     }
 }

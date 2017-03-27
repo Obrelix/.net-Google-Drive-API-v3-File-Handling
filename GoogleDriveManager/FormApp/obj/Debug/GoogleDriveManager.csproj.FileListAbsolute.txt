@@ -36,3 +36,4 @@ C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveM
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\Google-Drive-Folder.ico
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\obrelix.png
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.frmAbout.resources
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\software.jpg

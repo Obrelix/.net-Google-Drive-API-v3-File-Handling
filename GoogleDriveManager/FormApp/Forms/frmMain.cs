@@ -632,6 +632,7 @@ namespace GoogleDriveManager
 
         private void frmMain_Resize(object sender, EventArgs e)
         {
+
         }
 
         private void chbUploadMultiple_CheckedChanged(object sender, EventArgs e)
