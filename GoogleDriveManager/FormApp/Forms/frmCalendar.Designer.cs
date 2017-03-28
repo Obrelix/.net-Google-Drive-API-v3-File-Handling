@@ -38,6 +38,9 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.summary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.when = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.updated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCalendar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +62,10 @@
             this.dgvCalendar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCalendar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.summary,
-            this.when});
+            this.when,
+            this.updated,
+            this.status,
+            this.id});
             this.dgvCalendar.Location = new System.Drawing.Point(41, 62);
             this.dgvCalendar.Name = "dgvCalendar";
             this.dgvCalendar.Size = new System.Drawing.Size(541, 308);
@@ -118,6 +124,26 @@
             this.when.HeaderText = "Date";
             this.when.Name = "when";
             // 
+            // updated
+            // 
+            this.updated.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.updated.DataPropertyName = "updatedRaw";
+            this.updated.HeaderText = "Updated";
+            this.updated.Name = "updated";
+            // 
+            // status
+            // 
+            this.status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            // 
             // frmCalendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,5 +172,8 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.DataGridViewTextBoxColumn summary;
         private System.Windows.Forms.DataGridViewTextBoxColumn when;
+        private System.Windows.Forms.DataGridViewTextBoxColumn updated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
     }
 }

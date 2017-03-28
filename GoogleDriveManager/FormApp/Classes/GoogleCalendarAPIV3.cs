@@ -18,16 +18,14 @@ namespace GoogleDriveManager
     {
         public string summary { get; set; }
         public string when { get; set; }
-        public string udpated { get; set; }
         public string id { get; set; }
         public string status { get; set; }
         public string updatedRaw { get; set; }
 
-        public GoogleCaledar(string summary, string when, string updated, string id, string status, string updatedRaw)
+        public GoogleCaledar(string summary, string when, string updatedRaw, string status, string id)
         {
             this.summary = summary;
             this.when = when;
-            this.udpated = udpated;
             this.id = id;
             this.status = status;
             this.updatedRaw = updatedRaw;
@@ -134,7 +132,7 @@ namespace GoogleDriveManager
                             when = eventItem.Start.Date;
                         }
                         System.Diagnostics.Debug.WriteLine("{0} ({1})", eventItem.Summary, when);
-                        calList.Add(new GoogleCaledar(eventItem.Summary, when, eventItem.Updated.ToString(), eventItem.Id, eventItem.Status, eventItem.UpdatedRaw.ToString()));
+                        calList.Add(new GoogleCaledar(eventItem.Summary, when, eventItem.UpdatedRaw.ToString(), eventItem.Status,  eventItem.Id));
                     }
                 }
                 else
