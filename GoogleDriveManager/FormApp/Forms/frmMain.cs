@@ -375,6 +375,11 @@ namespace GoogleDriveManager
                             updateDataGridView();
                            
                 }
+                else
+                {
+                    GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false);
+                    updateDataGridView();
+                }
             }
                 
         }
