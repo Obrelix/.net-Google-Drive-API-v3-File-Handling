@@ -947,7 +947,7 @@
             this.fileModifiedTime.MinimumWidth = 200;
             this.fileModifiedTime.Name = "fileModifiedTime";
             this.fileModifiedTime.ReadOnly = true;
-            this.fileModifiedTime.ToolTipText = "Date of Last Modification to File";
+            this.fileModifiedTime.ToolTipText = "Date of the last Modification";
             // 
             // fileType
             // 
