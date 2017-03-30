@@ -26,8 +26,9 @@ namespace GoogleDriveManager
         public string type { get; set; }
         public string id { get; set; }
         public string hash { get; set; }
+        public string webContentLink { get; set; }
 
-        public GoogleDriveFile(string name, string size, string lastModified, string type, string id, string hash)
+        public GoogleDriveFile(string name, string size, string lastModified, string type, string id, string hash, string webContentLink)
         {
             this.name = name;
             this.size = size;
@@ -35,6 +36,7 @@ namespace GoogleDriveManager
             this.type = type;
             this.id = id;
             this.hash = hash;
+            this.webContentLink = webContentLink;
         }
     }
 
@@ -74,7 +76,7 @@ namespace GoogleDriveManager
                 {
                     FilesResource.ListRequest listRequest = driveService.Files.List();
                     listRequest.PageSize = 1000;
-                    listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum)";
+                    listRequest.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum, webViewLink)";
                     //listRequest.OrderBy = "mimeType";
                     // List files.
                     IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
@@ -83,12 +85,14 @@ namespace GoogleDriveManager
                     {
                         foreach (var file in files)
                         {
+                            
                             filesList.Add(new GoogleDriveFile(
                             file.Name,
                             sizeFix(file.Size.ToString(), file.MimeType),
                             file.ModifiedTime.ToString(),
                             file.MimeType,
-                            file.Id, file.Md5Checksum));
+                            file.Id, file.Md5Checksum,
+                            file.WebViewLink));
                             System.Diagnostics.Debug.WriteLine("{0} {1} {2} {3}",
                                 file.Name, file.Id, file.MimeType, file.Size.ToString());
                         }
@@ -112,7 +116,7 @@ namespace GoogleDriveManager
                             request.Q += "and (mimeType contains '" + fileType + "')";
                         }
                         request.Spaces = "drive";
-                        request.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum)";
+                        request.Fields = "nextPageToken, files(mimeType, id, name, parents, size, modifiedTime, md5Checksum, webViewLink)";
                         request.PageToken = pageToken;
                         var result = request.Execute();
                         foreach (var file in result.Files)
@@ -122,7 +126,8 @@ namespace GoogleDriveManager
                                 sizeFix(file.Size.ToString(), file.MimeType),
                                 file.ModifiedTime.ToString(),
                                 file.MimeType,
-                                file.Id, file.Md5Checksum));
+                                file.Id, file.Md5Checksum,
+                                file.WebViewLink));
                         }
                         pageToken = result.NextPageToken;
                     } while (pageToken != null);

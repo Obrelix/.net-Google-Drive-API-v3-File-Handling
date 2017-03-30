@@ -663,5 +663,55 @@ namespace GoogleDriveManager
             frmCalendar form = new frmCalendar();
             form.Show();
         }
+
+        private void cmnuOpenFileOnBrowser_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
+            {
+                string uri = dgvFilesFromDrive.Rows[row.Index].Cells[6].Value.ToString();
+                System.Diagnostics.Process.Start(uri);
+            }
+        }
+
+        private void cmnuCopyID_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
+            {
+                string fileID = dgvFilesFromDrive.Rows[row.Index].Cells[4].Value.ToString();
+                Clipboard.SetText(fileID);
+            }
+            
+        }
+
+        private void dgvFilesFromDrive_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //
+            // dgvFilesFromDrive.SelectedCells.
+            
+        }
+
+        private void dgvFilesFromDrive_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                DataGridViewCell c = (sender as DataGridView)[e.ColumnIndex, e.RowIndex];
+                if (!c.Selected)
+                {
+                    c.DataGridView.ClearSelection();
+                    c.DataGridView.CurrentCell = c;
+                    c.Selected = true;
+                }
+            }
+            if (e.RowIndex >= 0) dgvFilesFromDrive.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void cmnuCopyHash_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvFilesFromDrive.SelectedRows)
+            {
+                string fileID = dgvFilesFromDrive.Rows[row.Index].Cells[5].Value.ToString();
+                if (fileID != null)Clipboard.SetText(fileID);
+            }
+        }
     }
 }

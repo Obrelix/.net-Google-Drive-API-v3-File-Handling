@@ -80,18 +80,13 @@
             this.lblPanel = new System.Windows.Forms.Label();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MD5Checksum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_StartWithWindows = new System.Windows.Forms.ToolStripMenuItem();
             this.minimizeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCalendar = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +99,17 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
-            this.mnuCalendar = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmnuWebLink = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmnuOpenFileOnBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmnuCopyID = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmnuCopyHash = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MD5Checksum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.webContentLink = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlListBox.SuspendLayout();
             this.pnlSF.SuspendLayout();
@@ -115,6 +120,7 @@
             this.menuMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.cmnuWebLink.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -645,7 +651,9 @@
             this.fileModifiedTime,
             this.fileType,
             this.ID,
-            this.MD5Checksum});
+            this.MD5Checksum,
+            this.webContentLink});
+            this.dgvFilesFromDrive.ContextMenuStrip = this.cmnuWebLink;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.MintCream;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -664,62 +672,14 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFilesFromDrive.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilesFromDrive.RowTemplate.Height = 30;
-            this.dgvFilesFromDrive.Size = new System.Drawing.Size(705, 480);
+            this.dgvFilesFromDrive.Size = new System.Drawing.Size(693, 480);
             this.dgvFilesFromDrive.TabIndex = 10;
             this.dgvFilesFromDrive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellClick);
             this.dgvFilesFromDrive.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilesFromDrive_CellDoubleClick);
+            this.dgvFilesFromDrive.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvFilesFromDrive_CellMouseClick);
+            this.dgvFilesFromDrive.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvFilesFromDrive_CellMouseDown);
             this.dgvFilesFromDrive.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
             this.dgvFilesFromDrive.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
-            // 
-            // fileName
-            // 
-            this.fileName.DataPropertyName = "name";
-            this.fileName.Frozen = true;
-            this.fileName.HeaderText = "Name";
-            this.fileName.Name = "fileName";
-            this.fileName.Width = 270;
-            // 
-            // fileSize
-            // 
-            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileSize.DataPropertyName = "size";
-            this.fileSize.HeaderText = "Size";
-            this.fileSize.MinimumWidth = 100;
-            this.fileSize.Name = "fileSize";
-            this.fileSize.ReadOnly = true;
-            // 
-            // fileModifiedTime
-            // 
-            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileModifiedTime.DataPropertyName = "lastModified";
-            this.fileModifiedTime.HeaderText = "Last Modified";
-            this.fileModifiedTime.MinimumWidth = 170;
-            this.fileModifiedTime.Name = "fileModifiedTime";
-            this.fileModifiedTime.ReadOnly = true;
-            // 
-            // fileType
-            // 
-            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileType.DataPropertyName = "type";
-            this.fileType.HeaderText = "Type";
-            this.fileType.MinimumWidth = 300;
-            this.fileType.Name = "fileType";
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ID.DataPropertyName = "id";
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 420;
-            this.ID.Name = "ID";
-            // 
-            // MD5Checksum
-            // 
-            this.MD5Checksum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MD5Checksum.DataPropertyName = "hash";
-            this.MD5Checksum.HeaderText = "MD5 Checksum";
-            this.MD5Checksum.MinimumWidth = 300;
-            this.MD5Checksum.Name = "MD5Checksum";
             // 
             // btnDownload
             // 
@@ -757,7 +717,7 @@
             this.aboutToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(1012, 24);
+            this.menuMain.Size = new System.Drawing.Size(1000, 24);
             this.menuMain.TabIndex = 30;
             this.menuMain.Text = "Menu";
             // 
@@ -786,6 +746,15 @@
             this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
             // 
+            // mnuCalendar
+            // 
+            this.mnuCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.mnuCalendar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.mnuCalendar.Name = "mnuCalendar";
+            this.mnuCalendar.Size = new System.Drawing.Size(138, 20);
+            this.mnuCalendar.Text = "Google Calendar";
+            this.mnuCalendar.Click += new System.EventHandler(this.mnuCalendar_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -800,14 +769,14 @@
             // mnu_About
             // 
             this.mnu_About.Name = "mnu_About";
-            this.mnu_About.Size = new System.Drawing.Size(152, 22);
+            this.mnu_About.Size = new System.Drawing.Size(116, 22);
             this.mnu_About.Text = "A&bout";
             this.mnu_About.Click += new System.EventHandler(this.mnu_About_Click);
             // 
             // mnuHelp
             // 
             this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Size = new System.Drawing.Size(152, 22);
+            this.mnuHelp.Size = new System.Drawing.Size(116, 22);
             this.mnuHelp.Text = "Help";
             this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
             // 
@@ -823,7 +792,7 @@
             this.panel1.Controls.Add(this.btnRemove);
             this.panel1.Location = new System.Drawing.Point(295, 576);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(705, 38);
+            this.panel1.Size = new System.Drawing.Size(693, 38);
             this.panel1.TabIndex = 31;
             // 
             // txtCreateFolder
@@ -833,7 +802,7 @@
             this.txtCreateFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtCreateFolder.Location = new System.Drawing.Point(328, 8);
             this.txtCreateFolder.Name = "txtCreateFolder";
-            this.txtCreateFolder.Size = new System.Drawing.Size(244, 22);
+            this.txtCreateFolder.Size = new System.Drawing.Size(232, 22);
             this.txtCreateFolder.TabIndex = 26;
             // 
             // btnCreate
@@ -842,7 +811,7 @@
             this.btnCreate.BackColor = System.Drawing.Color.LightCyan;
             this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnCreate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCreate.Location = new System.Drawing.Point(578, 6);
+            this.btnCreate.Location = new System.Drawing.Point(566, 6);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(120, 25);
             this.btnCreate.TabIndex = 14;
@@ -856,7 +825,7 @@
             this.btnRefresh.BackColor = System.Drawing.Color.LightCyan;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRefresh.Location = new System.Drawing.Point(578, 6);
+            this.btnRefresh.Location = new System.Drawing.Point(566, 6);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 25);
             this.btnRefresh.TabIndex = 13;
@@ -883,7 +852,7 @@
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.panel2.Location = new System.Drawing.Point(295, 46);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(705, 38);
+            this.panel2.Size = new System.Drawing.Size(693, 38);
             this.panel2.TabIndex = 32;
             // 
             // cbFileType
@@ -891,7 +860,7 @@
             this.cbFileType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbFileType.FormattingEnabled = true;
-            this.cbFileType.Location = new System.Drawing.Point(326, 7);
+            this.cbFileType.Location = new System.Drawing.Point(314, 7);
             this.cbFileType.Name = "cbFileType";
             this.cbFileType.Size = new System.Drawing.Size(120, 24);
             this.cbFileType.TabIndex = 24;
@@ -902,7 +871,7 @@
             this.btnSearch.BackColor = System.Drawing.Color.LightCyan;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearch.Location = new System.Drawing.Point(452, 6);
+            this.btnSearch.Location = new System.Drawing.Point(440, 6);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(120, 25);
             this.btnSearch.TabIndex = 26;
@@ -917,24 +886,112 @@
             this.txtSearchFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtSearchFile.Location = new System.Drawing.Point(6, 8);
             this.txtSearchFile.Name = "txtSearchFile";
-            this.txtSearchFile.Size = new System.Drawing.Size(314, 22);
+            this.txtSearchFile.Size = new System.Drawing.Size(302, 22);
             this.txtSearchFile.TabIndex = 25;
             // 
-            // mnuCalendar
+            // cmnuWebLink
             // 
-            this.mnuCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.mnuCalendar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuCalendar.Name = "mnuCalendar";
-            this.mnuCalendar.Size = new System.Drawing.Size(138, 20);
-            this.mnuCalendar.Text = "Google Calendar";
-            this.mnuCalendar.Click += new System.EventHandler(this.mnuCalendar_Click);
+            this.cmnuWebLink.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmnuOpenFileOnBrowser,
+            this.cmnuCopyID,
+            this.cmnuCopyHash});
+            this.cmnuWebLink.Name = "cmnuWebLink";
+            this.cmnuWebLink.Size = new System.Drawing.Size(185, 70);
+            // 
+            // cmnuOpenFileOnBrowser
+            // 
+            this.cmnuOpenFileOnBrowser.Name = "cmnuOpenFileOnBrowser";
+            this.cmnuOpenFileOnBrowser.Size = new System.Drawing.Size(184, 22);
+            this.cmnuOpenFileOnBrowser.Text = "Open file on browser";
+            this.cmnuOpenFileOnBrowser.Click += new System.EventHandler(this.cmnuOpenFileOnBrowser_Click);
+            // 
+            // cmnuCopyID
+            // 
+            this.cmnuCopyID.Name = "cmnuCopyID";
+            this.cmnuCopyID.Size = new System.Drawing.Size(184, 22);
+            this.cmnuCopyID.Text = "Copy ID";
+            this.cmnuCopyID.Click += new System.EventHandler(this.cmnuCopyID_Click);
+            // 
+            // cmnuCopyHash
+            // 
+            this.cmnuCopyHash.Name = "cmnuCopyHash";
+            this.cmnuCopyHash.Size = new System.Drawing.Size(184, 22);
+            this.cmnuCopyHash.Text = "Copy Hash";
+            this.cmnuCopyHash.Click += new System.EventHandler(this.cmnuCopyHash_Click);
+            // 
+            // fileName
+            // 
+            this.fileName.DataPropertyName = "name";
+            this.fileName.Frozen = true;
+            this.fileName.HeaderText = "Name";
+            this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
+            this.fileName.ToolTipText = "Google File Name";
+            this.fileName.Width = 350;
+            // 
+            // fileSize
+            // 
+            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileSize.DataPropertyName = "size";
+            this.fileSize.HeaderText = "Size";
+            this.fileSize.MinimumWidth = 100;
+            this.fileSize.Name = "fileSize";
+            this.fileSize.ReadOnly = true;
+            this.fileSize.ToolTipText = "Size";
+            // 
+            // fileModifiedTime
+            // 
+            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileModifiedTime.DataPropertyName = "lastModified";
+            this.fileModifiedTime.HeaderText = "Last Modified";
+            this.fileModifiedTime.MinimumWidth = 200;
+            this.fileModifiedTime.Name = "fileModifiedTime";
+            this.fileModifiedTime.ReadOnly = true;
+            this.fileModifiedTime.ToolTipText = "Date of Last Modification to File";
+            // 
+            // fileType
+            // 
+            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileType.DataPropertyName = "type";
+            this.fileType.HeaderText = "Type";
+            this.fileType.MinimumWidth = 300;
+            this.fileType.Name = "fileType";
+            this.fileType.ReadOnly = true;
+            this.fileType.ToolTipText = "File Mime Type";
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.DataPropertyName = "id";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 420;
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
+            // 
+            // MD5Checksum
+            // 
+            this.MD5Checksum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MD5Checksum.DataPropertyName = "hash";
+            this.MD5Checksum.HeaderText = "MD5 Checksum";
+            this.MD5Checksum.MinimumWidth = 300;
+            this.MD5Checksum.Name = "MD5Checksum";
+            this.MD5Checksum.Visible = false;
+            // 
+            // webContentLink
+            // 
+            this.webContentLink.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.webContentLink.DataPropertyName = "webContentLink";
+            this.webContentLink.HeaderText = "Web Link";
+            this.webContentLink.MinimumWidth = 300;
+            this.webContentLink.Name = "webContentLink";
+            this.webContentLink.Visible = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
-            this.ClientSize = new System.Drawing.Size(1012, 622);
+            this.ClientSize = new System.Drawing.Size(1000, 622);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuMain);
@@ -968,6 +1025,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.cmnuWebLink.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1027,12 +1085,6 @@
         private System.Windows.Forms.TextBox txtCreateFolder;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbFileType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MD5Checksum;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtMd5;
         private System.Windows.Forms.Panel pnlClient;
@@ -1046,6 +1098,17 @@
         private System.Windows.Forms.Label lblBackUp;
         private System.Windows.Forms.TextBox txtBackUpName;
         private System.Windows.Forms.ToolStripMenuItem mnuCalendar;
+        private System.Windows.Forms.ContextMenuStrip cmnuWebLink;
+        private System.Windows.Forms.ToolStripMenuItem cmnuOpenFileOnBrowser;
+        private System.Windows.Forms.ToolStripMenuItem cmnuCopyID;
+        private System.Windows.Forms.ToolStripMenuItem cmnuCopyHash;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileModifiedTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MD5Checksum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn webContentLink;
     }
 }
 
