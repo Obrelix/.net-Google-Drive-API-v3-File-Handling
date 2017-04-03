@@ -80,12 +80,21 @@
             this.lblPanel = new System.Windows.Forms.Label();
             this.fbdDirToUpload = new System.Windows.Forms.FolderBrowserDialog();
             this.dgvFilesFromDrive = new System.Windows.Forms.DataGridView();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MD5Checksum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.webContentLink = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnuWebLink = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmnuOpenFileOnBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmnuCopyID = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmnuCopyHash = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_StartWithWindows = new System.Windows.Forms.ToolStripMenuItem();
-            this.minimizeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCalendar = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,17 +108,7 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
-            this.cmnuWebLink = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmnuOpenFileOnBrowser = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmnuCopyID = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmnuCopyHash = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MD5Checksum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.webContentLink = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createTaskScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlListBox.SuspendLayout();
             this.pnlSF.SuspendLayout();
@@ -117,10 +116,10 @@
             this.pnlUser.SuspendLayout();
             this.pnlClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).BeginInit();
+            this.cmnuWebLink.SuspendLayout();
             this.menuMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.cmnuWebLink.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -681,6 +680,103 @@
             this.dgvFilesFromDrive.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
             this.dgvFilesFromDrive.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
             // 
+            // fileName
+            // 
+            this.fileName.DataPropertyName = "name";
+            this.fileName.Frozen = true;
+            this.fileName.HeaderText = "Name";
+            this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
+            this.fileName.ToolTipText = "Google File Name";
+            this.fileName.Width = 350;
+            // 
+            // fileSize
+            // 
+            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileSize.DataPropertyName = "size";
+            this.fileSize.HeaderText = "Size";
+            this.fileSize.MinimumWidth = 100;
+            this.fileSize.Name = "fileSize";
+            this.fileSize.ReadOnly = true;
+            this.fileSize.ToolTipText = "Size";
+            // 
+            // fileModifiedTime
+            // 
+            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileModifiedTime.DataPropertyName = "lastModified";
+            this.fileModifiedTime.HeaderText = "Last Modified";
+            this.fileModifiedTime.MinimumWidth = 200;
+            this.fileModifiedTime.Name = "fileModifiedTime";
+            this.fileModifiedTime.ReadOnly = true;
+            this.fileModifiedTime.ToolTipText = "Date of the last Modification";
+            // 
+            // fileType
+            // 
+            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fileType.DataPropertyName = "type";
+            this.fileType.HeaderText = "Type";
+            this.fileType.MinimumWidth = 300;
+            this.fileType.Name = "fileType";
+            this.fileType.ReadOnly = true;
+            this.fileType.ToolTipText = "File Mime Type";
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.DataPropertyName = "id";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 420;
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
+            // 
+            // MD5Checksum
+            // 
+            this.MD5Checksum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MD5Checksum.DataPropertyName = "hash";
+            this.MD5Checksum.HeaderText = "MD5 Checksum";
+            this.MD5Checksum.MinimumWidth = 300;
+            this.MD5Checksum.Name = "MD5Checksum";
+            this.MD5Checksum.Visible = false;
+            // 
+            // webContentLink
+            // 
+            this.webContentLink.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.webContentLink.DataPropertyName = "webContentLink";
+            this.webContentLink.HeaderText = "Web Link";
+            this.webContentLink.MinimumWidth = 300;
+            this.webContentLink.Name = "webContentLink";
+            this.webContentLink.Visible = false;
+            // 
+            // cmnuWebLink
+            // 
+            this.cmnuWebLink.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmnuOpenFileOnBrowser,
+            this.cmnuCopyID,
+            this.cmnuCopyHash});
+            this.cmnuWebLink.Name = "cmnuWebLink";
+            this.cmnuWebLink.Size = new System.Drawing.Size(185, 70);
+            // 
+            // cmnuOpenFileOnBrowser
+            // 
+            this.cmnuOpenFileOnBrowser.Name = "cmnuOpenFileOnBrowser";
+            this.cmnuOpenFileOnBrowser.Size = new System.Drawing.Size(184, 22);
+            this.cmnuOpenFileOnBrowser.Text = "Open file on browser";
+            this.cmnuOpenFileOnBrowser.Click += new System.EventHandler(this.cmnuOpenFileOnBrowser_Click);
+            // 
+            // cmnuCopyID
+            // 
+            this.cmnuCopyID.Name = "cmnuCopyID";
+            this.cmnuCopyID.Size = new System.Drawing.Size(184, 22);
+            this.cmnuCopyID.Text = "Copy ID";
+            this.cmnuCopyID.Click += new System.EventHandler(this.cmnuCopyID_Click);
+            // 
+            // cmnuCopyHash
+            // 
+            this.cmnuCopyHash.Name = "cmnuCopyHash";
+            this.cmnuCopyHash.Size = new System.Drawing.Size(184, 22);
+            this.cmnuCopyHash.Text = "Copy Hash";
+            this.cmnuCopyHash.Click += new System.EventHandler(this.cmnuCopyHash_Click);
+            // 
             // btnDownload
             // 
             this.btnDownload.BackColor = System.Drawing.Color.LightCyan;
@@ -724,27 +820,12 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_StartWithWindows,
-            this.minimizeToTrayToolStripMenuItem});
+            this.createTaskScheduleToolStripMenuItem});
             this.menuToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.menuToolStripMenuItem.Text = "&Menu";
-            // 
-            // mnu_StartWithWindows
-            // 
-            this.mnu_StartWithWindows.Enabled = false;
-            this.mnu_StartWithWindows.Name = "mnu_StartWithWindows";
-            this.mnu_StartWithWindows.Size = new System.Drawing.Size(204, 22);
-            this.mnu_StartWithWindows.Text = "Start with Windows";
-            // 
-            // minimizeToTrayToolStripMenuItem
-            // 
-            this.minimizeToTrayToolStripMenuItem.Enabled = false;
-            this.minimizeToTrayToolStripMenuItem.Name = "minimizeToTrayToolStripMenuItem";
-            this.minimizeToTrayToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.minimizeToTrayToolStripMenuItem.Text = "Minimize to Tray";
             // 
             // mnuCalendar
             // 
@@ -769,14 +850,14 @@
             // mnu_About
             // 
             this.mnu_About.Name = "mnu_About";
-            this.mnu_About.Size = new System.Drawing.Size(116, 22);
+            this.mnu_About.Size = new System.Drawing.Size(152, 22);
             this.mnu_About.Text = "A&bout";
             this.mnu_About.Click += new System.EventHandler(this.mnu_About_Click);
             // 
             // mnuHelp
             // 
             this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Size = new System.Drawing.Size(116, 22);
+            this.mnuHelp.Size = new System.Drawing.Size(152, 22);
             this.mnuHelp.Text = "Help";
             this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
             // 
@@ -889,102 +970,11 @@
             this.txtSearchFile.Size = new System.Drawing.Size(302, 22);
             this.txtSearchFile.TabIndex = 25;
             // 
-            // cmnuWebLink
+            // createTaskScheduleToolStripMenuItem
             // 
-            this.cmnuWebLink.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmnuOpenFileOnBrowser,
-            this.cmnuCopyID,
-            this.cmnuCopyHash});
-            this.cmnuWebLink.Name = "cmnuWebLink";
-            this.cmnuWebLink.Size = new System.Drawing.Size(185, 70);
-            // 
-            // cmnuOpenFileOnBrowser
-            // 
-            this.cmnuOpenFileOnBrowser.Name = "cmnuOpenFileOnBrowser";
-            this.cmnuOpenFileOnBrowser.Size = new System.Drawing.Size(184, 22);
-            this.cmnuOpenFileOnBrowser.Text = "Open file on browser";
-            this.cmnuOpenFileOnBrowser.Click += new System.EventHandler(this.cmnuOpenFileOnBrowser_Click);
-            // 
-            // cmnuCopyID
-            // 
-            this.cmnuCopyID.Name = "cmnuCopyID";
-            this.cmnuCopyID.Size = new System.Drawing.Size(184, 22);
-            this.cmnuCopyID.Text = "Copy ID";
-            this.cmnuCopyID.Click += new System.EventHandler(this.cmnuCopyID_Click);
-            // 
-            // cmnuCopyHash
-            // 
-            this.cmnuCopyHash.Name = "cmnuCopyHash";
-            this.cmnuCopyHash.Size = new System.Drawing.Size(184, 22);
-            this.cmnuCopyHash.Text = "Copy Hash";
-            this.cmnuCopyHash.Click += new System.EventHandler(this.cmnuCopyHash_Click);
-            // 
-            // fileName
-            // 
-            this.fileName.DataPropertyName = "name";
-            this.fileName.Frozen = true;
-            this.fileName.HeaderText = "Name";
-            this.fileName.Name = "fileName";
-            this.fileName.ReadOnly = true;
-            this.fileName.ToolTipText = "Google File Name";
-            this.fileName.Width = 350;
-            // 
-            // fileSize
-            // 
-            this.fileSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileSize.DataPropertyName = "size";
-            this.fileSize.HeaderText = "Size";
-            this.fileSize.MinimumWidth = 100;
-            this.fileSize.Name = "fileSize";
-            this.fileSize.ReadOnly = true;
-            this.fileSize.ToolTipText = "Size";
-            // 
-            // fileModifiedTime
-            // 
-            this.fileModifiedTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileModifiedTime.DataPropertyName = "lastModified";
-            this.fileModifiedTime.HeaderText = "Last Modified";
-            this.fileModifiedTime.MinimumWidth = 200;
-            this.fileModifiedTime.Name = "fileModifiedTime";
-            this.fileModifiedTime.ReadOnly = true;
-            this.fileModifiedTime.ToolTipText = "Date of the last Modification";
-            // 
-            // fileType
-            // 
-            this.fileType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fileType.DataPropertyName = "type";
-            this.fileType.HeaderText = "Type";
-            this.fileType.MinimumWidth = 300;
-            this.fileType.Name = "fileType";
-            this.fileType.ReadOnly = true;
-            this.fileType.ToolTipText = "File Mime Type";
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ID.DataPropertyName = "id";
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 420;
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
-            // 
-            // MD5Checksum
-            // 
-            this.MD5Checksum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MD5Checksum.DataPropertyName = "hash";
-            this.MD5Checksum.HeaderText = "MD5 Checksum";
-            this.MD5Checksum.MinimumWidth = 300;
-            this.MD5Checksum.Name = "MD5Checksum";
-            this.MD5Checksum.Visible = false;
-            // 
-            // webContentLink
-            // 
-            this.webContentLink.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.webContentLink.DataPropertyName = "webContentLink";
-            this.webContentLink.HeaderText = "Web Link";
-            this.webContentLink.MinimumWidth = 300;
-            this.webContentLink.Name = "webContentLink";
-            this.webContentLink.Visible = false;
+            this.createTaskScheduleToolStripMenuItem.Name = "createTaskScheduleToolStripMenuItem";
+            this.createTaskScheduleToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.createTaskScheduleToolStripMenuItem.Text = "&Create Task Schedule";
             // 
             // frmMain
             // 
@@ -1019,13 +1009,13 @@
             this.pnlClient.ResumeLayout(false);
             this.pnlClient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilesFromDrive)).EndInit();
+            this.cmnuWebLink.ResumeLayout(false);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.cmnuWebLink.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1067,8 +1057,6 @@
         private System.Windows.Forms.Button btnRemUser;
         private System.Windows.Forms.MenuStrip menuMain;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnu_StartWithWindows;
-        private System.Windows.Forms.ToolStripMenuItem minimizeToTrayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnu_About;
         private System.Windows.Forms.ToolStripMenuItem mnuHelp;
@@ -1109,6 +1097,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn MD5Checksum;
         private System.Windows.Forms.DataGridViewTextBoxColumn webContentLink;
+        private System.Windows.Forms.ToolStripMenuItem createTaskScheduleToolStripMenuItem;
     }
 }
 

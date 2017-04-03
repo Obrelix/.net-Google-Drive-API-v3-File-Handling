@@ -27,7 +27,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0163E95DF0DD45A985F0A3717E3F4FE0"
+        "OwnerKey" = "8:_28C0BCE0B95AD002B6258185CC4A815B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1E37400149868885500C689CEEB73ED9"
+        "OwnerKey" = "8:_5A44352A8A1444499FB83B573C6471FD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_28C0BCE0B95AD002B6258185CC4A815B"
         "OwnerKey" = "8:_5A44352A8A1444499FB83B573C6471FD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -47,6 +59,12 @@
         {
         "MsmKey" = "8:_2DFB15A0D3E8F043977D5FFD496A056E"
         "OwnerKey" = "8:_5A44352A8A1444499FB83B573C6471FD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2DFB15A0D3E8F043977D5FFD496A056E"
+        "OwnerKey" = "8:_28C0BCE0B95AD002B6258185CC4A815B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -153,6 +171,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D87B9EEA4AAA4FA4A46C6B3D4435E500"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E203AC8CB104B29EB59F2BBA27FB941B"
         "OwnerKey" = "8:_2DFB15A0D3E8F043977D5FFD496A056E"
         "MsmSig" = "8:_UNDEFINED"
@@ -172,6 +196,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E203AC8CB104B29EB59F2BBA27FB941B"
+        "OwnerKey" = "8:_28C0BCE0B95AD002B6258185CC4A815B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E203AC8CB104B29EB59F2BBA27FB941B"
         "OwnerKey" = "8:_B98232124F9FF2D39B767F23D8EEA45C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -179,12 +209,6 @@
         {
         "MsmKey" = "8:_E203AC8CB104B29EB59F2BBA27FB941B"
         "OwnerKey" = "8:_0163E95DF0DD45A985F0A3717E3F4FE0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E39C74C6C8B549D8B9228A16899F0EB3"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -203,6 +227,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1E37400149868885500C689CEEB73ED9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_28C0BCE0B95AD002B6258185CC4A815B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -278,6 +308,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -302,6 +340,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -377,6 +423,37 @@
                     }
                 }
             "SourcePath" = "8:Google.Apis.Drive.v3.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_28C0BCE0B95AD002B6258185CC4A815B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Google.Apis.Calendar.v3, Version=1.22.0.808, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_28C0BCE0B95AD002B6258185CC4A815B"
+                    {
+                    "Name" = "8:Google.Apis.Calendar.v3.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Google.Apis.Calendar.v3.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E969C496D42D49EC88FF3D79E1A85615"
@@ -631,6 +708,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D87B9EEA4AAA4FA4A46C6B3D4435E500"
+            {
+            "SourcePath" = "8:..\\FormApp\\Resources\\client_secret.json"
+            "TargetName" = "8:client_secret.json"
+            "Tag" = "8:"
+            "Folder" = "8:_9016BEB1D19341998788A398847D47A6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E203AC8CB104B29EB59F2BBA27FB941B"
             {
             "AssemblyRegister" = "3:1"
@@ -660,26 +757,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E39C74C6C8B549D8B9228A16899F0EB3"
-            {
-            "SourcePath" = "8:..\\FormApp\\Resources\\client_secret.json"
-            "TargetName" = "8:client_secret.json"
-            "Tag" = "8:"
-            "Folder" = "8:_9016BEB1D19341998788A398847D47A6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -761,7 +838,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Google Drive Manager"
         "ProductCode" = "8:{BED91B43-1495-45B8-9ABB-88F8B4462DF8}"
-        "PackageCode" = "8:{73AD37A0-6D97-48F7-9338-E193ED0FACD9}"
+        "PackageCode" = "8:{1185016A-50F2-4487-BD36-2300CE219EBA}"
         "UpgradeCode" = "8:{A2493019-5B97-455B-8048-9BB6C76543B3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
