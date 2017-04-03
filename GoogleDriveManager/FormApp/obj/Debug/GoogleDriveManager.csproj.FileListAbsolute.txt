@@ -83,3 +83,4 @@ C:\Users\Obrelix\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDrive
 C:\Users\Obrelix\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.Properties.Resources.resources
 C:\Users\Obrelix\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.csproj.GenerateResource.Cache
 C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\Resources\client_secret.json
+C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\obj\Debug\GoogleDriveManager.frmTaskScheduler.resources

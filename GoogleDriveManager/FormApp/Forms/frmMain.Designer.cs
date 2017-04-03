@@ -95,6 +95,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreateTaskSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCalendar = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_About = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +109,6 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
-            this.createTaskScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlListBox.SuspendLayout();
             this.pnlSF.SuspendLayout();
@@ -820,12 +820,19 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createTaskScheduleToolStripMenuItem});
+            this.mnuCreateTaskSchedule});
             this.menuToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.menuToolStripMenuItem.Text = "&Menu";
+            // 
+            // mnuCreateTaskSchedule
+            // 
+            this.mnuCreateTaskSchedule.Name = "mnuCreateTaskSchedule";
+            this.mnuCreateTaskSchedule.Size = new System.Drawing.Size(230, 22);
+            this.mnuCreateTaskSchedule.Text = "&Create Task Schedule";
+            this.mnuCreateTaskSchedule.Click += new System.EventHandler(this.mnuCreateTaskSchedule_Click);
             // 
             // mnuCalendar
             // 
@@ -850,14 +857,14 @@
             // mnu_About
             // 
             this.mnu_About.Name = "mnu_About";
-            this.mnu_About.Size = new System.Drawing.Size(152, 22);
+            this.mnu_About.Size = new System.Drawing.Size(116, 22);
             this.mnu_About.Text = "A&bout";
             this.mnu_About.Click += new System.EventHandler(this.mnu_About_Click);
             // 
             // mnuHelp
             // 
             this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Size = new System.Drawing.Size(152, 22);
+            this.mnuHelp.Size = new System.Drawing.Size(116, 22);
             this.mnuHelp.Text = "Help";
             this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
             // 
@@ -969,12 +976,6 @@
             this.txtSearchFile.Name = "txtSearchFile";
             this.txtSearchFile.Size = new System.Drawing.Size(302, 22);
             this.txtSearchFile.TabIndex = 25;
-            // 
-            // createTaskScheduleToolStripMenuItem
-            // 
-            this.createTaskScheduleToolStripMenuItem.Name = "createTaskScheduleToolStripMenuItem";
-            this.createTaskScheduleToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.createTaskScheduleToolStripMenuItem.Text = "&Create Task Schedule";
             // 
             // frmMain
             // 
@@ -1097,7 +1098,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn MD5Checksum;
         private System.Windows.Forms.DataGridViewTextBoxColumn webContentLink;
-        private System.Windows.Forms.ToolStripMenuItem createTaskScheduleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCreateTaskSchedule;
     }
 }
 

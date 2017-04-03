@@ -713,5 +713,11 @@ namespace GoogleDriveManager
                 if (fileID != null)Clipboard.SetText(fileID);
             }
         }
+
+        private void mnuCreateTaskSchedule_Click(object sender, EventArgs e)
+        {
+            frmTaskScheduler form = new frmTaskScheduler();
+            form.Show();
+        }
     }
 }
