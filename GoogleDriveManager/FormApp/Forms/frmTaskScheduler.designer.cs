@@ -75,6 +75,7 @@
             this.buttonStartService = new System.Windows.Forms.Button();
             this.buttonStopService = new System.Windows.Forms.Button();
             this.buttonReadServiceConfig = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDaily)).BeginInit();
             this.tabControlMode.SuspendLayout();
             this.tabPageOneTimeOnly.SuspendLayout();
@@ -84,6 +85,7 @@
             this.tabControlMonthlyMode.SuspendLayout();
             this.tabPageMonthlyDayOfMonth.SuspendLayout();
             this.tabPageMonthlyWeekDay.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dateTimePickerOneTimeOnlyDay
@@ -125,6 +127,8 @@
             // 
             // checkedListBoxWeeklyDays
             // 
+            this.checkedListBoxWeeklyDays.BackColor = System.Drawing.Color.DarkCyan;
+            this.checkedListBoxWeeklyDays.ForeColor = System.Drawing.Color.White;
             this.checkedListBoxWeeklyDays.FormattingEnabled = true;
             this.checkedListBoxWeeklyDays.Items.AddRange(new object[] {
             "Sunday",
@@ -141,6 +145,8 @@
             // 
             // checkedListBoxMonthlyMonths
             // 
+            this.checkedListBoxMonthlyMonths.BackColor = System.Drawing.Color.DarkCyan;
+            this.checkedListBoxMonthlyMonths.ForeColor = System.Drawing.Color.White;
             this.checkedListBoxMonthlyMonths.FormattingEnabled = true;
             this.checkedListBoxMonthlyMonths.Items.AddRange(new object[] {
             "January",
@@ -162,6 +168,8 @@
             // 
             // checkedListBoxMonthlyDays
             // 
+            this.checkedListBoxMonthlyDays.BackColor = System.Drawing.Color.DarkCyan;
+            this.checkedListBoxMonthlyDays.ForeColor = System.Drawing.Color.White;
             this.checkedListBoxMonthlyDays.FormattingEnabled = true;
             this.checkedListBoxMonthlyDays.Items.AddRange(new object[] {
             "1",
@@ -203,6 +211,8 @@
             // 
             // checkedListBoxMonthlyWeekNumber
             // 
+            this.checkedListBoxMonthlyWeekNumber.BackColor = System.Drawing.Color.DarkCyan;
+            this.checkedListBoxMonthlyWeekNumber.ForeColor = System.Drawing.Color.White;
             this.checkedListBoxMonthlyWeekNumber.FormattingEnabled = true;
             this.checkedListBoxMonthlyWeekNumber.Items.AddRange(new object[] {
             "First",
@@ -217,6 +227,8 @@
             // 
             // checkedListBoxMonthlyWeekDay
             // 
+            this.checkedListBoxMonthlyWeekDay.BackColor = System.Drawing.Color.DarkCyan;
+            this.checkedListBoxMonthlyWeekDay.ForeColor = System.Drawing.Color.White;
             this.checkedListBoxMonthlyWeekDay.FormattingEnabled = true;
             this.checkedListBoxMonthlyWeekDay.Items.AddRange(new object[] {
             "Sunday",
@@ -247,9 +259,11 @@
             // 
             // tabPageOneTimeOnly
             // 
+            this.tabPageOneTimeOnly.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tabPageOneTimeOnly.Controls.Add(this.checkBoxOneTimeOnlyActive);
             this.tabPageOneTimeOnly.Controls.Add(this.labelOneTimeOnlyDay);
             this.tabPageOneTimeOnly.Controls.Add(this.dateTimePickerOneTimeOnlyDay);
+            this.tabPageOneTimeOnly.ForeColor = System.Drawing.Color.White;
             this.tabPageOneTimeOnly.Location = new System.Drawing.Point(4, 22);
             this.tabPageOneTimeOnly.Name = "tabPageOneTimeOnly";
             this.tabPageOneTimeOnly.Padding = new System.Windows.Forms.Padding(3);
@@ -257,7 +271,6 @@
             this.tabPageOneTimeOnly.TabIndex = 0;
             this.tabPageOneTimeOnly.Tag = "1";
             this.tabPageOneTimeOnly.Text = "One time only";
-            this.tabPageOneTimeOnly.UseVisualStyleBackColor = true;
             // 
             // checkBoxOneTimeOnlyActive
             // 
@@ -280,9 +293,11 @@
             // 
             // tabPageDaily
             // 
+            this.tabPageDaily.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tabPageDaily.Controls.Add(this.numericUpDownDaily);
             this.tabPageDaily.Controls.Add(this.labelDailyEvery);
             this.tabPageDaily.Controls.Add(this.labelDailyDay);
+            this.tabPageDaily.ForeColor = System.Drawing.Color.White;
             this.tabPageDaily.Location = new System.Drawing.Point(4, 22);
             this.tabPageDaily.Name = "tabPageDaily";
             this.tabPageDaily.Padding = new System.Windows.Forms.Padding(3);
@@ -290,19 +305,19 @@
             this.tabPageDaily.TabIndex = 1;
             this.tabPageDaily.Tag = "2";
             this.tabPageDaily.Text = "Daily";
-            this.tabPageDaily.UseVisualStyleBackColor = true;
             // 
             // tabPageWeekly
             // 
+            this.tabPageWeekly.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tabPageWeekly.Controls.Add(this.labelWeeklyDays);
             this.tabPageWeekly.Controls.Add(this.checkedListBoxWeeklyDays);
+            this.tabPageWeekly.ForeColor = System.Drawing.Color.White;
             this.tabPageWeekly.Location = new System.Drawing.Point(4, 22);
             this.tabPageWeekly.Name = "tabPageWeekly";
             this.tabPageWeekly.Size = new System.Drawing.Size(631, 180);
             this.tabPageWeekly.TabIndex = 3;
             this.tabPageWeekly.Tag = "3";
             this.tabPageWeekly.Text = "Weekly";
-            this.tabPageWeekly.UseVisualStyleBackColor = true;
             // 
             // labelWeeklyDays
             // 
@@ -315,15 +330,16 @@
             // 
             // tabPageMonthly
             // 
+            this.tabPageMonthly.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tabPageMonthly.Controls.Add(this.tabControlMonthlyMode);
             this.tabPageMonthly.Controls.Add(this.labelMonthlyMonth);
             this.tabPageMonthly.Controls.Add(this.checkedListBoxMonthlyMonths);
+            this.tabPageMonthly.ForeColor = System.Drawing.Color.White;
             this.tabPageMonthly.Location = new System.Drawing.Point(4, 22);
             this.tabPageMonthly.Name = "tabPageMonthly";
             this.tabPageMonthly.Size = new System.Drawing.Size(631, 180);
             this.tabPageMonthly.TabIndex = 2;
             this.tabPageMonthly.Text = "Monthly";
-            this.tabPageMonthly.UseVisualStyleBackColor = true;
             // 
             // tabControlMonthlyMode
             // 
@@ -337,6 +353,7 @@
             // 
             // tabPageMonthlyDayOfMonth
             // 
+            this.tabPageMonthlyDayOfMonth.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPageMonthlyDayOfMonth.Controls.Add(this.checkedListBoxMonthlyDays);
             this.tabPageMonthlyDayOfMonth.Location = new System.Drawing.Point(4, 22);
             this.tabPageMonthlyDayOfMonth.Name = "tabPageMonthlyDayOfMonth";
@@ -344,10 +361,10 @@
             this.tabPageMonthlyDayOfMonth.Size = new System.Drawing.Size(243, 128);
             this.tabPageMonthlyDayOfMonth.TabIndex = 0;
             this.tabPageMonthlyDayOfMonth.Text = "Day of Month";
-            this.tabPageMonthlyDayOfMonth.UseVisualStyleBackColor = true;
             // 
             // tabPageMonthlyWeekDay
             // 
+            this.tabPageMonthlyWeekDay.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPageMonthlyWeekDay.Controls.Add(this.checkedListBoxMonthlyWeekNumber);
             this.tabPageMonthlyWeekDay.Controls.Add(this.checkedListBoxMonthlyWeekDay);
             this.tabPageMonthlyWeekDay.Location = new System.Drawing.Point(4, 22);
@@ -356,7 +373,6 @@
             this.tabPageMonthlyWeekDay.Size = new System.Drawing.Size(243, 128);
             this.tabPageMonthlyWeekDay.TabIndex = 1;
             this.tabPageMonthlyWeekDay.Text = "Weekday";
-            this.tabPageMonthlyWeekDay.UseVisualStyleBackColor = true;
             // 
             // labelMonthlyMonth
             // 
@@ -370,33 +386,35 @@
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(13, 15);
+            this.labelStartDate.Location = new System.Drawing.Point(3, 9);
             this.labelStartDate.Name = "labelStartDate";
-            this.labelStartDate.Size = new System.Drawing.Size(32, 13);
+            this.labelStartDate.Size = new System.Drawing.Size(38, 16);
             this.labelStartDate.TabIndex = 36;
             this.labelStartDate.Text = "Start:";
             // 
             // dateTimePickerStartDate
             // 
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(61, 12);
+            this.dateTimePickerStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(51, 6);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
-            this.dateTimePickerStartDate.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(240, 22);
             this.dateTimePickerStartDate.TabIndex = 0;
             // 
             // dateTimePickerEndDate
             // 
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(61, 38);
+            this.dateTimePickerEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(51, 32);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
-            this.dateTimePickerEndDate.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerEndDate.Size = new System.Drawing.Size(240, 22);
             this.dateTimePickerEndDate.TabIndex = 1;
             this.dateTimePickerEndDate.Value = new System.DateTime(2010, 7, 12, 17, 25, 0, 0);
             // 
             // labelEndDate
             // 
             this.labelEndDate.AutoSize = true;
-            this.labelEndDate.Location = new System.Drawing.Point(13, 41);
+            this.labelEndDate.Location = new System.Drawing.Point(3, 35);
             this.labelEndDate.Name = "labelEndDate";
-            this.labelEndDate.Size = new System.Drawing.Size(29, 13);
+            this.labelEndDate.Size = new System.Drawing.Size(35, 16);
             this.labelEndDate.TabIndex = 38;
             this.labelEndDate.Text = "End:";
             // 
@@ -426,6 +444,7 @@
             // 
             this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewItems.BackColor = System.Drawing.Color.DarkSlateGray;
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ItemName,
             this.NextTrigger});
@@ -461,19 +480,20 @@
             // dateTimePickerTriggerTime
             // 
             this.dateTimePickerTriggerTime.CustomFormat = "";
+            this.dateTimePickerTriggerTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dateTimePickerTriggerTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerTriggerTime.Location = new System.Drawing.Point(61, 64);
+            this.dateTimePickerTriggerTime.Location = new System.Drawing.Point(349, 6);
             this.dateTimePickerTriggerTime.Name = "dateTimePickerTriggerTime";
             this.dateTimePickerTriggerTime.ShowUpDown = true;
-            this.dateTimePickerTriggerTime.Size = new System.Drawing.Size(96, 20);
+            this.dateTimePickerTriggerTime.Size = new System.Drawing.Size(136, 22);
             this.dateTimePickerTriggerTime.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 68);
+            this.label1.Location = new System.Drawing.Point(301, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.Size = new System.Drawing.Size(42, 16);
             this.label1.TabIndex = 49;
             this.label1.Text = "Time:";
             // 
@@ -496,6 +516,7 @@
             this.textBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxEvents.BackColor = System.Drawing.Color.DarkSlateGray;
             this.textBoxEvents.Location = new System.Drawing.Point(16, 468);
             this.textBoxEvents.Multiline = true;
             this.textBoxEvents.Name = "textBoxEvents";
@@ -516,18 +537,18 @@
             // 
             // textBoxlabelOneTimeOnlyTag
             // 
-            this.textBoxlabelOneTimeOnlyTag.Location = new System.Drawing.Point(63, 88);
+            this.textBoxlabelOneTimeOnlyTag.Location = new System.Drawing.Point(349, 34);
             this.textBoxlabelOneTimeOnlyTag.Name = "textBoxlabelOneTimeOnlyTag";
-            this.textBoxlabelOneTimeOnlyTag.Size = new System.Drawing.Size(152, 20);
+            this.textBoxlabelOneTimeOnlyTag.Size = new System.Drawing.Size(136, 22);
             this.textBoxlabelOneTimeOnlyTag.TabIndex = 3;
             this.textBoxlabelOneTimeOnlyTag.Text = "New Item";
             // 
             // labelOneTimeOnlyTag
             // 
             this.labelOneTimeOnlyTag.AutoSize = true;
-            this.labelOneTimeOnlyTag.Location = new System.Drawing.Point(13, 91);
+            this.labelOneTimeOnlyTag.Location = new System.Drawing.Point(301, 37);
             this.labelOneTimeOnlyTag.Name = "labelOneTimeOnlyTag";
-            this.labelOneTimeOnlyTag.Size = new System.Drawing.Size(29, 13);
+            this.labelOneTimeOnlyTag.Size = new System.Drawing.Size(36, 16);
             this.labelOneTimeOnlyTag.TabIndex = 53;
             this.labelOneTimeOnlyTag.Text = "Tag:";
             // 
@@ -630,11 +651,34 @@
             this.buttonReadServiceConfig.UseVisualStyleBackColor = true;
             this.buttonReadServiceConfig.Click += new System.EventHandler(this.buttonReadServiceConfig_Click);
             // 
-            // Demo
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.dateTimePickerStartDate);
+            this.panel1.Controls.Add(this.labelStartDate);
+            this.panel1.Controls.Add(this.labelEndDate);
+            this.panel1.Controls.Add(this.dateTimePickerEndDate);
+            this.panel1.Controls.Add(this.dateTimePickerTriggerTime);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labelOneTimeOnlyTag);
+            this.panel1.Controls.Add(this.textBoxlabelOneTimeOnlyTag);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.panel1.ForeColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(16, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(639, 61);
+            this.panel1.TabIndex = 54;
+            // 
+            // frmTaskScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(667, 623);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonReadServiceConfig);
             this.Controls.Add(this.buttonStopService);
             this.Controls.Add(this.buttonStartService);
@@ -647,20 +691,12 @@
             this.Controls.Add(this.buttonShowAllTrigger);
             this.Controls.Add(this.buttonCollectionFromXML);
             this.Controls.Add(this.buttonItemFromXML);
-            this.Controls.Add(this.textBoxlabelOneTimeOnlyTag);
             this.Controls.Add(this.buttonCollectionToXML);
-            this.Controls.Add(this.labelOneTimeOnlyTag);
             this.Controls.Add(this.textBoxEvents);
             this.Controls.Add(this.checkBoxEnabled);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePickerTriggerTime);
             this.Controls.Add(this.listViewItems);
-            this.Controls.Add(this.dateTimePickerEndDate);
-            this.Controls.Add(this.labelEndDate);
-            this.Controls.Add(this.dateTimePickerStartDate);
-            this.Controls.Add(this.labelStartDate);
             this.Controls.Add(this.tabControlMode);
-            this.Name = "Demo";
+            this.Name = "frmTaskScheduler";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Task Scheduler ";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDaily)).EndInit();
@@ -676,6 +712,8 @@
             this.tabControlMonthlyMode.ResumeLayout(false);
             this.tabPageMonthlyDayOfMonth.ResumeLayout(false);
             this.tabPageMonthlyWeekDay.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -730,7 +768,7 @@
         private System.Windows.Forms.Button buttonStartService;
         private System.Windows.Forms.Button buttonStopService;
         private System.Windows.Forms.Button buttonReadServiceConfig;
-
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
