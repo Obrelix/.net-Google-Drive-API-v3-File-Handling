@@ -43,6 +43,9 @@ namespace GoogleDriveManager
 
     public static class GoogleDriveAPIV3
     {
+
+        private static Task downloadTask, uploadTask;
+
         private static string[] Scopes = { DriveService.Scope.Drive };
 
         private static UserCredential credential;
@@ -230,10 +233,17 @@ namespace GoogleDriveManager
         
 
 
-        private static bool uploadFileToDrive(string folderId, string fileName, string filePath, string fileType)
+        private static bool uploadFileToDrive(string folderId, string fileName, string filePath, string fileType, frmMain parentForm)
         {
+
+            frmMain parent = parentForm;
+            parent.updateStatusBar(0, "Uploading...");
+            long totalSize = 100000;
             try
             {
+                FileInfo fi = new FileInfo(filePath);
+                totalSize = fi.Length;
+
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                 {
                     Name = fileName
@@ -257,16 +267,20 @@ namespace GoogleDriveManager
                         {
                             case UploadStatus.Uploading:
                                 {
+                                    parent.updateStatusBar((progress.BytesSent * 100) / totalSize, "Uploading...");
                                     System.Diagnostics.Debug.WriteLine(progress.BytesSent);
                                     break;
                                 }
                             case UploadStatus.Completed:
                                 {
+
+                                    parent.updateStatusBar(100, "Upload complete.");
                                     System.Diagnostics.Debug.WriteLine("Upload complete.");
                                     break;
                                 }
                             case UploadStatus.Failed:
                                 {
+                                    parent.updateStatusBar(0, "Upload failed.");
                                     System.Diagnostics.Debug.WriteLine("Upload failed.");
                                     //MessageBox.Show("File failed to upload!!!", "Upload Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     Gtools.writeToFile(frmMain.errorLog, Environment.NewLine + DateTime.Now.ToString() +
@@ -291,13 +305,13 @@ namespace GoogleDriveManager
             }
         }
 
-        private static bool uploadFileToDrive(string folderId, string fileName, string filePath, string fileType, bool onlyNew)
+        private static bool uploadFileToDrive(string folderId, string fileName, string filePath, string fileType, bool onlyNew, frmMain parentForm)
         {
             if (onlyNew)
             {
                 if (!compareHash(Gtools.hashGenerator(filePath)))
                 {
-                    uploadFileToDrive(folderId, fileName, filePath, fileType);
+                    uploadFileToDrive(folderId, fileName, filePath, fileType, parentForm);
                     return true;
                 }
                 else return false;
@@ -305,7 +319,7 @@ namespace GoogleDriveManager
             }
             else
             {
-                uploadFileToDrive(folderId, fileName, filePath, fileType);
+                uploadFileToDrive(folderId, fileName, filePath, fileType, parentForm);
                 return true;
             }
                 
@@ -356,7 +370,7 @@ namespace GoogleDriveManager
         }
 
 
-        public static void uploadToDrive(string path, string name, string parentId, bool onlyNew)
+        public static void uploadToDrive(string path, string name, string parentId, bool onlyNew, frmMain parentForm)
         {
             if (Path.HasExtension(path))
             {
@@ -365,15 +379,15 @@ namespace GoogleDriveManager
                     name,
                     path,
                     getMimeType(Path.GetFileName(path)),
-                    onlyNew);
+                    onlyNew, parentForm);
             }
             else
             {
-                directoryUpload(path, parentId, onlyNew);
+                directoryUpload(path, parentId, onlyNew, parentForm);
             }
         }
 
-        public static void directoryUpload(string path, string parentId, bool onlyNew)
+        public static void directoryUpload(string path, string parentId, bool onlyNew, frmMain parentForm)
         {
             try
             {
@@ -398,13 +412,13 @@ namespace GoogleDriveManager
                     uploadFileToDrive(
                         folderId, file.Name,
                         Path.Combine(path, file.Name),
-                        getMimeType(file.Name), onlyNew);
+                        getMimeType(file.Name), onlyNew, parentForm);
                 }
 
                 DirectoryInfo[] dirs = dir.GetDirectories();
                 foreach (DirectoryInfo subdir in dirs)
                 {
-                    directoryUpload(subdir.FullName,  folderId, onlyNew);
+                    directoryUpload(subdir.FullName,  folderId, onlyNew, parentForm);
                 }
             }
             catch (Exception exc)
@@ -434,6 +448,7 @@ namespace GoogleDriveManager
                 }
             }
         }
+
         public static void removeFile(string fileID)
         {
             try
@@ -448,8 +463,12 @@ namespace GoogleDriveManager
                     Environment.NewLine + exc.Message + " Remove Drive File Error.\n");
             }
         }
-        public static void downloadFromDrive(string filename, string fileId, string savePath, string mimeType)
+
+        public static void downloadFromDrive(string filename, string fileId, string savePath, string mimeType, frmMain parentForm)
         {
+            frmMain parent = parentForm;
+            long totalSize = 100000;
+            parent.updateStatusBar(0, "Downloading...");
             try
             {
                 if (Path.HasExtension(filename))
@@ -469,15 +488,21 @@ namespace GoogleDriveManager
                                 case DownloadStatus.Downloading:
                                     {
                                         System.Diagnostics.Debug.WriteLine(progress.BytesDownloaded);
+
+                                        parent.updateStatusBar((progress.BytesDownloaded * 100) / totalSize, "Downloading...");
                                         break;
                                     }
                                 case DownloadStatus.Completed:
                                     {
+
+                                        parent.updateStatusBar(100, "Download complete.");
                                         System.Diagnostics.Debug.WriteLine("Download complete.");
                                         break;
                                     }
                                 case DownloadStatus.Failed:
                                     {
+
+                                        parent.updateStatusBar(0, "Download failed.");
                                         System.Diagnostics.Debug.WriteLine("Download failed.");
                                         MessageBox.Show("File failed to download!!!", "Download Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         break;
@@ -517,11 +542,13 @@ namespace GoogleDriveManager
                                         }
                                     case DownloadStatus.Completed:
                                         {
+                                            parent.updateStatusBar(100,"Download Complete!");
                                             Console.WriteLine("Download complete.");
                                             break;
                                         }
                                     case DownloadStatus.Failed:
                                         {
+                                            parent.updateStatusBar(0, "Download failed.");
                                             Console.WriteLine("Download failed.");
                                             MessageBox.Show("File failed to download!!!", "Download Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             break;

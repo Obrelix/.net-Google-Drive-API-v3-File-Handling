@@ -1,0 +1,169 @@
+27/3/2017 4:34:05 πμ
+Error Log file Created
+
+
+27/3/2017 5:59:26 πμ
+Google.Apis.Requests.RequestError
+Insufficient Permission [403]
+Errors [
+	Message[Insufficient Permission] Location[ - ] Reason[insufficientPermissions] Domain[global]
+]
+ Create Drive Service Error.
+
+
+3/4/2017 2:51:24 μμ
+One or more errors occurred. Get Credential Error.
+
+
+3/4/2017 2:52:34 μμ
+One or more errors occurred. Get Credential Error.
+
+
+3/4/2017 2:56:06 μμ
+One or more errors occurred. Get Credential Error.
+
+
+3/4/2017 2:57:35 μμ
+One or more errors occurred. Get Credential Error.
+
+
+3/4/2017 2:58:11 μμ
+One or more errors occurred. Get Credential Error.
+
+
+3/4/2017 3:00:24 μμ
+One or more errors occurred. Get Credential Error.
+
+
+27/5/2017 11:40:31 πμ
+Could not find a part of the path 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\application\pdf\DnD 5e Players Handbook (BnW OCR ToC).pdf'. Download From Drive.
+
+
+27/5/2017 11:41:11 πμ
+Could not find a part of the path 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\image\png\pic1.png'. Download From Drive.
+
+
+27/5/2017 11:46:06 πμ
+Could not find a part of the path 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\application\rar\PacmanCrossThreadingC#.rar'. Download From Drive.
+
+
+27/5/2017 1:11:05 μμ
+Google.Apis.Requests.RequestError
+Invalid Value [400]
+Errors [
+	Message[Invalid Value] Location[q - parameter] Reason[invalid] Domain[global]
+]
+ Download From Drive.
+
+
+27/5/2017 1:19:32 μμ
+Google.Apis.Requests.RequestError
+Invalid Value [400]
+Errors [
+	Message[Invalid Value] Location[q - parameter] Reason[invalid] Domain[global]
+]
+ Download From Drive.
+
+
+27/5/2017 1:22:47 μμ
+Google.Apis.Requests.RequestError
+Invalid Value [400]
+Errors [
+	Message[Invalid Value] Location[q - parameter] Reason[invalid] Domain[global]
+]
+ Download From Drive.
+
+
+27/5/2017 1:23:14 μμ
+Google.Apis.Requests.RequestError
+Invalid Value [400]
+Errors [
+	Message[Invalid Value] Location[q - parameter] Reason[invalid] Domain[global]
+]
+ Download From Drive.
+
+
+27/5/2017 1:28:11 μμ
+Google.Apis.Requests.RequestError
+Invalid field selection nextPageToken, files(id, name, size,) [400]
+Errors [
+	Message[Invalid field selection nextPageToken, files(id, name, size,)] Location[fields - parameter] Reason[invalidParameter] Domain[global]
+]
+ Download From Drive.
+
+
+27/5/2017 1:28:55 μμ
+Google.Apis.Requests.RequestError
+Invalid Value [400]
+Errors [
+	Message[Invalid Value] Location[q - parameter] Reason[invalid] Domain[global]
+]
+ Download From Drive.
+
+
+27/5/2017 1:47:36 μμ
+Object reference not set to an instance of an object. Upload file to Drive Error.
+
+
+27/5/2017 1:47:36 μμ
+Object reference not set to an instance of an object. Drivefile list Error.
+
+
+27/5/2017 1:50:50 μμ
+Object reference not set to an instance of an object. Upload file to Drive Error.
+
+
+27/5/2017 1:50:50 μμ
+Object reference not set to an instance of an object. Drivefile list Error.
+
+
+27/5/2017 1:51:01 μμ
+The given path's format is not supported. Upload file to Drive Error.
+
+
+27/5/2017 1:52:41 μμ
+The given path's format is not supported. Upload file to Drive Error.
+
+27/5/2017 1:53:20 μμ
+The given path's format is not supported. Hash Generator Error.
+
+
+27/5/2017 1:54:49 μμ
+The process cannot access the file 'C:\Users\tataki\Downloads\GraphDijkstra.rar' because it is being used by another process. Upload file to Drive Error.
+
+
+27/5/2017 1:54:49 μμ
+The process cannot access the file 'C:\Users\tataki\Downloads\GraphDijkstra.rar' because it is being used by another process. Upload file to Drive Error.
+
+
+27/5/2017 2:24:05 μμ
+Object reference not set to an instance of an object. Drivefile list Error.
+
+
+27/5/2017 2:24:05 μμ
+Object reference not set to an instance of an object. Drivefile list Error.
+
+
+27/5/2017 2:24:05 μμ
+Object reference not set to an instance of an object. Upload file to Drive Error.
+
+
+29/5/2017 10:22:44 μμ
+Object reference not set to an instance of an object. Drivefile list Error.
+
+
+29/5/2017 10:22:44 μμ
+Object reference not set to an instance of an object. Upload file to Drive Error.
+
+
+29/5/2017 10:22:44 μμ
+Object reference not set to an instance of an object. Drivefile list Error.
+
+
+29/5/2017 11:34:22 μμ
+Upload failed.
+
+
+29/5/2017 11:34:22 μμ
+One or more errors occurred. Upload file to Drive Error.
+

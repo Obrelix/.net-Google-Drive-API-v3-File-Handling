@@ -62,7 +62,7 @@ namespace GoogleDriveManager
                         {
                             uploadFilePath = (compressing == 0) ? file.path : Gtools.compressFile(file.path);
                             filename = (compressing == 0) ? file.name : file.name.Split('.').First() + ".zip";
-                            GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID, (onlyNew != 0));
+                            GoogleDriveAPIV3.uploadToDrive(uploadFilePath, filename, parentID, (onlyNew != 0), new frmMain());
                         }
                         
                     }

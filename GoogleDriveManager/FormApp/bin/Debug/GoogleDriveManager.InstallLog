@@ -15,3 +15,171 @@ Restoring event log to previous state for source TaskSchedulerDemoService.
 An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
 System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
 An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Uninstalling assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Removing EventLog source TaskSchedulerDemoService.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Installing assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+Installing service TaskSchedulerDemoService...
+Creating EventLog source TaskSchedulerDemoService in log Application...
+See the contents of the log file for the C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe assembly's progress.
+The file is located at C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog.
+Rolling back assembly 'C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.InstallLog
+   assemblypath = C:\Users\tataki\Source\Repos\.net-Google-Drive-API-v3-File-Handling\GoogleDriveManager\FormApp\bin\Debug\GoogleDriveManager.exe
+Restoring event log to previous state for source TaskSchedulerDemoService.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.

@@ -251,7 +251,7 @@
             this.tabControlMode.Controls.Add(this.tabPageDaily);
             this.tabControlMode.Controls.Add(this.tabPageWeekly);
             this.tabControlMode.Controls.Add(this.tabPageMonthly);
-            this.tabControlMode.Location = new System.Drawing.Point(16, 125);
+            this.tabControlMode.Location = new System.Drawing.Point(16, 79);
             this.tabControlMode.Name = "tabControlMode";
             this.tabControlMode.SelectedIndex = 0;
             this.tabControlMode.Size = new System.Drawing.Size(639, 206);
@@ -421,7 +421,7 @@
             // buttonCreateTrigger
             // 
             this.buttonCreateTrigger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCreateTrigger.Location = new System.Drawing.Point(381, 347);
+            this.buttonCreateTrigger.Location = new System.Drawing.Point(381, 301);
             this.buttonCreateTrigger.Name = "buttonCreateTrigger";
             this.buttonCreateTrigger.Size = new System.Drawing.Size(130, 23);
             this.buttonCreateTrigger.TabIndex = 7;
@@ -432,7 +432,7 @@
             // buttonReset
             // 
             this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(381, 376);
+            this.buttonReset.Location = new System.Drawing.Point(381, 330);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(130, 23);
             this.buttonReset.TabIndex = 8;
@@ -448,8 +448,9 @@
             this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ItemName,
             this.NextTrigger});
+            this.listViewItems.ForeColor = System.Drawing.Color.White;
             this.listViewItems.FullRowSelect = true;
-            this.listViewItems.Location = new System.Drawing.Point(16, 347);
+            this.listViewItems.Location = new System.Drawing.Point(16, 301);
             this.listViewItems.Name = "listViewItems";
             this.listViewItems.Size = new System.Drawing.Size(359, 115);
             this.listViewItems.TabIndex = 5;
@@ -469,7 +470,7 @@
             // buttonShowAllTrigger
             // 
             this.buttonShowAllTrigger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonShowAllTrigger.Location = new System.Drawing.Point(381, 405);
+            this.buttonShowAllTrigger.Location = new System.Drawing.Point(381, 359);
             this.buttonShowAllTrigger.Name = "buttonShowAllTrigger";
             this.buttonShowAllTrigger.Size = new System.Drawing.Size(130, 23);
             this.buttonShowAllTrigger.TabIndex = 9;
@@ -503,7 +504,8 @@
             this.checkBoxEnabled.AutoSize = true;
             this.checkBoxEnabled.Checked = true;
             this.checkBoxEnabled.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxEnabled.Location = new System.Drawing.Point(532, 602);
+            this.checkBoxEnabled.ForeColor = System.Drawing.Color.White;
+            this.checkBoxEnabled.Location = new System.Drawing.Point(532, 556);
             this.checkBoxEnabled.Name = "checkBoxEnabled";
             this.checkBoxEnabled.Size = new System.Drawing.Size(115, 17);
             this.checkBoxEnabled.TabIndex = 20;
@@ -517,17 +519,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEvents.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.textBoxEvents.Location = new System.Drawing.Point(16, 468);
+            this.textBoxEvents.ForeColor = System.Drawing.Color.White;
+            this.textBoxEvents.Location = new System.Drawing.Point(16, 422);
             this.textBoxEvents.Multiline = true;
             this.textBoxEvents.Name = "textBoxEvents";
-            this.textBoxEvents.Size = new System.Drawing.Size(359, 143);
+            this.textBoxEvents.Size = new System.Drawing.Size(359, 147);
             this.textBoxEvents.TabIndex = 6;
             this.textBoxEvents.WordWrap = false;
             // 
             // buttonItemToXML
             // 
             this.buttonItemToXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonItemToXML.Location = new System.Drawing.Point(517, 347);
+            this.buttonItemToXML.Location = new System.Drawing.Point(517, 301);
             this.buttonItemToXML.Name = "buttonItemToXML";
             this.buttonItemToXML.Size = new System.Drawing.Size(130, 23);
             this.buttonItemToXML.TabIndex = 10;
@@ -555,7 +558,7 @@
             // buttonItemFromXML
             // 
             this.buttonItemFromXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonItemFromXML.Location = new System.Drawing.Point(517, 376);
+            this.buttonItemFromXML.Location = new System.Drawing.Point(517, 330);
             this.buttonItemFromXML.Name = "buttonItemFromXML";
             this.buttonItemFromXML.Size = new System.Drawing.Size(130, 23);
             this.buttonItemFromXML.TabIndex = 11;
@@ -566,7 +569,7 @@
             // buttonCollectionToXML
             // 
             this.buttonCollectionToXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCollectionToXML.Location = new System.Drawing.Point(517, 405);
+            this.buttonCollectionToXML.Location = new System.Drawing.Point(517, 359);
             this.buttonCollectionToXML.Name = "buttonCollectionToXML";
             this.buttonCollectionToXML.Size = new System.Drawing.Size(130, 23);
             this.buttonCollectionToXML.TabIndex = 12;
@@ -577,7 +580,7 @@
             // buttonCollectionFromXML
             // 
             this.buttonCollectionFromXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCollectionFromXML.Location = new System.Drawing.Point(517, 434);
+            this.buttonCollectionFromXML.Location = new System.Drawing.Point(517, 388);
             this.buttonCollectionFromXML.Name = "buttonCollectionFromXML";
             this.buttonCollectionFromXML.Size = new System.Drawing.Size(130, 23);
             this.buttonCollectionFromXML.TabIndex = 13;
@@ -588,7 +591,7 @@
             // buttonSaveAsServiceConfig
             // 
             this.buttonSaveAsServiceConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSaveAsServiceConfig.Location = new System.Drawing.Point(381, 480);
+            this.buttonSaveAsServiceConfig.Location = new System.Drawing.Point(381, 434);
             this.buttonSaveAsServiceConfig.Name = "buttonSaveAsServiceConfig";
             this.buttonSaveAsServiceConfig.Size = new System.Drawing.Size(130, 23);
             this.buttonSaveAsServiceConfig.TabIndex = 14;
@@ -599,7 +602,7 @@
             // buttonInstallService
             // 
             this.buttonInstallService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInstallService.Location = new System.Drawing.Point(517, 480);
+            this.buttonInstallService.Location = new System.Drawing.Point(517, 434);
             this.buttonInstallService.Name = "buttonInstallService";
             this.buttonInstallService.Size = new System.Drawing.Size(130, 23);
             this.buttonInstallService.TabIndex = 16;
@@ -610,7 +613,7 @@
             // buttonUninstallService
             // 
             this.buttonUninstallService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonUninstallService.Location = new System.Drawing.Point(517, 509);
+            this.buttonUninstallService.Location = new System.Drawing.Point(517, 463);
             this.buttonUninstallService.Name = "buttonUninstallService";
             this.buttonUninstallService.Size = new System.Drawing.Size(130, 23);
             this.buttonUninstallService.TabIndex = 17;
@@ -621,7 +624,7 @@
             // buttonStartService
             // 
             this.buttonStartService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStartService.Location = new System.Drawing.Point(517, 538);
+            this.buttonStartService.Location = new System.Drawing.Point(517, 492);
             this.buttonStartService.Name = "buttonStartService";
             this.buttonStartService.Size = new System.Drawing.Size(130, 23);
             this.buttonStartService.TabIndex = 18;
@@ -632,7 +635,7 @@
             // buttonStopService
             // 
             this.buttonStopService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStopService.Location = new System.Drawing.Point(517, 567);
+            this.buttonStopService.Location = new System.Drawing.Point(517, 521);
             this.buttonStopService.Name = "buttonStopService";
             this.buttonStopService.Size = new System.Drawing.Size(130, 23);
             this.buttonStopService.TabIndex = 19;
@@ -643,7 +646,7 @@
             // buttonReadServiceConfig
             // 
             this.buttonReadServiceConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReadServiceConfig.Location = new System.Drawing.Point(381, 509);
+            this.buttonReadServiceConfig.Location = new System.Drawing.Point(381, 463);
             this.buttonReadServiceConfig.Name = "buttonReadServiceConfig";
             this.buttonReadServiceConfig.Size = new System.Drawing.Size(130, 23);
             this.buttonReadServiceConfig.TabIndex = 15;
@@ -677,7 +680,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
-            this.ClientSize = new System.Drawing.Size(667, 623);
+            this.ClientSize = new System.Drawing.Size(667, 581);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonReadServiceConfig);
             this.Controls.Add(this.buttonStopService);
@@ -696,6 +699,7 @@
             this.Controls.Add(this.checkBoxEnabled);
             this.Controls.Add(this.listViewItems);
             this.Controls.Add(this.tabControlMode);
+            this.MinimumSize = new System.Drawing.Size(683, 619);
             this.Name = "frmTaskScheduler";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Task Scheduler ";

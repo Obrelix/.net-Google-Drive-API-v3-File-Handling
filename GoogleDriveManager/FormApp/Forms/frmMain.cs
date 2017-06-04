@@ -22,6 +22,8 @@ namespace GoogleDriveManager
 {
     public partial class frmMain : Form
     {
+        private Task uploadRunner, downloadRunner;
+        private delegate void update();
         public static List<User> UserList = new List<User>();
         public List<IOFile> IOFileList = new List<IOFile>();
         static List<ListId> cbList = new List<ListId>();
@@ -76,6 +78,7 @@ namespace GoogleDriveManager
             UIinit();
             cbUserInit();
             cbTypeInit();
+            lblProgress.Text = "";
             txtJsonPath.Text = "Resources\\client_secret.json" ;
             //Properties.Resources.client_secret
             dtDriveFiles = new DataTable();
@@ -89,8 +92,26 @@ namespace GoogleDriveManager
                 Gtools.createFile(errorLog, DateTime.Now.ToString() + Environment.NewLine + "Error Log file Created\n" + Environment.NewLine);
         }
 
+        public void updateStatusBar(long bytes, string msg)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<long, string>(updateStatusBar), new object[] { bytes, msg });
+                return;
+            }
+            progressBar.Value = (int)bytes;
+            lblProgress.Text = msg;
+            lblProgress.Location = new Point(this.ClientRectangle.Width - lblProgress.Width - progressBar.Width - 20, 4);
+
+        }
         private void updateDataGridView(string name = null, string type = null)
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string, string>(updateDataGridView), new object[] { name, type });
+                return;
+            }
+
             dtDriveFiles = null;
             dtDriveFiles = Gtools.ToDataTable<GoogleDriveFile>(GoogleDriveAPIV3.listDriveFiles(name, type));
             dgvFilesFromDrive.DataSource = dtDriveFiles;
@@ -208,6 +229,7 @@ namespace GoogleDriveManager
                 }
                 else
                 {
+                    IOFileList.Clear();
                     txtFilePath.Text = file;
                     System.Diagnostics.Debug.WriteLine("File: {0}", file);
                     IOFileList.Add(new IOFile(file));
@@ -249,8 +271,7 @@ namespace GoogleDriveManager
                     UserList[cbUser.SelectedIndex].userName))
                 {
                     btnConnect.BackColor = Color.Green;
-                    
-                    updateDataGridView();
+                    Task.Run(() => { updateDataGridView(); });
                 }
                 else
                 {
@@ -309,21 +330,37 @@ namespace GoogleDriveManager
                     break;
             }
         }
+
         private void downloadFile(string fileName, string fileID, string mimeType)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
+
             switch (result)
             {
                 case DialogResult.OK:
                     txtJsonPath.Text = ofgJsonFile.FileName;
-                    GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, fbd.SelectedPath, mimeType);
+                    string path = fbd.SelectedPath;
+                    Task.Run(() => { GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, path, mimeType, this); });
+                    //Task.Run(() => downRun(fileName, fileID, path, mimeType));
+                    //downloadRunner = new Task(downRun);
+                    //downloadRunner.Start();
+                    // GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, fbd.SelectedPath, mimeType);
                     break;
                 default:
                     break;
             }
         }
 
+        
+        //private void downRun(string fileName, string fileID, string mimeType, string SelectedPath)
+        //{
+        //    try
+        //    {
+        //        GoogleDriveAPIV3.downloadFromDrive(fileName, fileID, SelectedPath, mimeType);
+        //    }
+        //    catch(Exception ex) { MessageBox.Show(ex.ToString()); }
+        //}
         
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -336,23 +373,26 @@ namespace GoogleDriveManager
                 result = (MessageBox.Show("Do you want to upload only new/changed files on Google Drive ?",
                        "Upload existing files?",
                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-                lbFilesToUpload.BeginUpdate();
                 try
                 {
-                    for (int i = lbFilesToUpload.Items.Count - 1; i >= 0; i--)
-                    {
-                       // lbFilesToUpload.Items[i].c
-                        filePath = (chbCompress.Checked) ? Gtools.compressFile(lbFilesToUpload.Items[i].ToString()) : lbFilesToUpload.Items[i].ToString();
-                        System.Diagnostics.Debug.WriteLine(filePath);
-                        fileName = (chbCompress.Checked) ? Path.GetFileName(lbFilesToUpload.Items[i].ToString().Split('.').First()) + ".zip" : Path.GetFileName(lbFilesToUpload.Items[i].ToString());
-                        GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, result);
-                        string newName = "DONE!  " + lbFilesToUpload.Items[i].ToString();
+                    lbFilesToUpload.BeginUpdate();
 
-                        lbFilesToUpload.Items.RemoveAt(i);
-                        lbFilesToUpload.Items.Insert(i, newName);
-                        updateDataGridView();
-                        lbFilesToUpload.EndUpdate();
-                    }
+                    for (int i = lbFilesToUpload.Items.Count - 1; i >= 0; i--)
+                        {
+                            // lbFilesToUpload.Items[i].c
+                            filePath = (chbCompress.Checked) ? Gtools.compressFile(lbFilesToUpload.Items[i].ToString()) : lbFilesToUpload.Items[i].ToString();
+                            System.Diagnostics.Debug.WriteLine(filePath);
+                            fileName = (chbCompress.Checked) ? Path.GetFileName(lbFilesToUpload.Items[i].ToString().Split('.').First()) + ".zip" : Path.GetFileName(lbFilesToUpload.Items[i].ToString());
+                            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, result, this); 
+
+                        
+                            string newName = "DONE!  " + lbFilesToUpload.Items[i].ToString();
+
+                            lbFilesToUpload.Items.RemoveAt(i);
+                            lbFilesToUpload.Items.Insert(i, newName);
+                            updateDataGridView();
+                        }
+                    lbFilesToUpload.EndUpdate();
                 }
                 catch(Exception exc)
                 {
@@ -370,15 +410,17 @@ namespace GoogleDriveManager
                         "\" \nAlready exists on Google Drive!! \nDo you want to uploaded anyway?",
                         "File already exist on Google Drive",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
-                    
-                            GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, !result);
-                            updateDataGridView();
+
+
+                    Task.Run(() => { GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, !result, this); updateDataGridView(); });
+                  
                            
                 }
                 else
                 {
-                    GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false);
-                    updateDataGridView();
+                   
+                    Task.Run(() => { GoogleDriveAPIV3.uploadToDrive(filePath, fileName, parentID, false, this); updateDataGridView(); });
+                    
                 }
             }
                 
@@ -433,8 +475,8 @@ namespace GoogleDriveManager
                 default:
                     break;
             }
-            
-            updateDataGridView();
+
+            Task.Run(() => { updateDataGridView(); });
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -556,8 +598,7 @@ namespace GoogleDriveManager
 
         private void tmrUpdate_Tick(object sender, EventArgs e)
         {
-            
-            if((txtFileName.Text != "" && txtFilePath.Text != "")|| lbFilesToUpload.Items.Count > 0)
+             if((txtFileName.Text != "" && txtFilePath.Text != "")|| lbFilesToUpload.Items.Count > 0)
             {
                 btnCreateBatch.Enabled = true;
                 btnUpload.Enabled = true;
@@ -615,7 +656,7 @@ namespace GoogleDriveManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            updateDataGridView();
+            updateDataGridView(); 
         }
 
         private void chbCompress_CheckedChanged(object sender, EventArgs e)
@@ -626,18 +667,19 @@ namespace GoogleDriveManager
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            GoogleDriveAPIV3.createFolderToDrive(txtCreateFolder.Text, null);
-            updateDataGridView();
+            Task.Run(() => { GoogleDriveAPIV3.createFolderToDrive(txtCreateFolder.Text, null); updateDataGridView(); });
+           
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            updateDataGridView(txtSearchFile.Text, cbList[cbFileType.SelectedIndex].type);
+            updateDataGridView(txtSearchFile.Text, cbList[cbFileType.SelectedIndex].type); 
+            
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
         {
-
+            lblProgress.Location = new Point(this.ClientRectangle.Width - lblProgress.Width - progressBar.Width - 20, 4);
         }
 
         private void chbUploadMultiple_CheckedChanged(object sender, EventArgs e)
@@ -712,6 +754,11 @@ namespace GoogleDriveManager
                 string fileID = dgvFilesFromDrive.Rows[row.Index].Cells[5].Value.ToString();
                 if (fileID != null)Clipboard.SetText(fileID);
             }
+        }
+
+        private void pnlDragAndDrop_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void mnuCreateTaskSchedule_Click(object sender, EventArgs e)

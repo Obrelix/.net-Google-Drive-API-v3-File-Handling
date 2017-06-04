@@ -109,6 +109,8 @@
             this.cbFileType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFile = new System.Windows.Forms.TextBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblProgress = new System.Windows.Forms.Label();
             this.pnlDragAndDrop.SuspendLayout();
             this.pnlListBox.SuspendLayout();
             this.pnlSF.SuspendLayout();
@@ -212,6 +214,7 @@
             this.pnlDragAndDrop.TabIndex = 17;
             this.pnlDragAndDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragDrop);
             this.pnlDragAndDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDragAndDrop_DragEnter);
+            this.pnlDragAndDrop.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDragAndDrop_Paint);
             // 
             // pnlListBox
             // 
@@ -924,7 +927,7 @@
             // tmrUpdate
             // 
             this.tmrUpdate.Enabled = true;
-            this.tmrUpdate.Interval = 50;
+            this.tmrUpdate.Interval = 10;
             this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
             // 
             // panel2
@@ -977,12 +980,33 @@
             this.txtSearchFile.Size = new System.Drawing.Size(302, 22);
             this.txtSearchFile.TabIndex = 25;
             // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(736, 0);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(252, 23);
+            this.progressBar.TabIndex = 101;
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblProgress.ForeColor = System.Drawing.Color.White;
+            this.lblProgress.Location = new System.Drawing.Point(607, 4);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(120, 17);
+            this.lblProgress.TabIndex = 102;
+            this.lblProgress.Text = "DownLoading...";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(1000, 622);
+            this.Controls.Add(this.lblProgress);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuMain);
@@ -1099,6 +1123,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MD5Checksum;
         private System.Windows.Forms.DataGridViewTextBoxColumn webContentLink;
         private System.Windows.Forms.ToolStripMenuItem mnuCreateTaskSchedule;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label lblProgress;
     }
 }
 
