@@ -26,7 +26,7 @@ Running as a background console application when you start the application with 
 
 # Upcomming
 
-Downloading/Uploading asynchronous.
+Downloading/Uploading asynchronous. +ADDED
 
 Uploading files with Google Calendar specific Events.
 
