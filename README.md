@@ -8,25 +8,23 @@ A Windows Forms Application writen in c# making use of Google Drive API V3.
 
 # Features
 
-Connects to multiple Google Drive and Google Calendar accounts.
+Connects with multiple Google Drive and Google Calendar accounts.
 
-Previewing in a data grid view the Google Drive Files and the Google Calendar's Events.
+Αccessing and processing all of the Google Drive Files and the Google Calendar's Events.
 
-Uploading/Downloading/Deleting files to Google Drive.
-
-Uploading directories with subdirectories to Drive.
+Uploading/Downloading/Deleting Google Drive files and directories .
 
 Searching for files in Google Drive with file name and type parameters. 
 
-Generating the Md5 Checksum hash for the uploading files in order to compare it with the hash of google drive files and warning the user that the file already exist in the Drive.
+Validating via Md5 Checksum hash, on the loading sequence, in order to avoid the creation of duplicate files.
 
-Creating a Batch file for the upload, to add it in Windows Scheduler and run the application with arguments.
+Auto Creating scripts (Batch files) for scheduled uploads via Windows Scheduler.
 
-Running as a background console application when you start the application with arguments 
+Running as a background console application when it starts with arguments.
+
+Downloading/Uploading asynchronous.
 
 # Upcomming
-
-Downloading/Uploading asynchronous. +ADDED
 
 Uploading files with Google Calendar specific Events.
 
