@@ -16,7 +16,7 @@ Uploading/Downloading/Deleting Google Drive files and directories .
 
 Searching for files in Google Drive with file name and type parameters. 
 
-Validating via Md5 Checksum hash, on the loading sequence, in order to avoid the creation of duplicate files.
+Validating the files via Md5 Checksum hash, on the loading sequence, in order to avoid the creation of duplicate files.
 
 Auto Creating scripts (Batch files) for scheduled uploads via Windows Scheduler.
 
